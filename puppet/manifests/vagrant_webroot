@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+  ServerName app.local
+  DocumentRoot /vagrant/app/public
+  <Directory /vagrant/app/public>
+    DirectoryIndex index.php index.html
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+  php_value html_errors On
+</VirtualHost>

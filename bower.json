@@ -1,0 +1,20 @@
+{
+  "name": "within",
+  "version": "0.1.0",
+  "authors": [
+    "Nick Fraenkel <nick.f@niceandserious.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bourbon": "~3.1.8",
+    "neat": "~1.5.0"
+  }
+}

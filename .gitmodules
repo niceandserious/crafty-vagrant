@@ -1,0 +1,15 @@
+[submodule "modules/nodejs"]
+	path = puppet/modules/nodejs
+	url = git://github.com/willdurand/puppet-nodejs.git
+[submodule "modules/wget"]
+	path = puppet/modules/wget
+	url = git://github.com/maestrodev/puppet-wget.git
+[submodule "modules/stdlib"]
+	path = puppet/modules/stdlib
+	url = git://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "modules/yeoman"]
+	path = puppet/modules/yeoman
+	url = https://github.com/nickhartjes/puppet-yeoman.git
+[submodule "modules/apt"]
+	path = puppet/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt.git
