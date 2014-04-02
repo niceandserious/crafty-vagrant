@@ -3,6 +3,10 @@ class mysql {
   # root mysql password
   $rootpass = "123"
 
+  file { "/vagrant/puppet/crafty-setup.sh":
+    mode => 777,
+  }
+
   # install mysql server
   package { "mysql-server":
     ensure => present,
@@ -21,7 +25,7 @@ class mysql {
     command => "mysqladmin -uroot password $rootpass",
     require => Service["mysql"],
   }
-
+  ->
   # create database and populate from $db_init:
   exec { "create-database":
     unless  => "/usr/bin/mysql -u$user -p$pass $dbname",
@@ -33,5 +37,6 @@ class mysql {
   exec { "populate-database":
     command => "/vagrant/puppet/crafty-setup.sh '$user' '$pass' '$dbname';",
     logoutput => true,
+    require => File["/vagrant/puppet/crafty-setup.sh"],
   }
 }
