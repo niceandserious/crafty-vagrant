@@ -22,7 +22,7 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 4. Launch vagrant: `vagrant up`
 
-...and hopefully you should be ready to go! The webserver should now be accessible from http://app.local/
+...and hopefully you should be ready to go! The webserver should now be accessible from `http://app.local/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://app.local/admin/](http://app.local/admin/)
 
 ## System Package include
 
