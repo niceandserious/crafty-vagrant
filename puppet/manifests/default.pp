@@ -16,8 +16,8 @@ include php::pear
 include php::pecl
 include mysql
 
-class { 'nodejs':
-  version => 'stable',
-}
+# class { 'nodejs':
+#   version => 'stable',
+# }
 
-include yeoman
+# include yeoman
