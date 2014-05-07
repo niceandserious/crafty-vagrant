@@ -18,11 +18,11 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 3. If this is the first time you've used Crafty Vagrant, open `/etc/hosts` and add
 
-	192.168.56.101    app.local
+	192.168.56.101    craft.dev
 
 4. Launch vagrant: `vagrant up`
 
-...and hopefully you should be ready to go! The webserver should now be accessible from `http://app.local/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://app.local/admin/](http://app.local/admin/)
+...and hopefully you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/](http://craft.dev/admin/)
 
 ## System Package include
 
