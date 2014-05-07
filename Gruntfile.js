@@ -31,19 +31,15 @@ module.exports = function(grunt) {
 					]
 				},
 				files: {
-					'app/public/css/main.css': 'app/public/css/_src/main.scss'
+					'app/public/css/main.css': 'app/src/css/main.scss'
 				}
 			}
 		},
 
-		// Concatenate multiple source CSS + JS files into main.css + main.js:
+		// Concatenate multiple source JS files into main.js:
 		concat : {
-			css : {
-				src : ['app/public/css/_src/*.css'],
-				dest : 'app/public/css/main.css'
-			},
 			scripts : {
-				src : ['app/public/js/_src/*.js'],
+				src : ['app/src/js/*.js'],
 				dest : 'app/public/js/main.js'
 			}
 		},
@@ -71,7 +67,7 @@ module.exports = function(grunt) {
 			all : {
 				files : [{
 					expand : true,
-					cwd: 'app/public/img/_src',
+					cwd: 'app/src/img',
 					src: ['**/*.{png,jpg,gif}'],
 					dest: 'app/public/img'
 				}]
@@ -81,11 +77,11 @@ module.exports = function(grunt) {
 		// Watch tasks:
 		watch : {
 			css : {
-				files : ['app/public/css/_src/*.scss'],
+				files : ['app/src/css/*.scss'],
 				tasks : ['sass', 'cssmin'],
 			},
 			scripts : {
-				files : ['app/public/js/_src/*.js'],
+				files : ['app/src/js/*.js'],
 				tasks : ['concat:scripts', 'uglify']
 			}
 		}
