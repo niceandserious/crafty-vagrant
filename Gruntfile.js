@@ -8,7 +8,14 @@ module.exports = function(grunt) {
 	* - Minifies JS to main.min.js
 	* - Optimises images
 	*/
-	grunt.registerTask('default', ['sass', 'concat:scripts', 'cssmin', 'uglify', 'imagemin']);
+	grunt.registerTask('default', [
+		'sass',
+		'concat:scripts',
+		'cssmin',
+		'uglify',
+		'imagemin',
+		'svgmin'
+	]);
 
 	/*
 	* $ grunt watch
@@ -73,6 +80,18 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		
+		// Optimise SVGs:
+		svgmin: {
+			all: {
+				files: [{
+					expand: true,
+					cwd: 'app/src/img/',
+					src: '{,*/}*.svg',
+					dest: 'app/public/img'
+				}]
+			}
+		},
 
 		// Watch tasks:
 		watch : {
@@ -87,6 +106,10 @@ module.exports = function(grunt) {
 			images: {
 				files: ['app/src/img/**/*.{png,jpg,gif}'],
 				tasks: ['newer:imagemin']
+			},
+			svg: {
+				files: ['app/src/img/**/*.svg'],
+				tasks: ['newer:svgmin']
 			}
 		}
 	});
