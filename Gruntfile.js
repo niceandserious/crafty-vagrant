@@ -83,6 +83,10 @@ module.exports = function(grunt) {
 			scripts : {
 				files : ['app/src/js/*.js'],
 				tasks : ['concat:scripts', 'uglify']
+			},
+			images: {
+				files: ['app/src/img/**/*.{png,jpg,gif}'],
+				tasks: ['newer:imagemin']
 			}
 		}
 	});
