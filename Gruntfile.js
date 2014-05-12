@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 
 	// Set up tasks:
 	grunt.initConfig({
-		pkg : grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON('package.json'),
 
 		// SASS config:
 		sass: {
@@ -44,36 +44,36 @@ module.exports = function(grunt) {
 		},
 
 		// Concatenate multiple source JS files into main.js:
-		concat : {
-			scripts : {
-				src : ['app/src/js/*.js'],
-				dest : 'app/public/js/main.js'
+		concat: {
+			scripts: {
+				src: ['app/src/js/*.js'],
+				dest: 'app/public/js/main.js'
 			}
 		},
 
 		// Minify CSS (main.css --> main.min.css):
-		cssmin : {
-			css : {
-				files : {
-					'app/public/css/main.min.css' : ['app/public/css/main.css']
+		cssmin: {
+			css: {
+				files: {
+					'app/public/css/main.min.css': ['app/public/css/main.css']
 				}
 			}
 		},
 
 		// Minify JS (main.js --> main.min.js):
-		uglify : {
-			scripts : {
-				files : {
-					'app/public/js/main.min.js' : ['app/public/js/main.js']
+		uglify: {
+			scripts: {
+				files: {
+					'app/public/js/main.min.js': ['app/public/js/main.js']
 				}
 			}
 		},
 
 		// Optimise images:
-		imagemin : {
-			all : {
-				files : [{
-					expand : true,
+		imagemin: {
+			all: {
+				files: [{
+					expand: true,
 					cwd: 'app/src/img',
 					src: ['**/*.{png,jpg,gif}'],
 					dest: 'app/public/img'
@@ -94,14 +94,14 @@ module.exports = function(grunt) {
 		},
 
 		// Watch tasks:
-		watch : {
-			css : {
-				files : ['app/src/css/*.scss'],
-				tasks : ['sass', 'cssmin'],
+		watch: {
+			css: {
+				files: ['app/src/css/*.scss'],
+				tasks: ['sass', 'cssmin']
 			},
-			scripts : {
-				files : ['app/src/js/*.js'],
-				tasks : ['concat:scripts', 'uglify']
+			scripts: {
+				files: ['app/src/js/*.js'],
+				tasks: ['concat:scripts', 'uglify']
 			},
 			images: {
 				files: ['app/src/img/**/*.{png,jpg,gif}'],
