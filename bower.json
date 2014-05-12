@@ -1,5 +1,5 @@
 {
-  "name": "within",
+  "name": "Crafty Vagrant",
   "version": "0.1.0",
   "authors": [
     "Nick Fraenkel <nick.f@niceandserious.com>"
@@ -15,6 +15,11 @@
   ],
   "dependencies": {
     "bourbon": "~3.1.8",
-    "neat": "~1.5.0"
+    "neat": "~1.5.0",
+    "jquery": "~2.1.0",
+    "modernizr": "~2.7.2"
+  },
+  "devDependencies": {
+    "normalize-scss": "~3.0.1"
   }
 }
