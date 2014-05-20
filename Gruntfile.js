@@ -34,7 +34,8 @@ module.exports = function(grunt) {
 					// Allow easy importing of bourbon and neat (via eg. @import "bourbon"):
 					loadPath: [
 						'app/public/bower_components/bourbon/app/assets/stylesheets',
-						'app/public/bower_components/neat/app/assets/stylesheets'
+						'app/public/bower_components/neat/app/assets/stylesheets',
+						'app/public/bower_components/normalize-scss'
 					]
 				},
 				files: {
