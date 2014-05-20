@@ -2,4 +2,6 @@ vagrant
 .vagrant
 .DS_Store
 node_modules/*
+.sass-cache
+app/craft/storage/runtime/*
 app/public/bower_components/*
