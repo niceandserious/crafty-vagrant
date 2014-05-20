@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-  ServerName app.local
+  ServerName craft.dev
   DocumentRoot /vagrant/app/public
   <Directory /vagrant/app/public>
     DirectoryIndex index.php index.html
