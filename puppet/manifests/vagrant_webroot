@@ -1,11 +1,14 @@
 <VirtualHost *:80>
   ServerName craft.dev
   DocumentRoot /vagrant/app/public
+
+  EnableSendfile off
+  php_value html_errors On
+
   <Directory /vagrant/app/public>
     DirectoryIndex index.php index.html
     AllowOverride All
     Order allow,deny
     Allow from all
   </Directory>
-  php_value html_errors On
 </VirtualHost>
