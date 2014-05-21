@@ -1,9 +1,9 @@
 // NEAT GRID
 // The variables in this section are Neat parameters
 // cf. http://neat.bourbon.io/docs/
-$max-width:		em(1200);
+$max-width:		em(1088);
 $grid-columns:	12;
-$gutter:		em(15, 1);
+$gutter:		em(15);
 $visual-grid:	false;
 
 // TYPOGRAPHY
@@ -18,8 +18,8 @@ $body-text:		#333;
 $link-color:	#92C84D;
 
 // MEDIA QUERIES
-$tablet:		new-breakpoint(max-width 768px 8);
-$mobile:		new-breakpoint(max-width 580px 3);
-$smalldesktop:	new-breakpoint(max-width 930px 12);
-$shortscreen:	new-breakpoint(max-height 700px 12);
+$tablet:			new-breakpoint(max-width  768px 8);
+$mobile:			new-breakpoint(max-width  580px 3);
+$smalldesktop:		new-breakpoint(max-width  930px 12);
+$shortscreen:		new-breakpoint(max-height 700px 12);
 $reallyshortscreen:	new-breakpoint(max-height 550px 12);

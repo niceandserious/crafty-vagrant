@@ -3,12 +3,19 @@
  *	LAYOUT
  *
  *==========================================================================*/
-header,
-main,
-footer {
-	
-}
-
 .container {
 	@include outer-container;
+}
+
+article {
+	@include span-columns(8);
+}
+aside {
+	@include span-columns(4);
+}
+footer {
+	margin-top: $gutter;
+}
+.topnav {
+	margin-bottom: $gutter;
 }
