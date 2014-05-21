@@ -14,8 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "bourbon": "~3.1.8",
-    "neat": "~1.5.0",
+    "bourbon": "~4.0.0",
+    "neat": "~1.6.0",
     "jquery": "~2.1.0",
     "modernizr": "~2.7.2"
   },
