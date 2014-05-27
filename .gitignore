@@ -5,3 +5,4 @@ node_modules/*
 .sass-cache
 app/craft/storage/runtime/*
 app/public/bower_components/*
+.docs
