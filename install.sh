@@ -7,9 +7,15 @@
 ##	Before running this, unzip a copy of Craft into the 'app' directory
 ##
 
+## Colours for prettier output + to distinguish this script's output:
+color='\033[1;36m';		# Light cyan
+NC='\033[0m';			# No color
+
+## Function to prompt for user response:
 prompt () {
     while true; do
-        read -p "$1 " yn
+    	echo;
+        read -p "$1" yn
         case $yn in
             [Yy]* ) return 0;;
             [Nn]* ) return 1;;
@@ -18,7 +24,7 @@ prompt () {
     done
 }
 
-if ! prompt "Do you wish to install? [yn] "; then
+if ! prompt "Do you wish to install Crafty Vagrant? [yn] "; then
 	echo 'Ok. Install cancelled.';
 	exit;
 fi
@@ -30,23 +36,23 @@ if [ ! -d "app/craft" ]; then
 fi	
 
 ## Install node modules:
-echo "
-## npm install";
+echo -e "${color}
+## npm install${NC}";
 npm install;
 
 ## Install bower components:
-echo "
-## bower install";
+echo -e "${color}
+## bower install${NC}";
 bower install;
 
 ## Initialise Git submodules:
-echo "
-## git submodule init && git submodule update";
+echo -e "${color}
+## git submodule init && git submodule update${NC}";
 git submodule init && git submodule update;
 
 ## Set up Craft stuff:
-echo "
-## Setting up Craft...";
+echo -e "${color}
+## Setting up Craft...${NC}";
 
 ## Activate the htaccess (rename 'htaccess' --> '.htaccess'):
 if [ -f "app/public/htaccess" ]; then 
@@ -58,7 +64,7 @@ fi
 CRAFT_SRC="app/src/craft";
 
 if [ -d $CRAFT_SRC ] && prompt "Replace Craft's default templates + config? [yn] "; then
-	echo "Replacing Craft files... (copying from $CRAFT_SRC)";
+	echo "Replacing Craft files... (copying from ${CRAFT_SRC})";
 	
 	## Remove existing remplates, if present:
 	[ -d "app/craft/templates" ] && rm -r app/craft/templates;
@@ -69,8 +75,8 @@ if [ -d $CRAFT_SRC ] && prompt "Replace Craft's default templates + config? [yn]
 fi
 
 ## Run Grunt, to render CSS / Javascript / etc:
-echo "
-## grunt";
+echo -e "${color}
+## grunt${NC}";
 grunt;
 
 ## Create the storage/runtime directory for Craft
@@ -82,8 +88,8 @@ if [ ! -f $DIR/.gitignore ]; then
 	touch "$DIR/logs/craft.log";
 fi
 
-echo "
+echo -e "${color}
 ## Finished!
 ##
 ## 'vagrant up' to start the server.
-## 'grunt watch' to watch Sass + JS for changes.";
+## 'grunt watch' to watch Sass + JS for changes.${NC}";
