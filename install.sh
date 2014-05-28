@@ -73,6 +73,15 @@ echo "
 ## grunt";
 grunt;
 
+## Create the storage/runtime directory for Craft
+## (to prevent a PHP error on first visit to craft.dev)
+DIR="app/craft/storage/runtime";
+if [ ! -f $DIR/.gitignore ]; then
+	mkdir -p $DIR/{cache,compiled_templates,logs};
+	touch "$DIR/.gitignore";
+	touch "$DIR/logs/craft.log";
+fi
+
 echo "
 ## Finished!
 ##
