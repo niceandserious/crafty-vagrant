@@ -10,11 +10,9 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 ## Installation
 
-1. First, you'll need to install all the relevant grunt tasks and bower components locally. You can do that with the following command:
+1. First - if it's not already there - you'll need to download [Craft](http://buildwithcraft.com/) and unzip it into the 'app' directory so the project has app/craft and app/public directories.
 
-	`npm install && bower install`
-
-2. Run `git submodule init && git submodule update` to install the submodules that Puppet uses.
+2. Next, run the command `install.sh`. This will install and set up everything necessary on your local machine. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
 
 3. If this is the first time you've used Crafty Vagrant, open `/etc/hosts` and add
 
@@ -22,7 +20,7 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 4. Launch vagrant: `vagrant up`
 
-...and hopefully you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/](http://craft.dev/admin/)
+...and hopefully (after a minute or so while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/](http://craft.dev/admin/)
 
 ## System Package include
 
@@ -52,7 +50,6 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 * phantomjs
 * python-software-properti
 * compass
-* yeoman
 * grunt-cli
 * bower
 
