@@ -1,0 +1,57 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+
+	<link rel="stylesheet" href="/css/main.min.css" />
+	<script src="/bower_components/modernizr/modernizr.js"></script>
+</head>
+
+<body>
+	<nav role="navigation" class="topnav">
+		<div class="container">
+			<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
+			{# Here are the items that are used to populate the navigation: #}
+			{%- set navItems = {
+				'news':		'News',
+				'about':	'About',
+				'contact':	'Contact Us'
+			} -%}
+			<ul>
+				{% for sectionUrl, sectionName in navItems -%}
+				<li><a href="{{ url(sectionUrl) }}"{% if craft.request.firstSegment == sectionUrl %} class="active"{% endif %}>{{ sectionName }}</a></li>
+				{% endfor %}
+
+			</ul>
+		</div>
+	</nav>
+
+	<main role="main" class="container">
+	{% block content %}
+		<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+		<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+	{% endblock %}
+	</main>
+
+	<footer>
+		<div class="hidden container">
+		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
+		</p>
+	</footer>
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="/js/main.min.js"></script>
+</body>
+</html>

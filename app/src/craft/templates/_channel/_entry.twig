@@ -1,0 +1,15 @@
+{#
+ # Channel entry template
+ # -------------------
+ # A default template for channel sections to extend
+ #}
+
+{% extends "_layout" %}
+
+{% block content %}
+	<article>
+		<h2>{{ entry.title }}</h2>
+		<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
+		{{ entry.body }}
+	</article>
+{% endblock %}

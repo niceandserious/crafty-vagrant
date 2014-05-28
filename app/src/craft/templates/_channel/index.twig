@@ -1,0 +1,30 @@
+{#
+ # Channel index template
+ # -------------------
+ # A default template for channel sections to extend
+ #}
+
+{% extends "_layout" %}
+
+{% set sectionHandle = craft.request.firstSegment %}
+{% set section = craft.sections.getSectionByHandle(sectionHandle) %}
+{% set entries = craft.entries.section(sectionHandle).find() %}
+
+{% block content %}
+	<h2>{{ section }}</h2>
+
+	{% if entries is empty %}
+	<p>Nothing posted here yet...</p>
+	{% else %}
+		{% for entry in entries %}
+			{% block entry %}
+			<article>
+				<h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+				<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
+				{{ entry.body.getPage(1) }}
+				<p><a href="{{ entry.url }}">Continue reading</a></p>
+			</article>
+			{% endblock %}
+		{% endfor %}
+	{% endif %}
+{% endblock %}
