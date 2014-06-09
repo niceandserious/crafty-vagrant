@@ -24,35 +24,40 @@ prompt () {
     done
 }
 
+## output in colour:
+echo_color() {
+	echo -e "${color}$1${NC}";
+}
+
 if ! prompt "Do you wish to install Crafty Vagrant? [yn] "; then
-	echo 'Ok. Install cancelled.';
+	echo_color 'Ok. Install cancelled.';
 	exit;
 fi
 
 ## If Craft isn't present:
 if [ ! -d "app/craft" ]; then
-	echo "For the install process to work, please unzip a copy of Craft into the 'app' directory...";
+	echo_color "For the install process to work, please download Craft and unzip it \ninto the 'app' directory (so it's at app/craft)...";
 	exit;
 fi	
 
 ## Install node modules:
-echo -e "${color}
-## npm install${NC}";
+echo_color "
+## npm install";
 npm install;
 
 ## Install bower components:
-echo -e "${color}
-## bower install${NC}";
+echo_color "
+## bower install";
 bower install;
 
 ## Initialise Git submodules:
-echo -e "${color}
-## git submodule init && git submodule update${NC}";
+echo_color "
+## git submodule init && git submodule update";
 git submodule init && git submodule update;
 
 ## Set up Craft stuff:
-echo -e "${color}
-## Setting up Craft...${NC}";
+echo_color "
+## Setting up Craft...";
 
 ## Activate the htaccess (rename 'htaccess' --> '.htaccess'):
 if [ -f "app/public/htaccess" ]; then 
@@ -75,8 +80,8 @@ if [ -d $CRAFT_SRC ] && prompt "Replace Craft's default templates + config? [yn]
 fi
 
 ## Run Grunt, to render CSS / Javascript / etc:
-echo -e "${color}
-## grunt${NC}";
+echo_color "
+## grunt";
 grunt;
 
 ## Create the storage/runtime directory for Craft
@@ -88,8 +93,8 @@ if [ ! -f $DIR/.gitignore ]; then
 	touch "$DIR/logs/craft.log";
 fi
 
-echo -e "${color}
+echo_color "
 ## Finished!
 ##
 ## 'vagrant up' to start the server.
-## 'grunt watch' to watch Sass + JS for changes.${NC}";
+## 'grunt watch' to watch Sass + JS for changes.";
