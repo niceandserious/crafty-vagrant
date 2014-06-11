@@ -33,10 +33,10 @@ class mysql {
     require => Service["mysql"],
     logoutput => on_failure,
   }
-  ->
-  exec { "populate-database":
-    command => "/vagrant/puppet/crafty-setup.sh '$user' '$pass' '$dbname';",
-    logoutput => true,
-    require => File["/vagrant/puppet/crafty-setup.sh"],
-  }
+  # ->
+  # exec { "populate-database":
+  #   command => "/vagrant/puppet/crafty-setup.sh '$user' '$pass' '$dbname';",
+  #   logoutput => true,
+  #   require => File["/vagrant/puppet/crafty-setup.sh"],
+  # }
 }
