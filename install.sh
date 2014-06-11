@@ -97,4 +97,6 @@ echo_color "
 ## Finished!
 ##
 ## 'vagrant up' to start the server.
-## 'grunt watch' to watch Sass + JS for changes.";
+## 'grunt watch' to watch Sass + JS for changes.
+##
+## If this is a new install, you'll need to install Craft at http://craft.dev/admin/install";
