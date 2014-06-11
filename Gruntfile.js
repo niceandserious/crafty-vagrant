@@ -84,6 +84,12 @@ module.exports = function(grunt) {
 		
 		// Optimise SVGs:
 		svgmin: {
+			options: {
+				plugins: [
+					{ cleanupIDs: false },
+					{ removeDoctype: false } // Keeps IE happy
+				]
+			},
 			all: {
 				files: [{
 					expand: true,
