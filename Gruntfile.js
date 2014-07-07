@@ -1,5 +1,12 @@
 module.exports = function(grunt) {
 
+	// Source and destination paths for tasks:
+	var path = {
+		src:	'app/src',
+		dest:	'app/public',
+		bower:	'app/public/bower_components'
+	}
+
 	/*
 	* $ grunt
 	* - Compiles SASS
@@ -25,6 +32,9 @@ module.exports = function(grunt) {
 
 	// Set up tasks:
 	grunt.initConfig({
+
+		path: path,
+
 		pkg: grunt.file.readJSON('package.json'),
 
 		// SASS config:
@@ -33,13 +43,13 @@ module.exports = function(grunt) {
 				options: {
 					// Allow easy importing of bourbon and neat (via eg. @import "bourbon"):
 					loadPath: [
-						'app/public/bower_components/bourbon/dist',
-						'app/public/bower_components/neat/app/assets/stylesheets',
-						'app/public/bower_components/normalize-scss'
+						'<%= path.bower %>/bourbon/dist',
+						'<%= path.bower %>/neat/app/assets/stylesheets',
+						'<%= path.bower %>/normalize-scss'
 					]
 				},
 				files: {
-					'app/public/css/main.css': 'app/src/css/main.scss'
+					'<%= path.dest %>/css/main.css': '<%= path.src %>/css/main.scss'
 				}
 			}
 		},
@@ -47,8 +57,8 @@ module.exports = function(grunt) {
 		// Concatenate multiple source JS files into main.js:
 		concat: {
 			scripts: {
-				src: ['app/src/js/*.js'],
-				dest: 'app/public/js/main.js'
+				src: ['<%= path.src %>/js/*.js'],
+				dest: '<%= path.dest %>/js/main.js'
 			}
 		},
 
@@ -56,7 +66,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			css: {
 				files: {
-					'app/public/css/main.min.css': ['app/public/css/main.css']
+					'<%= path.dest %>/css/main.min.css': ['<%= path.dest %>/css/main.css']
 				}
 			}
 		},
@@ -65,7 +75,7 @@ module.exports = function(grunt) {
 		uglify: {
 			scripts: {
 				files: {
-					'app/public/js/main.min.js': ['app/public/js/main.js']
+					'<%= path.dest %>/js/main.min.js': ['<%= path.dest %>/js/main.js']
 				}
 			}
 		},
@@ -75,9 +85,9 @@ module.exports = function(grunt) {
 			all: {
 				files: [{
 					expand: true,
-					cwd: 'app/src/img',
+					cwd: '<%= path.src %>/img',
 					src: ['**/*.{png,jpg,gif}'],
-					dest: 'app/public/img'
+					dest: '<%= path.dest %>/img'
 				}]
 			}
 		},
@@ -93,9 +103,9 @@ module.exports = function(grunt) {
 			all: {
 				files: [{
 					expand: true,
-					cwd: 'app/src/img/',
+					cwd: '<%= path.src %>/img',
 					src: '{,*/}*.svg',
-					dest: 'app/public/img'
+					dest: '<%= path.dest %>/img'
 				}]
 			}
 		},
@@ -103,19 +113,19 @@ module.exports = function(grunt) {
 		// Watch tasks:
 		watch: {
 			css: {
-				files: ['app/src/css/*.scss'],
+				files: ['<%= path.src %>/css/*.scss'],
 				tasks: ['sass', 'cssmin']
 			},
 			scripts: {
-				files: ['app/src/js/*.js'],
+				files: ['<%= path.src %>/js/*.js'],
 				tasks: ['concat:scripts', 'uglify']
 			},
 			images: {
-				files: ['app/src/img/**/*.{png,jpg,gif}'],
+				files: ['<%= path.src %>/img/**/*.{png,jpg,gif}'],
 				tasks: ['newer:imagemin']
 			},
 			svg: {
-				files: ['app/src/img/**/*.svg'],
+				files: ['<%= path.src %>/img/**/*.svg'],
 				tasks: ['newer:svgmin']
 			}
 		}
