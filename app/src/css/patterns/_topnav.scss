@@ -1,0 +1,26 @@
+.topnav {
+	border-bottom: solid 1px $border-color;
+	margin-bottom: $gutter;
+
+	a {
+		text-decoration: none;
+	}
+	h1 {
+		@include span-columns(4);
+	}
+	nav {
+		@include span-columns(8);
+	}
+	ul {
+		float: right;
+		// Compensate for padding - bring it back in line with the grid:
+		margin-right: -1em;
+	}
+	li {
+		display: inline-block;
+		text-transform: uppercase;
+		a {
+			padding: 1em;
+		}
+	}
+}

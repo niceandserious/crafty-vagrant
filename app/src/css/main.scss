@@ -1,15 +1,27 @@
-// LIBRARIES:
-@import "bourbon";
+// RESETS
 @import "normalize";
 
-// SETTINGS: (include before Neat to allow us to set Neat variables too)
-@import "settings";
-
-// NEAT:
+// LIBRARIES & HELPERS
+@import "bourbon";
 @import "neat";
+@import "neat-helpers";
 
-// LAYOUT:
-@import "layout";
+// BASE STYLES
+@import "base/grid-settings";
+@import "base/variables";
+@import "base/typography";
+@import "base/forms";
+@import "base/lists";
+@import "base/tables";
+@import "base/layout";
 
-// GENERAL STYLING:
-@import "general";
+// EXTENDS
+@import "extends/button";
+
+// PATTERNS
+@import "patterns/buttons";
+@import "patterns/site-footer";
+@import "patterns/topnav";
+
+// SECTIONS
+// @import "sections/about";

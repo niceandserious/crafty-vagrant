@@ -1,0 +1,10 @@
+html, body {
+	height: 100%;
+}
+
+.container {
+	@include outer-container;
+	@include box-sizing(border-box);
+	@include pad(0 $gutter);
+	position: relative;
+}
