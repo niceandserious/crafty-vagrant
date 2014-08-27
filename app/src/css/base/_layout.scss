@@ -2,6 +2,10 @@ html, body {
 	height: 100%;
 }
 
+main {
+	background-color: $main-bg-color;
+}
+
 .container {
 	@include outer-container;
 	@include box-sizing(border-box);

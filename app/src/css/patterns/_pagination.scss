@@ -1,0 +1,45 @@
+// Pagination:
+$pagination-bg: $main-bg-color;
+$pagination-current-bg: #eee;
+
+.pagination {
+  a {
+    background-color: $pagination-bg;
+    border: solid 1px $border-color;
+    display: inline-block;
+    padding: 0;
+    text-decoration: none;
+
+    width: 2em;
+    line-height: 2em;
+    
+    &:hover {
+      border-color: $border-color-hover;
+    }
+
+    &.current {
+      background-color: $pagination-current-bg;
+    }
+
+    &.next {
+
+    }
+
+    &.prev {
+
+    }
+  }
+
+  ul {
+    @extend %unstyled-list;
+    text-align: center;
+  }
+  
+  li {
+    display: inline;
+  }
+  // Span is used to hide helper text for non-visual browsers:
+  span {
+    display: none;
+  }
+}
