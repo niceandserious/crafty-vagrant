@@ -12,11 +12,7 @@
 {% set pages = craft.entries.section(sectionHandle).depth('>1').find() %}
 
 {% block content %}
-	<article>
-		<h2>{{ entry.title }}</h2>
-		{{ entry.body }}
-	</article>
-
+	{% block sidebar %}
 	<aside>
 		{% if pages is not empty %}
 		<h4>{{ section }}</h4>
@@ -45,4 +41,10 @@
 		</nav>
 		{% endif %}
 	</aside>
+	{% endblock %}
+
+	<article>
+		<h2>{{ entry.title }}</h2>
+		{{ entry.body }}
+	</article>
 {% endblock %}

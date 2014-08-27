@@ -6,25 +6,42 @@
 
 {% extends "_layout" %}
 
-{% set sectionHandle = craft.request.firstSegment %}
-{% set section = craft.sections.getSectionByHandle(sectionHandle) %}
-{% set entries = craft.entries.section(sectionHandle).find() %}
+{% set title = section %}
+{% set body_class = section.handle|lower~" channel" %}
+{% set per_page = 1 %}
+{% set defaultParams = { 'section': section.handle, 'limit': per_page } %}
+{#
+ # Override params in sub-templates to change criteria for selecting entries
+ # to appear. Otherwise the defaults are used (ie. 10 items from the section in question):
+ #}
+{% set params = params is defined ? params : defaultParams %}
 
 {% block content %}
 	<h2>{{ section }}</h2>
 
+	{% block sidebar %}{% endblock %}
+
+	{% paginate craft.entries(params) as entries %}
 	{% if entries is empty %}
 	<p>Nothing posted here yet...</p>
 	{% else %}
-		{% for entry in entries %}
-			{% block entry %}
-			<article>
-				<h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
-				<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
-				{{ entry.body.getPage(1) }}
-				<p><a href="{{ entry.url }}">Continue reading</a></p>
-			</article>
-			{% endblock %}
-		{% endfor %}
+	{% for entry in entries %}
+
+	{# Individual entry: #}
+	{% block entry %}
+	<article>
+		<h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+		<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
+		{{ entry.body.getPage(1) }}
+		<p><a href="{{ entry.url }}">Continue reading</a></p>
+	</article>
+
+	{% endblock %}
+	{% endfor %}
+	
+	{# Pagination: #}
+	{% include '_partials/pagination' %}
+
 	{% endif %}
+	{% endpaginate %}
 {% endblock %}

@@ -5,8 +5,11 @@
  #}
 
 {% extends "_layout" %}
+{% set title = entry.title %}
 
 {% block content %}
+	{% block sidebar %}{% endblock %}
+
 	<article>
 		<h2>{{ entry.title }}</h2>
 		<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
