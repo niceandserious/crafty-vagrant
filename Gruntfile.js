@@ -1,10 +1,18 @@
+'use strict';
+
 module.exports = function(grunt) {
+
+	// Time how long tasks take. Can help when optimizing build times
+	require('time-grunt')(grunt);
+
+	// Load grunt tasks automatically
+	require('load-grunt-tasks')(grunt);
 
 	// Source and destination paths for tasks:
 	var path = {
 		src:	'app/src',
 		dest:	'app/public',
-		bower:	'app/public/bower_components'
+		bower:	'bower_components'
 	}
 
 	/*
@@ -17,17 +25,20 @@ module.exports = function(grunt) {
 	*/
 	grunt.registerTask('default', [
 		'sass',
-		'concat:scripts',
+		'autoprefixer',
+		'concat',
 		'cssmin',
 		'uglify',
 		'imagemin',
-		'svgmin'
+		'svgmin',
+		'modernizr'
 	]);
 
 	/*
 	* $ grunt watch
-	* - Watches SASS for changes --> render to CSS + minify
+	* - Watches SASS for changes --> render to CSS, autoprefixes + minify
 	* - Watches JS for changes --> concat + minify
+	* – Watch images and SVGs --> optimises and copies to public dir
 	*/
 
 	// Set up tasks:
@@ -36,6 +47,26 @@ module.exports = function(grunt) {
 		path: path,
 
 		pkg: grunt.file.readJSON('package.json'),
+
+		// Watch tasks:
+		watch: {
+			css: {
+				files: ['<%= path.src %>/css/**/*.scss'],
+				tasks: ['sass', 'autoprefixer', 'cssmin']
+			},
+			scripts: {
+				files: ['<%= path.src %>/js/*.js'],
+				tasks: ['concat', 'uglify']
+			},
+			images: {
+				files: ['<%= path.src %>/img/**/*.{png,jpg,gif}'],
+				tasks: ['newer:imagemin']
+			},
+			svg: {
+				files: ['<%= path.src %>/img/**/*.svg'],
+				tasks: ['newer:svgmin']
+			}
+		},
 
 		// SASS config:
 		sass: {
@@ -54,28 +85,59 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Concatenate multiple source JS files into main.js:
-		concat: {
-			scripts: {
-				src: ['<%= path.src %>/js/*.js'],
-				dest: '<%= path.dest %>/js/main.js'
+		// Add vendor prefixed styles
+		autoprefixer: {
+			options: {
+				browsers: ['last 1 version']
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: '<%= path.dest %>/css',
+					src: '{,*/}*.css',
+					dest: '<%= path.dest %>/css'
+				}]
 			}
 		},
 
-		// Minify CSS (main.css --> main.min.css):
-		cssmin: {
-			css: {
+		// Concatenate multiple source JS files into main.js/vendor.js
+		concat: {
+			dist: {
 				files: {
-					'<%= path.dest %>/css/main.min.css': ['<%= path.dest %>/css/main.css']
+					'<%= path.dest %>/js/main.js': [
+						'<%= path.src %>/js/main.js'
+					], 
+					'<%= path.dest %>/js/vendor.js': [
+						'<%= path.bower %>/jquery/dist/jquery.js'
+					]
 				}
 			}
 		},
 
-		// Minify JS (main.js --> main.min.js):
-		uglify: {
-			scripts: {
+		// Minify CSS
+		// (main.css --> main.min.css)
+		cssmin: {
+			dist: {
 				files: {
-					'<%= path.dest %>/js/main.min.js': ['<%= path.dest %>/js/main.js']
+					'<%= path.dest %>/css/main.min.css': [
+						'<%= path.dest %>/css/main.css'
+					]
+				}
+			}
+		},
+
+		// Minify JS 
+		// (main.js --> main.min.js)
+		// (vendor.js --> vendor.min.js)
+		uglify: {
+			dist: {
+				files: {
+					'<%= path.dest %>/js/main.min.js': [
+						'<%= path.dest %>/js/main.js'
+					],
+					'<%= path.dest %>/js/vendor.min.js': [
+						'<%= path.dest %>/js/vendor.js'
+					]
 				}
 			}
 		},
@@ -110,27 +172,23 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Watch tasks:
-		watch: {
-			css: {
-				files: ['<%= path.src %>/css/**/*.scss'],
-				tasks: ['sass', 'cssmin']
-			},
-			scripts: {
-				files: ['<%= path.src %>/js/*.js'],
-				tasks: ['concat:scripts', 'uglify']
-			},
-			images: {
-				files: ['<%= path.src %>/img/**/*.{png,jpg,gif}'],
-				tasks: ['newer:imagemin']
-			},
-			svg: {
-				files: ['<%= path.src %>/img/**/*.svg'],
-				tasks: ['newer:svgmin']
+		// Generates a custom Modernizr build that includes only the tests you
+		// reference in your app
+		modernizr: {
+			dist: {
+				devFile: '<%= path.bower %>/modernizr/modernizr.js',
+				outputFile: '<%= path.dest %>/js/modernizr.js',
+				files: {
+					src: [
+						'<%= path.dest %>/js/{,*/}*.js',
+						'<%= path.dest %>/css/{,*/}*.css',
+						'!<%= path.dest %>/js/modernizr.js'
+					]
+				},
+				uglify: true
 			}
 		}
+
 	});
 
-	// Let's use the 'load-grunt-tasks' task to handle loading all the tasks:
-	require('load-grunt-tasks')(grunt);
 };
