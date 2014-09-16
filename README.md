@@ -12,7 +12,7 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 1. First - if it's not already there - you'll need to download [Craft](http://buildwithcraft.com/) and unzip it into the 'app' directory (so the project has app/craft and app/public directories)
 
-2. Next, run the command `install.sh`. This will install and set up everything necessary on your local machine. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
+2. Next, run the command `bash install.sh` (you might need to `sudo` this). This will install and set up everything necessary on your local machine. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
 
 3. If this is the first time you've used Crafty Vagrant, open `/etc/hosts` and add
 
