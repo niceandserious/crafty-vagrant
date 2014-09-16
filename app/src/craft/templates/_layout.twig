@@ -11,13 +11,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
-	<link rel="home" href="{{ siteUrl }}" />
+	<link rel="home" href="{{ siteUrl }}">
 
-	<link rel="stylesheet" href="/css/main.min.css" />
-	<script src="/bower_components/modernizr/modernizr.js"></script>
+	<link rel="stylesheet" href="/css/main.min.css">
+	<script src="/js/modernizr.js"></script>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
 		</p>
 	</footer>
-	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="/js/vendor.min.js"></script>
 	<script src="/js/main.min.js"></script>
 </body>
 </html>
