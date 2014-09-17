@@ -2,7 +2,7 @@
 
 A starting point for Craft-based projects, with Vagrant configured and (very nearly) ready to go.
 
-## Prerequisites
+## Pre-requisites
 * [Bower](http://bower.io/)
 * [Grunt](http://gruntjs.com/)
 * [Vagrant](http://www.vagrantup.com/)
@@ -26,6 +26,8 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 * If this is a fresh install of Craft, you must install it first by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install), otherwise you will see error pages.
 
+## Packages
+
 * apache2 - rewrite mode enabled, having virtual host with config - refer manifest/vagrant_webroot.sample
 * php5
 * php5-cli
@@ -43,17 +45,9 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 * apt
 * stdlib
 * wget
-* nodejs
-* npm
-* git
 * rubygems
 * libjpeg-turbo-progs
-* optipng
-* phantomjs
 * python-software-properti
-* compass
-* grunt-cli
-* bower
 
 ## Thanks!
 Based on work by:
