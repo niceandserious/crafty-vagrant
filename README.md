@@ -20,9 +20,11 @@ A starting point for Craft-based projects, with Vagrant configured and (very nea
 
 4. Launch vagrant: `vagrant up`
 
-...and hopefully (after a minute or so while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/](http://craft.dev/admin/)
+...and hopefully (after a minute or so while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/install](http://craft.dev/admin/install)
 
-## System Package include
+## Troubleshooting
+
+* If this is a fresh install of Craft, you must install it first by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install), otherwise you will see error pages.
 
 * apache2 - rewrite mode enabled, having virtual host with config - refer manifest/vagrant_webroot.sample
 * php5
