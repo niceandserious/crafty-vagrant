@@ -20,4 +20,9 @@ class php {
     ensure => present,
     require => Exec["apt-get update"]
   }
+  ->
+  # in Ubuntu 14.04, it seems mcrypt has to be manually enabled:
+  exec { "php5enmod mcrypt":
+    require => Package["php5"]
+  }
 }
