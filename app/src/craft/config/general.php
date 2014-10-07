@@ -10,6 +10,7 @@
 return array(
 	'*' => array(
 		'devMode' => false,
+		'omitScriptNameInUrls' => true,
 	),
 	'.dev' => array(
 		'devMode' => true,
