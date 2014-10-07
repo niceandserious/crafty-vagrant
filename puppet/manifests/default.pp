@@ -12,8 +12,8 @@ include bootstrap
 include tools
 include apache
 include php
-include php::pear
-include php::pecl
+# include php::pear
+# include php::pecl
 include mysql
 
 # class { 'nodejs':
