@@ -4,6 +4,30 @@ db_pass = "123"
 db_name = "craft"
 
 Vagrant.configure("2") do |config|
+  # If we're using VirtualBox, to improve performance let's try to 
+  # make sure we assign the VM an appropriate amount of CPU / RAM:
+  # cf. http://www.stefanwrobel.com/how-to-make-vagrant-performance-not-suck
+  config.vm.provider "virtualbox" do |v|
+    host = RbConfig::CONFIG['host_os']
+
+    # Give VM 1/4 system memory & access to all cpu cores on the host
+    if host =~ /darwin/
+      cpus = `sysctl -n hw.ncpu`.to_i
+      # sysctl returns Bytes and we need to convert to MB
+      mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 4
+    elsif host =~ /linux/
+      cpus = `nproc`.to_i
+      # meminfo shows KB and we need to convert to MB
+      mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
+    else 
+      # for Windows, let's just use some sensible defaults...
+      cpus = 2
+      mem = 2048
+    end
+
+    v.customize ["modifyvm", :id, "--memory", mem]
+    v.customize ["modifyvm", :id, "--cpus", cpus]
+  end
 
   # Enable the Puppet provisioner, which will look in puppet/manifests:
   config.vm.provision :puppet do |puppet|
