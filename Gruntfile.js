@@ -51,19 +51,19 @@ module.exports = function(grunt) {
 		// Watch tasks:
 		watch: {
 			css: {
-				files: ['<%= path.src %>/css/**/*.scss'],
+				files: ['<%= path.src %>/styles/**/*.scss'],
 				tasks: ['sass', 'autoprefixer', 'cssmin']
 			},
 			scripts: {
-				files: ['<%= path.src %>/js/*.js'],
+				files: ['<%= path.src %>/scripts/*.js'],
 				tasks: ['concat', 'uglify']
 			},
 			images: {
-				files: ['<%= path.src %>/img/**/*.{png,jpg,gif}'],
+				files: ['<%= path.src %>/images/**/*.{png,jpg,gif}'],
 				tasks: ['newer:imagemin']
 			},
 			svg: {
-				files: ['<%= path.src %>/img/**/*.svg'],
+				files: ['<%= path.src %>/images/**/*.svg'],
 				tasks: ['newer:svgmin']
 			}
 		},
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
 					]
 				},
 				files: {
-					'<%= path.dest %>/css/main.css': '<%= path.src %>/css/main.scss'
+					'<%= path.dest %>/styles/main.css': '<%= path.src %>/styles/main.scss'
 				}
 			}
 		},
@@ -104,10 +104,10 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				files: {
-					'<%= path.dest %>/js/main.js': [
-						'<%= path.src %>/js/main.js'
+					'<%= path.dest %>/scripts/main.js': [
+						'<%= path.src %>/scripts/main.js'
 					], 
-					'<%= path.dest %>/js/vendor.js': [
+					'<%= path.dest %>/scripts/vendor.js': [
 						'<%= path.bower %>/jquery/dist/jquery.js'
 					]
 				}
@@ -119,8 +119,8 @@ module.exports = function(grunt) {
 		cssmin: {
 			dist: {
 				files: {
-					'<%= path.dest %>/css/main.min.css': [
-						'<%= path.dest %>/css/main.css'
+					'<%= path.dest %>/styles/main.min.css': [
+						'<%= path.dest %>/styles/main.css'
 					]
 				}
 			}
@@ -132,11 +132,11 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'<%= path.dest %>/js/main.min.js': [
-						'<%= path.dest %>/js/main.js'
+					'<%= path.dest %>/scripts/main.min.js': [
+						'<%= path.dest %>/scripts/main.js'
 					],
-					'<%= path.dest %>/js/vendor.min.js': [
-						'<%= path.dest %>/js/vendor.js'
+					'<%= path.dest %>/scripts/vendor.min.js': [
+						'<%= path.dest %>/scripts/vendor.js'
 					]
 				}
 			}
@@ -147,9 +147,9 @@ module.exports = function(grunt) {
 			all: {
 				files: [{
 					expand: true,
-					cwd: '<%= path.src %>/img',
+					cwd: '<%= path.src %>/images',
 					src: ['**/*.{png,jpg,gif}'],
-					dest: '<%= path.dest %>/img'
+					dest: '<%= path.dest %>/images'
 				}]
 			}
 		},
@@ -165,9 +165,9 @@ module.exports = function(grunt) {
 			all: {
 				files: [{
 					expand: true,
-					cwd: '<%= path.src %>/img',
+					cwd: '<%= path.src %>/images',
 					src: '{,*/}*.svg',
-					dest: '<%= path.dest %>/img'
+					dest: '<%= path.dest %>/images'
 				}]
 			}
 		},
@@ -177,12 +177,12 @@ module.exports = function(grunt) {
 		modernizr: {
 			dist: {
 				devFile: '<%= path.bower %>/modernizr/modernizr.js',
-				outputFile: '<%= path.dest %>/js/modernizr.js',
+				outputFile: '<%= path.dest %>/scripts/modernizr.js',
 				files: {
 					src: [
-						'<%= path.dest %>/js/{,*/}*.js',
-						'<%= path.dest %>/css/{,*/}*.css',
-						'!<%= path.dest %>/js/modernizr.js'
+						'<%= path.dest %>/scripts/{,*/}*.js',
+						'<%= path.dest %>/styles/{,*/}*.css',
+						'!<%= path.dest %>/scripts/modernizr.js'
 					]
 				},
 				uglify: true
