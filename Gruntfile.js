@@ -88,14 +88,14 @@ module.exports = function(grunt) {
 		// Add vendor prefixed styles
 		autoprefixer: {
 			options: {
-				browsers: ['last 1 version']
+				browsers: ['last 3 versions', 'ie 8', 'ie 9']
 			},
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '<%= path.dest %>/css',
+					cwd: '<%= path.dest %>/styles',
 					src: '{,*/}*.css',
-					dest: '<%= path.dest %>/css'
+					dest: '<%= path.dest %>/styles'
 				}]
 			}
 		},
