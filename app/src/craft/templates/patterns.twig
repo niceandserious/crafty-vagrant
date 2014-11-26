@@ -12,17 +12,12 @@
  # can keep Javascript snippets alongside the markup they go with
  # eg. Ticker, Carousel
  #}
-{% block head_scripts %}
+{% block headScripts %}
 
 	{# IE8 and below need jQuery 1 - other browsers use jQuery 2: -#}
-	<!--[if lt IE 9]><script src="/bower_components/jquery-1.11.1/index.js"></script><![endif]-->
-	<!--[if gte IE 9]><!--><script src="/bower_components/jquery/dist/jquery.js"></script><!-- <![endif]-->
-	<script src="/bower_components/modernizr/modernizr.js"></script>
-{% endblock %}
-
-{% block footer_scripts %}
-
-	<script src="/scripts/main.js"></script>
+	<!--[if lt IE 9]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><![endif]-->
+	<!--[if gte IE 9]><!--><script src="/scripts/vendor.min.js"></script><!-- <![endif]-->
+	<script src="/scripts/modernizr.js"></script>
 {% endblock %}
 
 {#

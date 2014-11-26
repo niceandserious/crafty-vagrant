@@ -9,15 +9,17 @@
  # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
  #}
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js">
+<html class="no-js">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 	<link rel="home" href="{{ siteUrl }}">
 
-	<link rel="stylesheet" href="/styles/main.min.css">
+	<link href="/styles/main.min.css">
+
+	{% block headScripts %}
 	<script src="/scripts/modernizr.js"></script>
+	{% endblock %}
 </head>
 
 <body>
@@ -51,7 +53,12 @@
 		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
 		</p>
 	</footer>
-	<script src="/scripts/vendor.min.js"></script>
-	<script src="/scripts/main.min.js"></script>
+	
+	{% block footerScripts %}
+		{# IE8 and below need jQuery 1 - other browsers use jQuery 2: -#}
+		<!--[if lt IE 9]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><![endif]-->
+		<!--[if gte IE 9]><!--><script src="/scripts/vendor.min.js"></script><!-- <![endif]-->
+		<script src="/scripts/main.min.js"></script>
+	{% endblock %}
 </body>
 </html>
