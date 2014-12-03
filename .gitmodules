@@ -1,6 +1,3 @@
-[submodule "modules/wget"]
-	path = puppet/modules/wget
-	url = git://github.com/maestrodev/puppet-wget.git
 [submodule "modules/stdlib"]
 	path = puppet/modules/stdlib
 	url = git://github.com/puppetlabs/puppetlabs-stdlib.git
