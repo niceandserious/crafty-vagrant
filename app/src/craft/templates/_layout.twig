@@ -11,11 +11,11 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 	<link rel="home" href="{{ siteUrl }}">
 
-	<link href="/styles/main.min.css">
+	<link rel="stylesheet" href="/styles/main.min.css" />
 
 	{% block headScripts %}
 	<script src="/scripts/modernizr.js"></script>
@@ -51,7 +51,7 @@
 	<footer>
 		<div class="hidden container">
 		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
-		</p>
+		</div>
 	</footer>
 	
 	{% block footerScripts %}
