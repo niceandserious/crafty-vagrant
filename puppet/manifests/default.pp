@@ -14,9 +14,3 @@ include apache
 include php
 include mysql
 include sendmail
-
-# class { 'nodejs':
-#   version => 'stable',
-# }
-
-# include yeoman
