@@ -34,6 +34,10 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 * Ubuntu 14.04 (Trusty Tahr)
 * Apache 2.4
 * PHP 5 (with xdebug and all Craft's [required PHP extensions](http://buildwithcraft.com/docs/requirements#required-php-extensions))
+* [Bourbon](http://bourbon.io/)
+* [Neat](http://neat.bourbon.io/)
+* [jQuery](http://jquery.com/)
+* [Modernizr](http://modernizr.com/)
 
 ## Thanks!
 Crafty Vagrant's pattern library is adapted from [Bitters](http://bitters.bourbon.io/) © 2013–2014 [thoughtbot, inc.](http://thoughtbot.com/)
