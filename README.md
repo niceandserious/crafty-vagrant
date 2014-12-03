@@ -45,4 +45,4 @@ Crafty Vagrant is also based on work by:
 
 ## License
 
-Copyright © 2014 [Nice and Serious](http://niceandserious.com/). Crafty Vagrant is free software, and may be redistributed under the terms specified in the license.
+Copyright © 2014 [Nice and Serious](http://niceandserious.com/). Crafty Vagrant is free software, and may be redistributed under the terms specified in the [license](https://github.com/niceandserious/crafty-vagrant/blob/master/LICENSE.md).
