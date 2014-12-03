@@ -22,7 +22,7 @@ class php {
   }
   ->
   # in Ubuntu 14.04, it seems mcrypt has to be manually enabled:
-  exec { "php5enmod mcrypt":
-    require => Package["php5"]
+  exec { "php5enmod mcrypt && service apache2 reload":
+    require => Package["php5-mcrypt"]
   }
 }
