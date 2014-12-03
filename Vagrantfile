@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu/trusty32"
-  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty32/versions/1/providers/virtualbox.box"
+  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty32"
 
   # Set hostname
   config.vm.hostname = "craft.dev"
