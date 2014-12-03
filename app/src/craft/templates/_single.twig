@@ -1,0 +1,17 @@
+{# 
+ # Single template
+ # -------------------
+ # A default template for single sections to extend
+ #}
+
+{% extends "_layout" %}
+{% set title = entry.title %}
+
+{% block content %}
+	<h1>{{ entry.title }}</h1>
+
+	<article class="entry-content">
+		{# Article contents: -#}
+		{{ entry.body }}
+	</article>
+{% endblock %}
