@@ -1,6 +1,43 @@
+// Buttons:
+$base-button-color:          #333;
+$base-button-hover-color:    lighten($base-button-color, 20);
+$primary-button-color:       $link-color;
+$primary-button-hover-color: $link-hover-color;
+
+%button {
+  -webkit-font-smoothing: antialiased;
+  background-color: $base-button-color;
+  border-radius: $base-border-radius;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: $base-font-size;
+  font-weight: bold;
+  line-height: 1;
+  padding: .75em 1em;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
 button,
 input[type="submit"],
 .button {
   @extend %button;
   @include appearance(none);
+
+  &:hover {
+    background-color: $base-button-hover-color;
+    color: white;
+  }
+
+  &.button-primary {
+    background-color: $primary-button-color;
+    color: white;
+
+    &:hover {
+      background-color: $primary-button-hover-color;
+    }
+  }
 }
