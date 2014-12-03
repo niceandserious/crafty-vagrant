@@ -7,6 +7,10 @@
 ul, ol {
   margin-bottom: $base-line-height / 2;
   padding-left:  $base-line-height;
+
+  &.unstyled {
+    @extend %unstyled-list;
+  }
 }
 
 dl {
