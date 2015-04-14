@@ -74,7 +74,7 @@ module.exports = function(grunt) {
 				options: {
 					// Allow easy importing of bourbon and neat (via eg. @import "bourbon"):
 					loadPath: [
-						'<%= path.bower %>/bourbon/dist',
+						'<%= path.bower %>/bourbon/app/assets/stylesheets',
 						'<%= path.bower %>/neat/app/assets/stylesheets',
 						'<%= path.bower %>/normalize-scss'
 					]
@@ -106,7 +106,7 @@ module.exports = function(grunt) {
 				files: {
 					'<%= path.dest %>/scripts/main.js': [
 						'<%= path.src %>/scripts/main.js'
-					], 
+					],
 					'<%= path.dest %>/scripts/vendor.js': [
 						'<%= path.bower %>/jquery/dist/jquery.js'
 					]
@@ -126,7 +126,7 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Minify JS 
+		// Minify JS
 		// (main.js --> main.min.js)
 		// (vendor.js --> vendor.min.js)
 		uglify: {
@@ -153,7 +153,7 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-		
+
 		// Optimise SVGs:
 		svgmin: {
 			options: {
