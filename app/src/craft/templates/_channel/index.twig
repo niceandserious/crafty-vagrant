@@ -14,7 +14,7 @@
  # Override params in sub-templates to change criteria for selecting entries
  # to appear. Otherwise the defaults are used (ie. 10 items from the section in question):
  #}
-{% set params = params is defined ? params : defaultParams %}
+{% set params = params is defined ? defaultParams|merge(params) : defaultParams %}
 
 {% block content %}
 	<h2>{{ section }}</h2>
@@ -38,7 +38,7 @@
 
 	{% endblock %}
 	{% endfor %}
-	
+
 	{# Pagination: #}
 	{% include '_partials/pagination' %}
 
