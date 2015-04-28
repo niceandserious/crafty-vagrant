@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 		src:	'app/src',
 		dest:	'app/public',
 		bower:	'bower_components'
-	}
+	};
 
 	/*
 	* $ grunt
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['<%= path.src %>/scripts/*.js'],
-				tasks: ['concat', 'uglify']
+				tasks: ['jshint', 'concat', 'uglify']
 			},
 			images: {
 				files: ['<%= path.src %>/images/**/*.{png,jpg,gif}'],
@@ -99,6 +99,24 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+
+        // Lint JS files with JSHint:
+        jshint: {
+            options: {
+                // Continue with other tasks even if JSHint finds
+                // stuff to complain about:
+                force: true,
+                // JSHint config file:
+                jshintrc: '.jshintrc',
+                // Make JSHint output look a little nicer:
+                reporter: require('jshint-stylish')
+            },
+            all: [
+                'Gruntfile.js',
+                '<%= path.src %>/scripts/{,*/}*.js',
+                '!<%= path.src %>/scripts/vendor/*'
+            ]
+        },
 
 		// Concatenate multiple source JS files into main.js/vendor.js
 		concat: {

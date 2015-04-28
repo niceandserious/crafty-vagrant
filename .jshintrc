@@ -1,0 +1,29 @@
+{
+  // JSHint configuration for Crafty Vagrant
+  // cf. https://github.com/jshint/jshint/blob/master/examples/.jshintrc
+  "esnext"  : true,
+  "bitwise" : true,
+  "curly"   : true,
+  "eqeqeq"  : true,
+  "immed"   : true,
+  "indent"  : 2,
+  "latedef" : true,
+  "newcap"  : true,
+  "noarg"   : true,
+  "quotmark": true,
+  "undef"   : true,
+  "unused"  : true,
+  "strict"  : true,
+  "trailing": true,
+  "smarttabs": true,
+
+  // Environments:
+  "browser" : true,
+  "jquery"  : true,
+  "node"    : true,
+
+  // Globals:
+  "predef"  : [
+    "ga"
+  ]
+}
