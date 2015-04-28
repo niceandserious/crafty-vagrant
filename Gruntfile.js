@@ -22,6 +22,7 @@ module.exports = function(grunt) {
 	* - Concats JS to main.js
 	* - Minifies JS to main.min.js
 	* - Optimises images
+	* - Creates custom Modernizr build
 	*/
 	grunt.registerTask('default', [
 		'sass',
@@ -50,6 +51,9 @@ module.exports = function(grunt) {
 
 		// Watch tasks:
 		watch: {
+			gruntfile: {
+				files: ['Gruntfile.js']
+			},
 			css: {
 				files: ['<%= path.src %>/styles/**/*.scss'],
 				tasks: ['sass', 'autoprefixer', 'cssmin']
