@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt);
 
 	// Load grunt tasks automatically
-	require('load-grunt-tasks')(grunt);
+	require('jit-grunt')(grunt);
 
 	// Source and destination paths for tasks:
 	var path = {
