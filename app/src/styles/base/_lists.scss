@@ -26,3 +26,10 @@ dl {
     margin: 0;
   }
 }
+
+// Navigation lists are always unstyled:
+nav {
+  ul {
+    @extend %unstyled-list;
+  }
+}
