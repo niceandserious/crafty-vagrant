@@ -3,6 +3,9 @@
 	margin-bottom: $gutter;
 
 	a {
+		display: block;
+		height: $gutter * 3;
+		line-height: $gutter * 3;
 		text-decoration: none;
 	}
 	h1 {
@@ -19,8 +22,10 @@
 	li {
 		display: inline-block;
 		text-transform: uppercase;
+
 		a {
-			padding: 1em;
+			padding-left: 1em;
+			padding-right: 1em;
 		}
 	}
 }
