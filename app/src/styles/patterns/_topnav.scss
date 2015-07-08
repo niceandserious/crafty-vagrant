@@ -6,10 +6,10 @@
 		text-decoration: none;
 	}
 	h1 {
-		@include span-columns(4);
+		@include span-columns(6);
 	}
 	nav {
-		@include span-columns(8);
+		@include span-columns(6);
 	}
 	ul {
 		float: right;
