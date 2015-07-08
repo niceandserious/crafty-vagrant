@@ -1,0 +1,15 @@
+{% extends 'patterns/index' %}
+
+{% block patterns %}
+
+  <p>Buttons are specified by a <code>.button</code> class, and should look consistent whether they are a <code>button</code>, <code>a</code>, or <code>input</code> element.</p>
+  <p>
+    <button>Button</button>
+    <a href="#" class="button">Hyperlink</a>
+    <input class="button" type="submit" value="Submit" />
+  </p>
+
+  <p>A primary button can be specified via the <code>.button-primary</code> class.</p>
+  <input class="button button-primary" type="submit" value="Primary" />
+
+{% endblock %}
