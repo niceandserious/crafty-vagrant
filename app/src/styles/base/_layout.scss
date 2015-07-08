@@ -8,7 +8,7 @@ main {
 
 .container {
 	@include outer-container;
-	@include box-sizing(border-box);
 	@include pad(0 $gutter);
+    box-sizing: border-box;
 	position: relative;
 }
