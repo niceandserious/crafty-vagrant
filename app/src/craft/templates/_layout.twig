@@ -15,7 +15,12 @@
 	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 	<link rel="home" href="{{ siteUrl }}">
 
+  {# Let's use uncompressed CSS if we're in dev mode, for easier debugging: #}
+  {% if craft.config.devMode %}
+  <link rel="stylesheet" href="/styles/main.css" />
+  {% else %}
 	<link rel="stylesheet" href="/styles/main.min.css" />
+  {% endif %}
 
 	{% block headScripts %}
 	<script src="/scripts/modernizr.js"></script>
@@ -53,7 +58,7 @@
 		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
 		</div>
 	</footer>
-	
+
 	{% block footerScripts %}
 		{# IE8 and below need jQuery 1 - other browsers use jQuery 2: -#}
 		<!--[if lt IE 9]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><![endif]-->
