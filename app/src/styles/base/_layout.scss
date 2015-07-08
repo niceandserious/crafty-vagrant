@@ -4,11 +4,13 @@ html, body {
 
 main {
 	background-color: $main-bg-color;
+	padding-bottom: $gutter;
 }
 
 .container {
 	@include outer-container;
-	@include pad(0 $gutter);
-    box-sizing: border-box;
+	padding-left: $gutter;
+	padding-right: $gutter;
+	box-sizing: border-box;
 	position: relative;
 }
