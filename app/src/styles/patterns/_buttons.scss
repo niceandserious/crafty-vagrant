@@ -23,7 +23,7 @@ $primary-button-hover-color: $link-hover-color;
 
 button,
 input[type="submit"],
-.button {
+.btn {
   @extend %button;
   @include appearance(none);
 
@@ -32,7 +32,7 @@ input[type="submit"],
     color: white;
   }
 
-  &.button-primary {
+  &.btn-primary {
     background-color: $primary-button-color;
     color: white;
 
