@@ -66,5 +66,10 @@
 		<!--[if gte IE 9]><!--><script src="/scripts/vendor.min.js"></script><!-- <![endif]-->
 		<script src="/scripts/main.min.js"></script>
 	{% endblock %}
+
+  {# Don't include analytics snippet in live preview: #}
+  {% if not craft.request.isLivePreview %}
+  {# Analytics script goes here... #}
+  {% endif %}
 </body>
 </html>
