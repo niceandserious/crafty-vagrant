@@ -11,9 +11,10 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-	<meta charset="utf-8" />
-	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
-	<link rel="home" href="{{ siteUrl }}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+  <link rel="home" href="{{ siteUrl }}" />
 
   {# Let's use uncompressed CSS if we're in dev mode, for easier debugging: #}
   {% if craft.config.devMode %}
