@@ -8,43 +8,43 @@
 {% set sectionHandle = craft.request.firstSegment %}
 {% set section = craft.sections.getSectionByHandle(sectionHandle) %}
 {#  For the side nav, get all the pages in this Structure apart from the top level one
-	(which is accessed from the top nav): #}
+  (which is accessed from the top nav): #}
 {% set pages = craft.entries.section(sectionHandle).depth('>1').find() %}
 
 {% block content %}
-	{% block sidebar %}
-	<aside>
-		{% if pages is not empty %}
-		<h4>{{ section }}</h4>
-		<nav>
-			<ul>
-				{% nav page in pages %}
-				{# Add a class of 'current' if this is the current page: #}
-				{% set current = craft.request.url == page.url ? 'current' : false %}
-				{# Add a class of 'active' if this is the current page or one of its direct ancestors: #}
-				{% set active = craft.request.url starts with page.url ? 'active' : false %}
-				{% if active or current %}
-				<li class="{{active|raw}} {{current|raw}}">
-				{% else %}
-				<li>
-				{% endif %}
-					{# Output a link to the page: #}
-					{{ page.getLink() }}
-					{# If the page has children, generate a sub-menu for them: #}
-					{% ifchildren %}
-					<ul>
-						{% children %}
-					</ul>
-					{% endifchildren %}
-				{% endnav %}
-			</ul>
-		</nav>
-		{% endif %}
-	</aside>
-	{% endblock %}
+  {% block sidebar %}
+  <aside>
+    {% if pages is not empty %}
+    <h4>{{ section }}</h4>
+    <nav>
+      <ul>
+        {% nav page in pages %}
+        {# Add a class of 'current' if this is the current page: #}
+        {% set current = craft.request.url == page.url ? 'current' : false %}
+        {# Add a class of 'active' if this is the current page or one of its direct ancestors: #}
+        {% set active = craft.request.url starts with page.url ? 'active' : false %}
+        {% if active or current %}
+        <li class="{{active|raw}} {{current|raw}}">
+        {% else %}
+        <li>
+        {% endif %}
+          {# Output a link to the page: #}
+          {{ page.getLink() }}
+          {# If the page has children, generate a sub-menu for them: #}
+          {% ifchildren %}
+          <ul>
+            {% children %}
+          </ul>
+          {% endifchildren %}
+        {% endnav %}
+      </ul>
+    </nav>
+    {% endif %}
+  </aside>
+  {% endblock %}
 
-	<article>
-		<h2>{{ entry.title }}</h2>
-		{{ entry.body }}
-	</article>
+  <article>
+    <h2>{{ entry.title }}</h2>
+    {{ entry.body }}
+  </article>
 {% endblock %}

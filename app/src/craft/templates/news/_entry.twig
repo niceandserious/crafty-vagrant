@@ -13,12 +13,4 @@
  # http://buildwithcraft.com/docs/routing
  #}
 
-{% extends "_layout" %}
-
-{% block content %}
-	<article>
-		<h1>{{ entry.title }}</h1>
-		<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
-		{{ entry.body }}
-	</article>
-{% endblock %}
+{% extends "_channel/_entry" %}

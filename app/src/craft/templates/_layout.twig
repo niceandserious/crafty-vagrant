@@ -20,56 +20,51 @@
   {% if craft.config.devMode %}
   <link rel="stylesheet" href="/styles/main.css" />
   {% else %}
-	<link rel="stylesheet" href="/styles/main.min.css" />
+  <link rel="stylesheet" href="/styles/main.min.css" />
   {% endif %}
 
-	{% block headScripts %}
-	<script src="/scripts/modernizr.js"></script>
-	{% endblock %}
+  {% block headScripts %}
+  <script src="/scripts/modernizr.js"></script>
+  {% endblock %}
 </head>
 
 <body>
-	<nav role="navigation" class="topnav">
-		<div class="container">
-			<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
-			{# Here are the items that are used to populate the navigation: #}
-			{%- set navItems = {
-				'news':		'News',
-				'about':	'About',
-				'contact':	'Contact Us'
-			} -%}
-			<ul>
-				{% for sectionUrl, sectionName in navItems -%}
-				<li><a href="{{ url(sectionUrl) }}"{% if craft.request.firstSegment == sectionUrl %} class="active"{% endif %}>{{ sectionName }}</a></li>
-				{% endfor %}
+  <nav role="navigation" class="topnav">
+    <div class="container">
+      <h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
+      {# Here are the items that are used to populate the navigation: #}
+      {%- set navItems = {
+        'news':   'News',
+        'about':  'About',
+        'contact':  'Contact Us'
+      } -%}
+      <ul>
+        {% for sectionUrl, sectionName in navItems -%}
+        <li><a href="{{ url(sectionUrl) }}"{% if craft.request.firstSegment == sectionUrl %} class="active"{% endif %}>{{ sectionName }}</a></li>
+        {% endfor %}
 
-			</ul>
-		</div>
-	</nav>
+      </ul>
+    </div>
+  </nav>
 
-	<main role="main" class="container">
-	{% block content %}
-		<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
-		<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
-	{% endblock %}
-	</main>
+  <main role="main" class="container">
+  {% block content %}
+    <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+    <p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+  {% endblock %}
+  </main>
 
-	<footer>
-		<div class="hidden container">
-		Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
-		</div>
-	</footer>
+  <footer>
+    <div class="hidden container">
+    Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://buildwithcraft.com">Craft</a>
+    </div>
+  </footer>
 
-	{% block footerScripts %}
-		{# IE8 and below need jQuery 1 - other browsers use jQuery 2: -#}
-		<!--[if lt IE 9]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><![endif]-->
-		<!--[if gte IE 9]><!--><script src="/scripts/vendor.min.js"></script><!-- <![endif]-->
-		<script src="/scripts/main.min.js"></script>
-	{% endblock %}
-
-  {# Don't include analytics snippet in live preview: #}
-  {% if not craft.request.isLivePreview %}
-  {# Analytics script goes here... #}
-  {% endif %}
+  {% block footerScripts %}
+    {# IE8 and below need jQuery 1 - other browsers use jQuery 2: -#}
+    <!--[if lt IE 9]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><![endif]-->
+    <!--[if gte IE 9]><!--><script src="/scripts/vendor.min.js"></script><!-- <![endif]-->
+    <script src="/scripts/main.min.js"></script>
+  {% endblock %}
 </body>
 </html>

@@ -1,43 +1,43 @@
-{# 
+{#
  # Pagination partial should be included within a {% paginate %} section:
  #}
 
 {# Preserve the query string on subsequent pages: #}
 {% set queryString = [] %}
 {% for key, val in craft.request.getQuery() %}
-	{# Ignore 'p', which Craft uses to specify the page #}
-	{% set queryString = key == 'p' ? queryString : queryString|merge([key ~ '=' ~ val]) %}
+  {# Ignore 'p', which Craft uses to specify the page #}
+  {% set queryString = key == 'p' ? queryString : queryString|merge([key ~ '=' ~ val]) %}
 {% endfor %}
 {% set queryString = queryString is empty ? '' : '?' ~ queryString|join('&') %}
 
-		<div class="pagination">
-			<ul>
-				{# Prev: #}
-				{% if paginate.prevUrl %}
-				<li>
-					<a href="{{ paginate.prevUrl ~ queryString }}" class="prev" rel="prev">&lt;<span> Newer posts</span></a>
-				</li>
-				{%- endif -%}
+    <div class="pagination">
+      <ul>
+        {# Prev: #}
+        {% if paginate.prevUrl %}
+        <li>
+          <a href="{{ paginate.prevUrl ~ queryString }}" class="prev" rel="prev">&lt;<span> Newer posts</span></a>
+        </li>
+        {%- endif -%}
 
-				{%- if paginate.totalPages > 1 %}
-					{# Set range of pages to show (before and after the current one): #}
-					{%- set n = 3 %}
-					{%- set min = paginate.currentPage - n < 0 ? 1 : paginate.currentPage - n %}
-					{%- set max = paginate.currentPage + n > paginate.totalPages ? paginate.totalPages : paginate.currentPage + n %}
-					{%- for pageNumber, pageUrl in paginate.getRangeUrls(min, max) -%}
-					{%- set current = paginate.currentPage == pageNumber ? ' class="current"' : '' %}
-				<li>
-					<a href="{{ pageUrl ~ queryString }}"{{ current|raw }}><span>Page </span>{{ pageNumber }}</a>
-				</li>
-					{%  endfor %}
-				{%- endif -%}
+        {%- if paginate.totalPages > 1 %}
+          {# Set range of pages to show (before and after the current one): #}
+          {%- set n = 3 %}
+          {%- set min = paginate.currentPage - n < 0 ? 1 : paginate.currentPage - n %}
+          {%- set max = paginate.currentPage + n > paginate.totalPages ? paginate.totalPages : paginate.currentPage + n %}
+          {%- for pageNumber, pageUrl in paginate.getRangeUrls(min, max) -%}
+          {%- set current = paginate.currentPage == pageNumber ? ' class="current"' : '' %}
+        <li>
+          <a href="{{ pageUrl ~ queryString }}"{{ current|raw }}><span>Page </span>{{ pageNumber }}</a>
+        </li>
+          {%  endfor %}
+        {%- endif -%}
 
-				{# Next: #}
-				{%- if paginate.nextUrl -%}
-				<li>
-					<a href="{{ paginate.nextUrl ~ queryString }}" class="next" rel="next"><span>Older posts </span>&gt;</a>
-				</li>
-				{% endif %}
+        {# Next: #}
+        {%- if paginate.nextUrl -%}
+        <li>
+          <a href="{{ paginate.nextUrl ~ queryString }}" class="next" rel="next"><span>Older posts </span>&gt;</a>
+        </li>
+        {% endif %}
 
-			</ul>
-		</div>
+      </ul>
+    </div>

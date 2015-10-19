@@ -3,6 +3,6 @@
  #}
 {% set img = element.image.first() %}
 <div class="image {{ element.display }}">
-	<img src="{{ img.getUrl('articleImage') }}" alt="{{ img.title }}" />
-	<p class="caption">{{ element.caption }}</p>
+  <img src="{{ img.getUrl('articleImage') }}" alt="{{ img.title }}" />
+  <p class="caption">{{ element.caption }}</p>
 </div>
