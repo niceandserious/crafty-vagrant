@@ -47,6 +47,12 @@
     </div>
   </nav>
 
+  <div class="container">
+    {% include '_partials/search' %}
+  </div>
+
+  <hr />
+
   <main role="main" class="container">
   {% block content %}
     <p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>

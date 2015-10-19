@@ -1,0 +1,5 @@
+
+  <form action="{{ url('search') }}" class="inline-form">
+    <input name="q" value="{% if query is defined %}{{ query }}{% endif %}" class="search" type="text" placeholder="Search for..." />
+    <button class="a-btn">Go</button>
+  </form>

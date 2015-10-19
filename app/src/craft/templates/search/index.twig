@@ -15,10 +15,7 @@
   <h2>{{ title }}</h2>
 
   {# Search field: #}
-  <form action="{{ url('search') }}" class="inline-form">
-    <input name="q" value="{{ query }}" class="search" type="text" placeholder="Search for..." />
-    <button class="a-btn">Go</button>
-  </form>
+  {% include 'partials/search' %}
 
   {% if query is not empty %}
   <hr />
