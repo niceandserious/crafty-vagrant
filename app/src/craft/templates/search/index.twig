@@ -10,16 +10,19 @@
 {% set title = 'Search results: “' ~ query ~ '”' %}
 {% endif %}
 
+{% block search %}
+<div class="container">
+  <h2>{{ title }}</h2>
+  {% include '_partials/search' %}
+</div>
+
+<hr />
+
+{% endblock %}
+
 {% block content %}
 <div>
-  <h2>{{ title }}</h2>
-
-  {# Search field: #}
-  {% include 'partials/search' %}
-
   {% if query is not empty %}
-  <hr />
-
   {% paginate craft.entries.hiddenFromSearch(':empty:').search(query).limit(perPage) as results %}
 
   <p><strong>{{ paginate.total }}</strong> results for <strong>&ldquo;{{ query }}&rdquo;</strong>

@@ -47,11 +47,13 @@
     </div>
   </nav>
 
+  {% block search %}
   <div class="container">
     {% include '_partials/search' %}
   </div>
 
   <hr />
+  {% endblock %}
 
   <main role="main" class="container">
   {% block content %}
