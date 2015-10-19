@@ -1,0 +1,48 @@
+{% extends '_layout' %}
+
+{# How many results to display per page? #}
+{% set perPage = 10 %}
+
+{% set query = craft.request.param('q') %}
+{% if query is empty %}
+{% set title = 'Search' %}
+{% else %}
+{% set title = 'Search results: “' ~ query ~ '”' %}
+{% endif %}
+
+{% block content %}
+<div>
+  <h2>{{ title }}</h2>
+
+  {# Search field: #}
+  <form action="{{ url('search') }}" class="inline-form">
+    <input name="q" value="{{ query }}" class="search" type="text" placeholder="Search for..." />
+    <button class="a-btn">Go</button>
+  </form>
+
+  {% if query is not empty %}
+  <hr />
+
+  {% paginate craft.entries.hiddenFromSearch(':empty:').search(query).limit(perPage) as results %}
+
+  <p><strong>{{ paginate.total }}</strong> results for <strong>&ldquo;{{ query }}&rdquo;</strong>
+      {%- if paginate.totalPages > 1 %} ({{ paginate.totalPages }} pages){% endif %}:
+  </p>
+
+  {# Output search results: #}
+  {% if results is empty %}
+  <p>No entries found&hellip;</p>
+  {% else %}
+  {% for result in results %}
+  <div>
+      <h3><a href="{{ result.url }}">{{ result.title }}</a></h3>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  {# Pagination: #}
+  {% include '_partials/pagination' %}
+  {% endpaginate %}
+  {% endif %}
+</div>
+{% endblock %}
