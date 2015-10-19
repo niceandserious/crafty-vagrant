@@ -10,9 +10,11 @@ module.exports = function(grunt) {
 
 	// Source and destination paths for tasks:
 	var path = {
-		src:	'app/src',
-		dest:	'app/public',
-		bower:	'bower_components'
+		src:	 'app/src',
+		dest:	 'app/public',
+		bower: 'bower_components',
+		// Path to /app/public on the staging environment (for rsync):
+		stage: 'user@servername:/path/to/site/app/public'
 	};
 
 	/*
@@ -208,6 +210,30 @@ module.exports = function(grunt) {
 					]
 				},
 				uglify: true
+			}
+		},
+
+		rsync: {
+			options: {
+				args: ["--verbose", "-a"],
+				exclude: [".git*","*.scss","node_modules"],
+				recursive: true
+			},
+			fromstage: {
+				options: {
+					// Sync assets from the staging site to local version:
+					src:  "<%= path.stage %>/assets/",
+					dest: "<%= path.dest %>/assets/",
+					delete: false // Careful this option could cause data loss!
+				}
+			},
+			tostage: {
+				options: {
+					// Sync assets from local version to staging site:
+					src:  "<%= path.dest %>/assets/",
+					dest: "<%= path.stage %>/assets/",
+					delete: false // Careful this option could cause data loss!
+				}
 			}
 		}
 
