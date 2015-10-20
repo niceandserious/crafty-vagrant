@@ -21,17 +21,13 @@ module.exports = function(grunt) {
   * $ grunt
   * - Compiles SASS
   * - Minifies CSS to main.min.css
-  * - Concats JS to main.js
-  * - Minifies JS to main.min.js
   * - Optimises images
   * - Creates custom Modernizr build
   */
   grunt.registerTask('default', [
     'sass',
     'autoprefixer',
-    'concat',
     'cssmin',
-    'uglify',
     'imagemin',
     'svgmin',
     'modernizr'
@@ -62,7 +58,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['<%= path.src %>/scripts/*.js'],
-        tasks: ['jshint', 'concat', 'uglify']
+        tasks: ['jshint']
       },
       images: {
         files: ['<%= path.src %>/images/**/*.{png,jpg,gif}'],
@@ -106,36 +102,22 @@ module.exports = function(grunt) {
       }
     },
 
-        // Lint JS files with JSHint:
-        jshint: {
-            options: {
-                // Continue with other tasks even if JSHint finds
-                // stuff to complain about:
-                force: true,
-                // JSHint config file:
-                jshintrc: '.jshintrc',
-                // Make JSHint output look a little nicer:
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= path.src %>/scripts/{,*/}*.js',
-                '!<%= path.src %>/scripts/vendor/*'
-            ]
+    // Lint JS files with JSHint:
+    jshint: {
+        options: {
+            // Continue with other tasks even if JSHint finds
+            // stuff to complain about:
+            force: true,
+            // JSHint config file:
+            jshintrc: '.jshintrc',
+            // Make JSHint output look a little nicer:
+            reporter: require('jshint-stylish')
         },
-
-    // Concatenate multiple source JS files into main.js/vendor.js
-    concat: {
-      dist: {
-        files: {
-          '<%= path.dest %>/scripts/main.js': [
-            '<%= path.src %>/scripts/main.js'
-          ],
-          '<%= path.dest %>/scripts/vendor.js': [
-            '<%= path.bower %>/jquery/dist/jquery.js'
-          ]
-        }
-      }
+        all: [
+            'Gruntfile.js',
+            '<%= path.src %>/scripts/{,*/}*.js',
+            '!<%= path.src %>/scripts/vendor/*'
+        ]
     },
 
     // Minify CSS
@@ -145,22 +127,6 @@ module.exports = function(grunt) {
         files: {
           '<%= path.dest %>/styles/main.min.css': [
             '<%= path.dest %>/styles/main.css'
-          ]
-        }
-      }
-    },
-
-    // Minify JS
-    // (main.js --> main.min.js)
-    // (vendor.js --> vendor.min.js)
-    uglify: {
-      dist: {
-        files: {
-          '<%= path.dest %>/scripts/main.min.js': [
-            '<%= path.dest %>/scripts/main.js'
-          ],
-          '<%= path.dest %>/scripts/vendor.min.js': [
-            '<%= path.dest %>/scripts/vendor.js'
           ]
         }
       }
