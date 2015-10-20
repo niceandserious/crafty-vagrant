@@ -215,23 +215,23 @@ module.exports = function(grunt) {
 
     rsync: {
       options: {
-        args: ["--verbose", "-a"],
-        exclude: [".git*","*.scss","node_modules"],
+        args: ['--verbose', '-a'],
+        exclude: ['.git*','*.scss','node_modules'],
         recursive: true
       },
       fromstage: {
         options: {
           // Sync assets from the staging site to local version:
-          src:  "<%= path.stage %>/assets/",
-          dest: "<%= path.dest %>/assets/",
+          src:  '<%= path.stage %>/assets/',
+          dest: '<%= path.dest %>/assets/',
           delete: false // Careful this option could cause data loss!
         }
       },
       tostage: {
         options: {
           // Sync assets from local version to staging site:
-          src:  "<%= path.dest %>/assets/",
-          dest: "<%= path.stage %>/assets/",
+          src:  '<%= path.dest %>/assets/',
+          dest: '<%= path.stage %>/assets/',
           delete: false // Careful this option could cause data loss!
         }
       }
