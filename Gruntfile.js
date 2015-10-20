@@ -20,6 +20,7 @@ module.exports = function(grunt) {
   /*
   * $ grunt
   * - Compiles SASS
+  * - Bundles Javascript using Browserify
   * - Minifies CSS to main.min.css
   * - Optimises images
   * - Creates custom Modernizr build
@@ -27,6 +28,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'sass',
     'autoprefixer',
+    'browserify',
     'cssmin',
     'imagemin',
     'svgmin',
@@ -36,8 +38,8 @@ module.exports = function(grunt) {
   /*
   * $ grunt watch
   * - Watches SASS for changes --> render to CSS, autoprefixes + minify
-  * - Watches JS for changes --> concat + minify
-  * – Watch images and SVGs --> optimises and copies to public dir
+  * - Watches JS for changes --> bundle with Browserify
+  * – Watch images and SVGs --> optimise and copy to public dir
   */
 
   // Set up tasks:
@@ -57,8 +59,8 @@ module.exports = function(grunt) {
         tasks: ['sass', 'autoprefixer', 'cssmin']
       },
       scripts: {
-        files: ['<%= path.src %>/scripts/*.js'],
-        tasks: ['jshint']
+        files: ['<%= path.src %>/scripts/**/*.js'],
+        tasks: ['jshint', 'browserify']
       },
       images: {
         files: ['<%= path.src %>/images/**/*.{png,jpg,gif}'],
@@ -99,6 +101,19 @@ module.exports = function(grunt) {
           src: '{,*/}*.css',
           dest: '<%= path.dest %>/styles'
         }]
+      }
+    },
+
+    // Bundle Javascript modules into bundle.js:
+    browserify: {
+      all: {
+        options: {
+          browserifyOptions : {
+            // debug: true
+          }
+        },
+        src:  '<%= path.src %>/scripts/main.js',
+        dest: '<%= path.dest %>/scripts/bundle.js'
       }
     },
 
