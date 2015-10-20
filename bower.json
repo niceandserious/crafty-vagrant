@@ -14,12 +14,12 @@
     "tests"
   ],
   "dependencies": {
-    "bourbon": "~4.2.2",
+    "bourbon": "~4.2.6",
     "neat": "~1.7.2",
-    "jquery": "~2.1.0",
-    "modernizr": "~2.7.2"
+    "jquery": "~2.1.4",
+    "modernizr": "~3.1.0"
   },
   "devDependencies": {
-    "normalize-scss": "~3.0.1"
+    "normalize-scss": "~3.0.3"
   }
 }
