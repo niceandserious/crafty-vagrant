@@ -2,6 +2,8 @@
 
 A neat starting point / development environment for [Craft](http://buildwithcraft.com/)-based projects, with [Vagrant](https://www.vagrantup.com/) configured and ready to go, [Grunt](http://gruntjs.com/) set up to take care of things like rendering Sass, bundling Javascript, minifying CSS and images, and asset-syncing, [Neat](http://neat.bourbon.io/) for elegant, semantic grid layouts, and a couple of shell scripts to simplify installing / restoring the database from backup.
 
+[![bitHound Score](https://www.bithound.io/github/niceandserious/crafty-vagrant/badges/score.svg)](https://www.bithound.io/github/niceandserious/crafty-vagrant)
+
 ## Pre-requisites
 * [Bower](http://bower.io/)
 * [Grunt](http://gruntjs.com/)
