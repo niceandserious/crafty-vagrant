@@ -52,7 +52,8 @@ module.exports = function(grunt) {
     // Watch tasks:
     watch: {
       gruntfile: {
-        files: ['Gruntfile.js']
+        files: ['Gruntfile.js'],
+        tasks: ['jshint']
       },
       css: {
         files: ['<%= path.src %>/styles/**/*.scss'],
