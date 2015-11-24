@@ -3,6 +3,9 @@ $pagination-bg: $main-bg-color;
 $pagination-current-bg: #eee;
 
 .pagination {
+  clear: both;
+  margin: 2rem;
+
   a {
     background-color: $pagination-bg;
     border: solid 1px $border-color;
@@ -10,9 +13,9 @@ $pagination-current-bg: #eee;
     padding: 0;
     text-decoration: none;
 
-    width: 2em;
-    line-height: 2em;
-    
+    padding: 0.5rem 1rem;
+    line-height: 2rem;
+
     &:hover {
       border-color: $border-color-hover;
     }
@@ -34,7 +37,7 @@ $pagination-current-bg: #eee;
     @extend %unstyled-list;
     text-align: center;
   }
-  
+
   li {
     display: inline;
   }
