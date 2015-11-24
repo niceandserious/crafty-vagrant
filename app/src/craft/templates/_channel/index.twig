@@ -33,7 +33,9 @@
     <h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
     <p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
     {{ entry.body.getPage(1) }}
+    {% if entry.body.getTotalPages() > 1 %}
     <p><a href="{{ entry.url }}">Continue reading</a></p>
+    {% endif %}
   </article>
 
   {% endblock %}
