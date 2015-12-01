@@ -51,6 +51,9 @@ module.exports = function(grunt) {
 
     // Watch tasks:
     watch: {
+      options: {
+        spawn: false,
+      },
       gruntfile: {
         files: ['Gruntfile.js'],
         tasks: ['jshint']
