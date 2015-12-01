@@ -53,6 +53,9 @@ module.exports = function(grunt) {
     // Watch tasks:
     watch: {
       options: {
+        // This significantly improves performance, but might not work
+        // well with all grunt tasks - try setting to "true" if you run
+        // into any problems
         spawn: false,
       },
       gruntfile: {
