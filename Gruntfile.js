@@ -3,7 +3,8 @@
 module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
+  // (Doesn't seem to work with 'spawn: false' on watch task, though)
+  // require('time-grunt')(grunt);
 
   // Load grunt tasks automatically
   require('jit-grunt')(grunt);
