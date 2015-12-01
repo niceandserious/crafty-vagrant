@@ -13,6 +13,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-modernizr": "~0.6.1",
     "grunt-newer": "~1.1.1",
+    "grunt-rsync": "^0.6.2",
     "grunt-svgmin": "~2.0.1",
     "jit-grunt": "^0.9.1",
     "jpegtran-bin": "3.0.5",
