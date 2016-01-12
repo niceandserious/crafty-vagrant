@@ -25,4 +25,12 @@ class php {
   exec { "php5enmod mcrypt && service apache2 reload":
     require => Package["php5-mcrypt"]
   }
+
+  # Increase xDebug's max nesting level to prevent problems with Craft:
+  # cf. http://craftcms.stackexchange.com/a/1560/328
+    exec { 'configure xdebug':
+      command => "echo 'xdebug.max_nesting_level=200' >> /etc/php5/mods-available/xdebug.ini",
+      unless => "grep xdebug.max_nesting_level /etc/php5/mods-available/xdebug.ini",
+      require => Package["php5-xdebug"]
+    }
 }
