@@ -1,10 +1,8 @@
 #!/bin/bash
 
 ##
-##	This install script handles everything that Crafty Vagrant needs on the
-##	local machine. Puppet handles everything on the Vagrant box.
-##
-##	Before running this, unzip a copy of Craft into the 'app' directory
+##  This install script handles everything that Crafty Vagrant needs on the
+##  local machine. Puppet handles everything on the Vagrant box.
 ##
 
 ## Colours for prettier output + to distinguish this script's output:
@@ -36,9 +34,9 @@ fi
 
 ## If Craft isn't present:
 if [ ! -d "app/craft" ]; then
-	echo_color "For the install process to work, please download Craft and unzip it \ninto the 'app' directory (so it's at app/craft)...";
-	exit;
-fi	
+  ## Install it!
+  bash puppet/makeItCraft.sh
+fi
 
 ## Install node modules:
 echo_color "

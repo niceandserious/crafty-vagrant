@@ -15,15 +15,15 @@ A neat starting point / development environment for [Craft](http://buildwithcraf
 
 Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
-1. First - if it's not already there - you'll need to download [Craft](http://buildwithcraft.com/) and unzip it into the `app` directory (so the project has `app/craft` and `app/public` directories)
+1. Run the command `bash install.sh` (you might need to `sudo` this). This will install and set up everything necessary (Craft, bower packages, grunt tasks, git submodules, etc) on your local machine. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
 
-2. Next, run the command `bash install.sh` (you might need to `sudo` this). This will install and set up everything necessary (bower packages, grunt tasks, git submodules, etc) on your local machine. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
-
-3. If this is the first time you've used Crafty Vagrant, open `/etc/hosts` and add
+2. If this is the first time you've used Crafty Vagrant, open your `hosts` file and add
 
 	    192.168.56.101    craft.dev
 
-4. Launch vagrant: `vagrant up`
+  (the hosts file is usually found at `/etc/hosts` on OSX/Linux; `%SystemRoot%\System32\drivers\etc\hosts` on Windows)
+
+3. Launch vagrant: `vagrant up`
 
 ...and hopefully (after a short wait while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one should automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/install](http://craft.dev/admin/install)
 
@@ -49,7 +49,10 @@ Because Crafty's templates are in the `src` directory (and copied into Craft's t
 * [Modernizr](http://modernizr.com/)
 
 ## Thanks!
+
 Crafty Vagrant's pattern library is adapted from [Bitters](http://bitters.bourbon.io/) © 2013–2014 [thoughtbot, inc.](http://thoughtbot.com/)
+
+Crafty Vagrant's install script uses part of [makeItCraft](https://github.com/mattstauffer/makeItCraft) by [Matt Stauffer](https://mattstauffer.co/).
 
 Crafty Vagrant is also based on work by:
 * [PerishableDave/puppet-lamp-stack](https://github.com/PerishableDave/puppet-lamp-stack).
