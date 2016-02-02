@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   var path = {
     src:   'app/src',
     dest:  'app/public',
-    bower: 'bower_components',
+    npm:   'node_modules',
     // Path to /app/public on the staging environment (for rsync):
     stage: 'user@servername:/path/to/site/app/public'
   };
@@ -86,9 +86,9 @@ module.exports = function(grunt) {
         options: {
           // Allow easy importing of bourbon and neat (via eg. @import "bourbon"):
           loadPath: [
-            '<%= path.bower %>/bourbon/app/assets/stylesheets',
-            '<%= path.bower %>/neat/app/assets/stylesheets',
-            '<%= path.bower %>/normalize-scss'
+            '<%= path.npm %>/bourbon/app/assets/stylesheets',
+            '<%= path.npm %>/bourbon-neat/app/assets/stylesheets',
+            '<%= path.npm %>/node.normalize.scss'
           ]
         },
         files: {
@@ -189,7 +189,7 @@ module.exports = function(grunt) {
     // reference in your app
     modernizr: {
       dist: {
-        devFile: '<%= path.bower %>/modernizr/bin/modernizr',
+        devFile: '<%= path.npm %>/modernizr/bin/modernizr',
         outputFile: '<%= path.dest %>/scripts/modernizr.js',
         files: {
           src: [

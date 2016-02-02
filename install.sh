@@ -43,11 +43,6 @@ echo_color "
 ## npm install";
 npm install;
 
-## Install bower components:
-echo_color "
-## bower install";
-bower install --allow-root;
-
 ## Initialise Git submodules:
 echo_color "
 ## git submodule init && git submodule update";

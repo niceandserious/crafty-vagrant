@@ -2,6 +2,8 @@
   "name": "my-project-name",
   "version": "0.1.0",
   "devDependencies": {
+    "bourbon": "^4.2.6",
+    "bourbon-neat": "^1.7.2",
     "grunt": "~0.4.4",
     "grunt-autoprefixer": "~3.0.3",
     "grunt-browserify": "^4.0.1",
@@ -18,6 +20,8 @@
     "jit-grunt": "^0.9.1",
     "jpegtran-bin": "3.0.6",
     "jshint-stylish": "^2.0.1",
+    "modernizr": "^3.3.1",
+    "node.normalize.scss": "^3.0.3",
     "time-grunt": "~1.2.1"
   }
 }
