@@ -1,7 +1,7 @@
 'use strict';
 
-// Load plugins
-var gulp = require('gulp');
+// Load plugins:
+var gulp    = require('gulp');
 var gutil   = require('gulp-util');
 var plugins = require('gulp-load-plugins')();
 
@@ -14,7 +14,14 @@ var path = {
   stage: 'user@servername:/path/to/site/app/public'
 };
 
-// Default Gulp task:
+/**
+ * $ gulp
+ *
+ * - compile, autoprefix, and minify Sass
+ * - bundle Javascript
+ * - optimise images (including SVGs)
+ * - create custom Modernizr build
+ */
 gulp.task('default', [
   'styles',
   'browserify',
@@ -22,7 +29,12 @@ gulp.task('default', [
   'modernizr'
 ]);
 
-// Watch tasks:
+/**
+ * $ gulp watch
+ *
+ * - watch for updates to scripts, styles, and Gulpfile
+ * - process files appropriately on change
+ */
 gulp.task('watch', [
   'watch:scripts',
   'watch:styles',
@@ -48,7 +60,11 @@ gulp.task('watch:styles', function(){
   ]);
 });
 
-// Images:
+/**
+ * $ gulp images
+ *
+ * - Optimise images (new and updated images only)
+ */
 gulp.task('images', function(){
   var src  = path.src  + '/images/{,*/}*.{gif,jpg,png,svg}';
   var dest = path.dest + '/images';
@@ -68,7 +84,11 @@ gulp.task('images', function(){
     .pipe(gulp.dest(dest));
 });
 
-// Styles (compile / autoprefix / minify):
+/**
+ * $ gulp styles
+ *
+ * - Compile Sass --> CSS, autoprefix, and minify
+ */
 gulp.task('styles', function(){
   gulp.src(path.src + '/styles/main.scss')
     // Compile Sass:
@@ -101,7 +121,11 @@ gulp.task('styles', function(){
     .on('error', gutil.log);
 });
 
-// Browserify:
+/**
+ * $ gulp browserify
+ *
+ * - Bundle Javascript with Browserify
+ */
 gulp.task('browserify', function(){
   gulp.src(path.src + '/scripts/main.js')
     .pipe(plugins.browserify())
@@ -111,7 +135,11 @@ gulp.task('browserify', function(){
     .on('error', gutil.log);
 });
 
-// JSHint:
+/**
+ * $ gulp jshint
+ *
+ * - lint Javascript files and Gulpfile.js
+ */
 gulp.task('jshint', function(){
   var src  = [
     'Gulpfile.js',
@@ -123,7 +151,12 @@ gulp.task('jshint', function(){
     .pipe(plugins.jshint.reporter(require('jshint-stylish')));
 });
 
-// Modernizr custom build:
+/**
+ * $ gulp modernizr
+ *
+ * - create a custom Modernizr build based on tests used
+ *   in bundle.js and main.css
+ */
 gulp.task('modernizr', function(){
   var src = [
     path.dest + '/scripts/bundle.js',
