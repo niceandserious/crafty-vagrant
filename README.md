@@ -1,12 +1,12 @@
 # Crafty Vagrant
 
-A neat starting point / development environment for [Craft](http://buildwithcraft.com/)-based projects, with [Vagrant](https://www.vagrantup.com/) configured and ready to go, [Grunt](http://gruntjs.com/) set up to take care of things like rendering Sass, bundling Javascript, minifying CSS and images, and asset-syncing, [Neat](http://neat.bourbon.io/) for elegant, semantic grid layouts, and a couple of shell scripts to simplify installing / restoring the database from backup.
+A neat starting point / development environment for [Craft](http://buildwithcraft.com/)-based projects, with [Vagrant](https://www.vagrantup.com/) configured and ready to go, [Gulp](http://gulpjs.com/) set up to take care of things like rendering Sass, bundling Javascript, minifying CSS and images, and asset-syncing, [Neat](http://neat.bourbon.io/) for elegant, semantic grid layouts, and a couple of shell scripts to simplify installing / restoring the database from backup.
 
 [![bitHound Score](https://www.bithound.io/github/niceandserious/crafty-vagrant/badges/score.svg)](https://www.bithound.io/github/niceandserious/crafty-vagrant)
 
 ## Pre-requisites
 * [npm](https://www.npmjs.com/)
-* [Grunt](http://gruntjs.com/)
+* [Gulp](http://gulpjs.com/)
 * [Vagrant](http://www.vagrantup.com/)
 * [Virtual Box](https://www.virtualbox.org/)
 * rsync (optional, for asset-syncing)
@@ -29,7 +29,7 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 ## Notes
 
-* `grunt watch` when you're ready to start developing: this will watch for changes to Sass, Javascript, or images, and perform appropriate tasks (compiling Sass, bundling javascript, etc)
+* `gulp watch` when you're ready to start developing: this will watch for changes to Sass, Javascript, or images, and perform appropriate tasks (compiling Sass, bundling javascript, etc)
 * If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install)
 * Crafty has a database-provisioning shell script. If you run `vagrant provision --provision-with shell`, the most recent backup in `app\craft\storage\backups` will be restored. (Of course, you'll lose any current state of the database, so only do this when you're happy for that to happen)
 * Crafty uses [Browserify](http://browserify.org/) to keep Javascript modular. If you haven't used Browserify before, there's an example module in the /scripts directory.
