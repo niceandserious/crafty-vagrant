@@ -170,3 +170,49 @@ gulp.task('modernizr', function(){
     .pipe(plugins.size({ showFiles: true }))
     .on('error', gutil.log);
 });
+
+/**
+ * $ gulp rsync:fromstage
+ * $ gulp rsync:tostage
+ *
+ * - Sync assets from/to remote site
+ */
+var rsyncOpts = {
+  args: [
+    '--archive',
+    '--compress',
+    '--stats',
+    '--verbose'
+  ],
+  delete: false,
+  exclude: ['.git*','*.scss','node_modules'],
+  ssh:  true,
+  recursive: true,
+  compareMode: 'checksum'
+};
+
+gulp.task('rsync:fromstage', function(){
+  var rsync = require('rsyncwrapper');
+  var opts  = rsyncOpts;
+
+  // From stage to local:
+  opts.src  = path.stage + '/assets/';
+  opts.dest = path.dest  + '/assets/';
+
+  rsync(opts, function(err, stdout) {
+    gutil.log(stdout);
+  });
+});
+
+gulp.task('rsync:tostage', function(){
+  var rsync = require('rsyncwrapper');
+  var opts  = rsyncOpts;
+
+  // From local to stage:
+  opts.src  = path.dest  + '/assets/';
+  opts.dest = path.stage + '/assets/';
+
+  rsync(opts, function(err, stdout) {
+    gutil.log(stdout);
+  });
+});
