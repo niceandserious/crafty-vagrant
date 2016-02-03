@@ -2,6 +2,7 @@
 
 // Load plugins
 var gulp = require('gulp');
+var gutil   = require('gulp-util');
 var plugins = require('gulp-load-plugins')();
 
 // Source and destination paths for tasks:
@@ -90,10 +91,14 @@ gulp.task('styles', function(){
     }))
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
+    // Report file size:
+    .pipe(plugins.size({ showFiles: true }))
     // Minify main.css and rename it to 'main.min.css':
     .pipe(plugins.cssmin())
     .pipe(plugins.rename({suffix: '.min'}))
-    .pipe(gulp.dest(path.dest + '/styles'));
+    .pipe(plugins.size({ showFiles: true }))
+    .pipe(gulp.dest(path.dest + '/styles'))
+    .on('error', gutil.log);
 });
 
 // Browserify:
@@ -101,7 +106,9 @@ gulp.task('browserify', function(){
   gulp.src(path.src + '/scripts/main.js')
     .pipe(plugins.browserify())
     .pipe(plugins.rename('bundle.js'))
-    .pipe(gulp.dest(path.dest + '/scripts'));
+    .pipe(gulp.dest(path.dest + '/scripts'))
+    .pipe(plugins.size({ showFiles: true }))
+    .on('error', gutil.log);
 });
 
 // JSHint:
@@ -126,5 +133,7 @@ gulp.task('modernizr', function(){
   gulp.src(src)
     .pipe(plugins.modernizr())
     .pipe(plugins.uglify())
-    .pipe(gulp.dest(path.dest + '/scripts'));
+    .pipe(gulp.dest(path.dest + '/scripts'))
+    .pipe(plugins.size({ showFiles: true }))
+    .on('error', gutil.log);
 });
