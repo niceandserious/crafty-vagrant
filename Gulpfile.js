@@ -35,26 +35,19 @@ gulp.task('default', [
  * - watch for updates to scripts, styles, and Gulpfile
  * - process files appropriately on change
  */
-gulp.task('watch', [
-  'watch:scripts',
-  'watch:styles',
-  'watch:gulpfile'
-]);
-
-gulp.task('watch:gulpfile', function(){
+gulp.task('watch', function(){
+  // Gulpfile.js:
   gulp.watch('Gulpfile.js', [
     'jshint'
   ]);
-});
 
-gulp.task('watch:scripts', function(){
+  // Scripts:
   gulp.watch(path.src + '/scripts/**/*.js', [
     'jshint',
     'browserify'
   ]);
-});
 
-gulp.task('watch:styles', function(){
+  // Styles:
   gulp.watch(path.src + '/styles/**/*.scss', [
     'styles'
   ]);
