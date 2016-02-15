@@ -170,42 +170,41 @@ gulp.task('modernizr', function(){
  *
  * - Sync assets from/to remote site
  */
-var rsyncOpts = {
-  args: [
-    '--archive',
-    '--compress',
-    '--stats',
-    '--verbose'
-  ],
-  delete: false,
-  exclude: ['.git*','*.scss','node_modules'],
-  ssh:  true,
-  recursive: true,
-  compareMode: 'checksum'
-};
-
-gulp.task('rsync:fromstage', function(){
+function syncFiles(src, dest) {
   var rsync = require('rsyncwrapper');
-  var opts  = rsyncOpts;
-
-  // From stage to local:
-  opts.src  = path.stage + '/assets/';
-  opts.dest = path.dest  + '/assets/';
+  var opts = {
+    src:  src,
+    dest: dest,
+    args: [
+      '--archive',
+      '--compress',
+      '--stats',
+      '--verbose'
+    ],
+    delete: false,
+    exclude: ['.git*','*.scss','node_modules'],
+    ssh:  true,
+    recursive: true,
+    compareMode: 'checksum'
+  };
 
   rsync(opts, function(err, stdout) {
     gutil.log(stdout);
   });
+}
+
+// From stage to local:
+gulp.task('rsync:fromstage', function(){
+  var src  = path.stage + '/assets/';
+  var dest = path.dest  + '/assets/';
+
+  syncFiles(src, dest);
 });
 
+// From local to stage:
 gulp.task('rsync:tostage', function(){
-  var rsync = require('rsyncwrapper');
-  var opts  = rsyncOpts;
+  var src  = path.dest  + '/assets/';
+  var dest = path.stage + '/assets/';
 
-  // From local to stage:
-  opts.src  = path.dest  + '/assets/';
-  opts.dest = path.stage + '/assets/';
-
-  rsync(opts, function(err, stdout) {
-    gutil.log(stdout);
-  });
+  syncFiles(src, dest);
 });
