@@ -1,9 +1,19 @@
 'use strict';
 
-// Load plugins:
 var gulp    = require('gulp');
 var gutil   = require('gulp-util');
-var plugins = require('gulp-load-plugins')();
+
+// Load plugins:
+var plugins = require('gulp-load-plugins')({
+  pattern: [
+    'gulp-*',
+    'gulp.*',
+    'browserify',
+    'babelify',
+    'vinyl-source-stream',
+    'vinyl-buffer'
+  ]
+});
 
 // Source and destination paths for tasks:
 var path = {
@@ -24,7 +34,7 @@ var path = {
  */
 gulp.task('default', [
   'styles',
-  'browserify',
+  'scripts',
   'images',
   'modernizr'
 ]);
@@ -44,7 +54,7 @@ gulp.task('watch', function(){
   // Scripts:
   gulp.watch(path.src + '/scripts/**/*.js', [
     'jshint',
-    'browserify'
+    'scripts'
   ]);
 
   // Styles:
@@ -115,17 +125,24 @@ gulp.task('styles', function(){
 });
 
 /**
- * $ gulp browserify
+ * $ gulp scripts
  *
  * - Bundle Javascript with Browserify
  */
-gulp.task('browserify', function(){
-  gulp.src(path.src + '/scripts/main.js')
-    .pipe(plugins.browserify())
-    .pipe(plugins.rename('bundle.js'))
+gulp.task('scripts', function(){
+  var bundler = plugins.browserify(path.src + '/scripts/main.js');
+
+  bundler.transform(plugins.babelify, {
+      presets: ['es2015']
+    })
+    .bundle()
+    .on('error', gutil.log)
+    // Vinyl source stream and buffer turn the output of Browserify
+    // into a stream that can be piped into subsequent Gulp tasks:
+    .pipe(plugins.vinylSourceStream('bundle.js'))
+    .pipe(plugins.vinylBuffer())
     .pipe(gulp.dest(path.dest + '/scripts'))
-    .pipe(plugins.size({ showFiles: true }))
-    .on('error', gutil.log);
+    .pipe(plugins.size({ showFiles: true }));
 });
 
 /**
