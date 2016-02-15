@@ -91,24 +91,27 @@ gulp.task('images', function(){
  */
 gulp.task('styles', function(){
   gulp.src(path.src + '/styles/main.scss')
-    // Compile Sass:
-    .pipe(plugins.sass.sync({
-        includePaths: [
-          path.npm + '/bourbon/app/assets/stylesheets',
-          path.npm + '/bourbon-neat/app/assets/stylesheets',
-          path.npm + '/node.normalize.scss'
-        ]
+    // Compile Sass, autoprefix, and combine media queries:
+    .pipe(plugins.pleeease({
+        out: 'main.css',
+        browsers: [
+          'last 3 versions',
+          'ie 8',
+          'ie 9'
+        ],
+        minifier: false,
+        mqpacker: true,
+        sass: {
+          includePaths: [
+            path.src + '/styles',
+            path.npm + '/bourbon/app/assets/stylesheets',
+            path.npm + '/bourbon-neat/app/assets/stylesheets',
+            path.npm + '/node.normalize.scss'
+          ]
+        }
       })
-      .on('error', plugins.sass.logError)
+      .on('error', gutil.log)
     )
-    // Autoprefix:
-    .pipe(plugins.autoprefixer({
-      browsers: [
-        'last 3 versions',
-        'ie 8',
-        'ie 9'
-      ]
-    }))
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
     // Report file size:
