@@ -43,11 +43,6 @@ echo_color "
 ## npm install";
 npm install;
 
-## Initialise Git submodules:
-echo_color "
-## git submodule init && git submodule update";
-git submodule init && git submodule update;
-
 ## Set up Craft stuff:
 echo_color "
 ## Setting up Craft...";

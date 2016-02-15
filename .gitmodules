@@ -1,6 +1,0 @@
-[submodule "modules/stdlib"]
-	path = puppet/modules/stdlib
-	url = git://github.com/puppetlabs/puppetlabs-stdlib.git
-[submodule "modules/apt"]
-	path = puppet/modules/apt
-	url = https://github.com/puppetlabs/puppetlabs-apt.git
