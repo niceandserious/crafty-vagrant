@@ -67,10 +67,10 @@ if [ -d $CRAFT_SRC ] && prompt "Replace Craft's default templates + config? [yn]
   cp -R $CRAFT_SRC app;
 fi
 
-## Run Grunt, to render CSS / Javascript / etc:
+## Run Gulp, to do initial compile of CSS, Javascript, etc:
 echo_color "
-## grunt";
-grunt;
+## gulp";
+gulp;
 
 ## Create the storage/runtime directory for Craft
 ## (to prevent a PHP error on first visit to craft.dev)
@@ -85,6 +85,6 @@ echo_color "
 ## Finished!
 ##
 ## 'vagrant up' to start the server.
-## 'grunt watch' to watch Sass + JS for changes.
+## 'gulp watch' to watch Sass + JS for changes.
 ##
 ## If this is a new install, you'll need to install Craft at http://craft.dev/admin/install";
