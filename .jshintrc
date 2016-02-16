@@ -1,7 +1,7 @@
 {
   // JSHint configuration for Crafty Vagrant
   // cf. https://github.com/jshint/jshint/blob/master/examples/.jshintrc
-  "esnext"  : true,
+  "esversion"  : 6,
   "bitwise" : true,
   "curly"   : true,
   "eqeqeq"  : true,
