@@ -8,7 +8,7 @@
  */
 
 // Define some constants that let us set up some environment variables:
-// (eg. sitePath)
+// (eg. siteUrl)
 define('URI_SCHEME', (isset($_SERVER['HTTPS'] ) ) ? "https://" : "http://");
 define('SITE_URL',    URI_SCHEME.$_SERVER['SERVER_NAME'].'/');
 

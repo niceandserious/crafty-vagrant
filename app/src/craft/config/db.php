@@ -9,19 +9,21 @@
 
 return array(
 
-	// The database server name or IP address. Usually this is 'localhost' or '127.0.0.1'.
-	'server' => 'localhost',
+  '*' => array(
+    'server'    => 'localhost',
+    'tablePrefix' => '',
 
-	// The database username to connect with.
-	'user' => 'craft',
+    // Live DB credentials:
+    'user'      => 'craft',
+    'password'  => '123',
+    'database'  => 'craft',
+  ),
 
-	// The database password to connect with.
-	'password' => '123',
-
-	// The name of the database to select.
-	'database' => 'craft',
-
-	// The prefix to use when naming tables. This can be no more than 5 characters.
-	'tablePrefix' => '',
+  '.dev' => array(
+    // Dev DB credentials:
+    'user'      => 'craft',
+    'password'  => '123',
+    'database'  => 'craft',
+  ),
 
 );
