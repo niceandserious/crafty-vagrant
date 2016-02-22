@@ -4,6 +4,7 @@ class php {
   $packages = [
     "php5",
     "php5-cli",
+    "php5-imagick",
     "php5-mysql",
     "php-pear",
     "php5-dev",
