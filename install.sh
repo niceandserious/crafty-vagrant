@@ -67,6 +67,22 @@ if [ -d $CRAFT_SRC ] && prompt "Replace Craft's default templates + config? [yn]
   cp -R $CRAFT_SRC app;
 fi
 
+## Unless install.sh was run with the --dev flag, delete Crafty's templates from src:
+## (since we don't really want extra copies of them kicking around)
+for i in "$@"
+do
+  case $i in
+    --dev)
+      DEV=true
+      shift
+    ;;
+  esac
+done
+
+if [ ! $DEV ]; then
+  rm -rf $CRAFT_SRC;
+fi
+
 ## Run Gulp, to do initial compile of CSS, Javascript, etc:
 echo_color "
 ## gulp";
