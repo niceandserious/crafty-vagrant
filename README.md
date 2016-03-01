@@ -30,13 +30,22 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 ## Notes
 
 * `gulp watch` when you're ready to start developing: this will watch for changes to Sass, Javascript, or images, and perform appropriate tasks (compiling Sass, bundling javascript, etc)
+
 * If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install)
+
 * Crafty has a database-provisioning shell script. If you run `vagrant provision --provision-with shell`, the most recent backup in `app\craft\storage\backups` will be restored. (Of course, you'll lose any current state of the database, so only do this when you're happy for that to happen)
+
 * Crafty uses [Browserify](http://browserify.org/) to keep Javascript modular. If you haven't used Browserify before, there's an example module in the /scripts directory.
 
 ## Development
 
-Because Crafty's templates are in the `src` directory (and copied into Craft's template directory when you start a new project), if you want to work on Crafty itself (on the starting templates), the easiest thing is to add the line `define('CRAFT_TEMPLATES_PATH', "../src/craft/templates");` to the top of Craft's `app/public/index.php` file, and then gitignore the `app/craft` and `app/public` directories. This allows to work directly on the source templates alongside a working installation of Craft.
+If you want to work on Crafty Vagrant itself (ie. on the default config / starting templates), three steps are required:
+
+1. Run the install step with a `--dev` flag: eg. `bash install.sh --dev`. This leaves copies of Crafty's default template / config files in the `/src` folder (without the `--dev` flag they are deleted from this directory as part of the install process, to avoid the potential confusion of having an unused templates directory kicking around)
+
+2. Add the line `define('CRAFT_TEMPLATES_PATH', "../src/craft/templates");` to the top of Craft's `app/public/index.php` file. This lets you work directly on the source templates alongside a working installation of Craft.
+
+3. gitignore the `app/craft` and `app/public` directories to prevent these being checked into Crafty Vagrant itself.
 
 ## Environment
 
