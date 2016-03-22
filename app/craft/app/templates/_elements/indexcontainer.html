@@ -1,0 +1,84 @@
+{% from "_includes/forms" import text -%}
+
+{% includeTranslations
+	"Sort by {attribute}",
+	"Score",
+	"Structure",
+	"Display in a table",
+	"Display hierarchically",
+	"Display as thumbnails"
+%}
+
+{% set context = context is defined ? context : 'index' %}
+{% set showStatusMenu = (showStatusMenu is defined and showStatusMenu != 'auto' ? showStatusMenu : elementType.hasStatuses()) %}
+{% set showLocaleMenu = (craft.isLocalized() and context == 'index' ? (showLocaleMenu is defined and showLocaleMenu != 'auto' ? showLocaleMenu : elementType.isLocalized()) : false) %}
+{% set sortableAttributes = elementType.defineSortableAttributes() %}
+
+<div class="main">
+	<div class="toolbar">
+		<table class="inputs fullwidth collapsible">
+			<tr>
+				{% if showStatusMenu %}
+					<td class="thin">
+						<div class="btn menubtn statusmenubtn"><span class="status"></span>{{ "All"|t }}</div>
+						<div class="menu">
+							<ul class="padded">
+								<li><a data-status="" class="sel"><span class="status"></span>{{ "All"|t }}</a></li>
+								{% for status, label in elementType.getStatuses() %}
+									<li><a data-status="{{ status }}"><span class="status {{ status }}"></span>{{ label }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</td>
+				{% endif %}
+				{% if showLocaleMenu %}
+					{% set editableLocaleIds = craft.i18n.getEditableLocaleIds() %}
+					{% if editableLocaleIds|length %}
+						{% if craft.locale in editableLocaleIds %}
+							{% set initialLocale = craft.i18n.getCurrentLocale() %}
+						{% else %}
+							{% set initialLocale = craft.i18n.getLocaleById(editableLocaleIds|first) %}
+						{% endif %}
+						<td class="thin">
+							<div class="btn menubtn localemenubtn">{{ initialLocale ? initialLocale.getName() }}</div>
+							<div class="menu">
+								<ul class="padded">
+									{% for locale in craft.i18n.getEditableLocales() %}
+										<li><a{% if initialLocale and locale.getId() == initialLocale.getId() %} class="sel"{% endif %} data-locale="{{ locale.getId() }}">{{ locale.getName() }}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</td>
+					{% endif %}
+				{% endif %}
+				<td>
+					<div class="texticon search icon clearable">
+						{{ text({
+							placeholder: "Search"|t
+						}) }}
+						<div class="clear hidden" title="{{ 'Clear'|t }}"></div>
+					</div>
+				</td>
+				<td class="thin">
+					<div class="btn menubtn sortmenubtn"{% if sortableAttributes %} title="{{ 'Sort by {attribute}'|t({ attribute: sortableAttributes|first }) }}"{% endif %} data-icon="asc">{{ sortableAttributes ? sortableAttributes|first }}</div>
+					<div class="menu">
+						<ul class="padded sort-attributes">
+							{% for key, label in sortableAttributes %}
+								<li><a{% if loop.first %} class="sel"{% endif %} data-attr="{{ key }}">{{ label }}</a></li>
+							{% endfor %}
+						</ul>
+						<hr>
+						<ul class="padded sort-directions">
+							<li><a data-dir="asc" class="sel">{{ "Ascending"|t }}</a></li>
+							<li><a data-dir="desc">{{ "Descending"|t }}</a></li>
+						</ul>
+					</div>
+				</td>
+				<td class="thin viewbtns hidden"></td>
+			</tr>
+		</table>
+		<div class="spinner hidden"></div>
+	</div>
+
+	<div class="elements"></div>
+</div>

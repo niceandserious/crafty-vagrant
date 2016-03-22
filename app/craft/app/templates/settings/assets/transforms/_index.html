@@ -1,0 +1,53 @@
+{% extends "settings/assets/_layout" %}
+{% set selectedNavItem = 'transforms' %}
+
+{% set docsUrl = 'http://craftcms.com/docs/image-transforms' %}
+
+
+{% block content %}
+<p id="notransforms"{% if transforms|length %} class="hidden"{% endif %}>
+	{{ "No image transforms exist yet."|t }}
+</p>
+
+{% if transforms|length %}
+	<table id="transforms" class="data fullwidth collapsible">
+		<thead>
+			<th scope="col">{{ "Name"|t }}</th>
+			<th scope="col">{{ "Handle"|t }}</th>
+			<th scope="col">{{ "Mode"|t }}</th>
+			<th scope="col">{{ "Dimensions"|t }}</th>
+			<th scope="col">{{ "Format"|t }}</th>
+			<td class="thin"></td>
+		</thead>
+		<tbody>
+		{% for transform in transforms %}
+			<tr data-id="{{ transform.id }}" data-name="{{ transform.name|t }}">
+				<th scope="row" data-title="{{ 'Name'|t }}"><a href="{{ url('settings/assets/transforms/' ~ transform.handle) }}">{{ transform.name|t }}</a></th>
+                <td data-title="{{ 'Handle'|t }}"><code>{{ transform.handle }}</code></td>
+				<td data-title="{{ 'Mode'|t }}">
+					{% if transform.mode %}
+						{{ transformModes[transform.mode] }}
+					{%  endif %}
+				</td>
+				<td data-title="{{ 'Dimensions'|t }}">{{ transform.width ? transform.width : 'Auto'|t }} &times; {{ transform.height ? transform.height : 'Auto'|t }}</td>
+				<td data-title="{{ 'Format'|t }}">{{ transform.format ? transform.format|capitalize : 'Auto'|t }}</td>
+				<td class="thin"><a class="delete icon" title="{{ 'Delete'|t }}" role="button"></a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endif %}
+
+<div class="buttons">
+	<a class="btn submit add icon" href="{{ url('settings/assets/transforms/new') }}">{{ "New image transform"|t }}</a>
+</div>
+{% endblock %}
+
+{% includejs %}
+	new Craft.AdminTable({
+		tableSelector: '#transforms',
+		noObjectsSelector: '#notransforms',
+		sortable: false,
+		deleteAction: 'assetTransforms/deleteTransform'
+	});
+{% endincludejs %}

@@ -1,0 +1,84 @@
+{% extends "_layouts/cp" %}
+
+{% set fullPageForm = true %}
+{% set docsUrl = 'http://craftcms.com/docs/assets' %}
+
+{% import "_includes/forms" as forms %}
+
+
+{% block content %}
+		<input type="hidden" name="action" value="assetSources/saveSource">
+		<input type="hidden" name="redirect" value="settings/assets">
+		{% if not isNewSource %}<input type="hidden" name="sourceId" value="{{ source.id }}">{% endif %}
+
+		<div id="assetsource-settings">
+			{{ forms.textField({
+				first: true,
+				label: "Name"|t,
+				id: 'name',
+				name: 'name',
+				value: (source is defined ? source.name : null),
+				errors: (source is defined ? source.getErrors('name') : null),
+				autofocus: true,
+				required: true,
+				translatable: true
+			}) }}
+
+            {{ forms.textField({
+                first: true,
+                label: "Handle"|t,
+                id: 'handle',
+                name: 'handle',
+                value: (source is defined ? source.handle : null),
+                errors: (source is defined ? source.getErrors('handle') : null),
+                required: true,
+            }) }}
+
+            {% if CraftEdition == CraftPro %}
+				<hr>
+
+				{% includejsresource "js/asseteditsourcesettings.js" %}
+
+				{{ forms.selectField({
+					label: "Type"|t,
+					instructions: "What type of source is this?"|t,
+					id: 'type',
+					name: 'type',
+					options: sourceTypes,
+					value: sourceType.getClassHandle(),
+					toggle: true
+				}) }}
+
+				{% for _sourceType in sourceTypes %}
+					{% set isCurrent = (_sourceType.getClassHandle() == sourceType.getClassHandle()) %}
+
+					<div id="{{ _sourceType.getClassHandle() }}"{% if not isCurrent %} class="hidden"{% endif %}>
+						{% namespace 'types['~_sourceType.getClassHandle()~']' %}
+							{% if isCurrent %}
+								{{ sourceType.getSettingsHtml()|raw }}
+							{% else %}
+								{{ _sourceType.getSettingsHtml()|raw }}
+							{% endif %}
+						{% endnamespace %}
+					</div>
+				{% endfor %}
+			{% else %}
+				{% namespace 'types['~sourceType.getClassHandle()~']' %}
+					{{ sourceType.getSettingsHtml()|raw }}
+				{% endnamespace %}
+			{% endif %}
+		</div>
+
+		<div id="assetsource-fieldlayout" class="hidden">
+			{% include "_includes/fieldlayoutdesigner" with {
+				fieldLayout: source.getFieldLayout(),
+				customizableTabs: false,
+				tab: 'fieldlayout'
+			} only %}
+		</div>
+{% endblock %}
+
+
+{% if source is not defined or not source.handle %}
+    {% includejs "new Craft.HandleGenerator('#name', '#handle');" %}
+{% endif %}

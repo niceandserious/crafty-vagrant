@@ -1,0 +1,34 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+	label: "File System Path"|t,
+	instructions: "The path to your folder on the file system."|t,
+	id: 'path',
+	class: 'ltr',
+	name: 'path',
+	value: settings.path,
+	errors: settings.getErrors('path'),
+	required: true,
+    placeholder: "/path/to/folder/"|t
+}) }}
+
+{{ forms.lightswitchField({
+	label: "Assets in this source have public URLs"|t,
+	name: 'publicURLs',
+	on:   settings.publicURLs,
+	toggle: "url-field"
+}) }}
+
+<div id="url-field" class="{% if not settings.publicURLs %}hidden{% endif %}">
+	{{ forms.textField({
+		label: "URL"|t,
+		instructions: "The URL to your folder."|t,
+		id: 'url',
+		class: 'ltr',
+		name: 'url',
+		value: settings.url,
+		errors: settings.getErrors('url'),
+		required: true,
+		placeholder: "http://example.com/path/to/folder/"|t
+	}) }}
+</div>

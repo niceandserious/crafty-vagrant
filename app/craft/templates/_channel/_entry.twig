@@ -1,0 +1,23 @@
+{#
+ # Channel entry template
+ # -------------------
+ # A default template for channel sections to extend
+ #}
+
+{% extends "_layout" %}
+{% set title = entry.title %}
+
+{% block content %}
+  {% block sidebar %}{% endblock %}
+  <article>
+    {% set image = entry.heroImage.first() %}
+    {# `image` is either an AssetFileModel or null #}
+
+    {% if image %}
+      <img src="{{ image.url }}">
+    {% endif %}
+    <h2>{{ entry.title }}</h2>
+    <p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
+    {{ entry.body }}
+  </article>
+{% endblock %}
