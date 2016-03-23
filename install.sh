@@ -99,8 +99,13 @@ fi
 
 echo_color "
 ## Finished!
+ when you're ready to start developing: this will open a browser tab that will update live (via the magic of Browsersync) as you make changes to styles, templates, scripts, etc. If you don't want live updating, gulp watch will perform the same tasks (compiling Sass, etc) without the autorefresh.
+
+
 ##
 ## 'vagrant up' to start the server.
-## 'gulp watch' to watch Sass + JS for changes.
+## 'gulp browsersync' for live reloading in Sass/JS/Twig for changes.
+##    or
+## 'gulp watch' compiles assets but without livereloading
 ##
 ## If this is a new install, you'll need to install Craft at http://craft.dev/admin/install";
