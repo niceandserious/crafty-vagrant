@@ -11,7 +11,8 @@ var plugins = require('gulp-load-plugins')({
     'browserify',
     'babelify',
     'vinyl-source-stream',
-    'vinyl-buffer'
+    'vinyl-buffer',
+    'browser-sync'
   ]
 });
 
@@ -36,7 +37,9 @@ gulp.task('default', [
   'styles',
   'scripts',
   'images',
-  'modernizr'
+  'modernizr',
+  'serve',
+  'watch'
 ]);
 
 /**
@@ -224,4 +227,22 @@ gulp.task('rsync:tostage', function(){
   var dest = path.stage + '/assets/';
 
   syncFiles(src, dest);
+});
+
+
+gulp.task('serve', ['styles'], function() {
+  // Serve contents of destination directory via BrowserSync:
+  plugins.browserSync({
+    notify: false,
+    server: {
+      baseDir: path.dest
+    }
+  });
+
+  // When anything changes in the public directory, reload:
+  gulp.watch([
+    path.dest + '/**/*.*',
+    path.src + '/**/*.*'
+  ])
+  .on('change', plugins.browserSync.reload);
 });
