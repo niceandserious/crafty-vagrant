@@ -72,21 +72,24 @@ gulp.task('watch', function(){
  *
  * - same as 'gulp watch', only with live updating
  */
-gulp.task('browsersync', ['watch'], function() {
+gulp.task('serve', ['watch'], function() {
   // Connect to craft.dev via BrowserSync:
   plugins.browserSync.init({
-    proxy: serverName
+    proxy: serverName,
+    notify: false,
+    open: false,
+    proxy: serverName,
+    socket: {
+      domain: 'localhost:3000',
+    }
   });
 
-  // For scripts + templates, do a full page reload:
-  // (styles get refreshed on page because the 'style' task
-  // streams to Browsersync)
+  // For templates, do a full page reload:
+  // (styles + )
   gulp.watch([
-    path.src + '/**/*.*',
-    '!' + path.src + '/styles/**/*.scss',
     './app/craft/templates/**/*.twig'
   ])
-  .on('change', plugins.browserSync.reload);
+    .on('change', plugins.browserSync.reload);
 });
 
 /**
@@ -169,6 +172,7 @@ gulp.task('scripts', function(){
     .pipe(plugins.vinylSourceStream('bundle.js'))
     .pipe(plugins.vinylBuffer())
     .pipe(gulp.dest(path.dest + '/scripts'))
+    .pipe(plugins.browserSync.stream())
     .pipe(plugins.size({ showFiles: true }));
 });
 
