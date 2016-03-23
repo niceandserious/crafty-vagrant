@@ -13,6 +13,7 @@ example.init();
 var b = [1, 2, 3].map(function (x) {
   return x * 2;
 });
+console.log(b, 'Babel is working');
 
 },{"./modules/example":2}],2:[function(require,module,exports){
 'use strict';
