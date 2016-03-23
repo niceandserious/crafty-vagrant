@@ -1,0 +1,42 @@
+{% if value is not defined -%}
+	{% set value = null -%}
+{% endif -%}
+
+{% set id = id ~ '-time' -%}
+
+{% if name is defined and name -%}
+	{% set name = name ~ '[time]' -%}
+{% endif -%}
+
+{% includejsresource 'lib/jquery.timepicker/jquery.timepicker'~(craft.config.useCompressedJs ? '.min' : '')~'.js' -%}
+
+{% if value is not defined -%}
+	{% set value = null -%}
+{% endif -%}
+
+<div class="timewrapper">
+	{%- include "_includes/forms/text" with { autocomplete: false, size: 10, value: (value and value.localeTime is defined ? value.localeTime() : value) } -%}
+</div>
+
+{%-	set localeData = craft.i18n.getLocaleData() %}
+
+{%- includejs %}
+	var $timePicker = $('#{{ id|namespaceInputId|e('js') }}');
+	$timePicker.timepicker({
+		timeFormat: '{{ craft.i18n.timepickerJsFormat }}',
+		closeOnWindowScroll: false,
+		orientation: '{{ localeData.getOrientation() == 'ltr' ? 'l' : 'r' }}',
+		{% if minuteIncrement is defined %}step: '{{ minuteIncrement }}',{% endif %}
+		lang: {
+			am: '{{ localeData.getAMName() }}',
+			AM: '{{ localeData.getAMName() }}',
+			pm: '{{ localeData.getPMName() }}',
+			PM: '{{ localeData.getPMName() }}'
+		}
+	});
+
+	{% if value and value.format is defined %}
+		$timePicker.timepicker('setTime', {{ value|date('G') }}*3600 + {{ value|date('i') }}*60 + {{ value|date('s') }});
+	{% endif %}
+
+{%- endincludejs %}

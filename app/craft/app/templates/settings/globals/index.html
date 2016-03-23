@@ -1,0 +1,64 @@
+{% requireAdmin %}
+
+{% extends "_layouts/cp" %}
+{% set title = "Globals"|t %}
+
+{% set extraPageHeaderHtml %}
+	<div class="buttons right">
+		<a href="{{ url('settings/globals/new') }}" class="btn submit add icon">{{ "New global set"|t }}</a>
+	</div>
+{% endset %}
+
+{% set crumbs = [
+	{ label: "Settings"|t, url: url('settings') }
+] %}
+
+{% set docsUrl = 'http://craftcms.com/docs/globals' %}
+
+
+{% set globalSets = craft.globals.getAllSets() %}
+
+
+{% block content %}
+	<div class="field">
+		<p id="nosets"{% if globalSets %} class="hidden"{% endif %}>
+			{{ "No global sets exist yet."|t }}
+		</p>
+
+		{% if globalSets %}
+			<table id="sets" class="data fullwidth collapsible">
+				<thead>
+					<th scope="col">{{ "Global Set Name"|t }}</th>
+					<th scope="col">{{ "Handle"|t }}</th>
+					<td class="thin"></td>
+				</thead>
+				<tbody>
+					{% for globalSet in globalSets %}
+						<tr data-id="{{ globalSet.id }}" data-name="{{ globalSet.name }}">
+							<th scope="row" data-title="{{ 'Global Set Name'|t }}"><a href="{{ url('settings/globals/' ~ globalSet.id) }}">{{ globalSet.name|t }}</a></th>
+							<td class="code" data-title="{{ 'Handle'|t }}">{{ globalSet.handle }}</td>
+							<td class="thin"><a class="delete icon" title="{{ 'Delete'|t }}"></a></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+	</div>
+{% endblock %}
+
+
+{% includejs %}
+	var adminTable = new Craft.AdminTable({
+		tableSelector: '#sets',
+		noObjectsSelector: '#nosets',
+		deleteAction: 'globals/deleteSet',
+		onDeleteObject: function()
+		{
+			// Hide the Globals tab if that was the last one
+			if (adminTable.totalObjects == 0)
+			{
+				$('#nav-globals').remove();
+			}
+		}
+	});
+{% endincludejs %}

@@ -1,0 +1,8 @@
+{
+"version":3,
+"file":"EntryTypeSwitcher.js",
+"lineCount":8,
+"mappings":"A;;;;;;AAQC,SAAQ,CAACA,CAAD,CAAI,CAGbC,KAAAC,kBAAA,CAA0BC,OAAAC,KAAAC,OAAA,CAC1B,aACc,IADd,UAEW,IAFX,SAGU,IAHV,MAKOC,QAAQ,EACd,CACC,IAAAC,YAAA,CAAmBP,CAAA,CAAE,YAAF,CACnB,KAAAQ,SAAA,CAAgBR,CAAA,CAAE,+BAAF,CAAAS,YAAA,CAA+C,IAAAF,YAAAG,OAAA,EAA/C,CAChB,KAAAC,QAAA,CAAeX,CAAA,CAAE,SAAF,CAEf,KAAAY,YAAA,CAAiB,IAAAL,YAAjB,CAAmC,QAAnC,CAA6C,cAA7C,CALD,CAND,cAceM,QAAQ,CAACC,CAAD,CACtB,CACC,IAAAN,SAAAO,YAAA,CAA0B,QAA1B,CAEAd,MAAAe,kBAAA,CAAwB,yBAAxB,CAAmDf,KAAAgB,GAAAC,WAAAC,UAAA,EAAnD,CAAoFnB,CAAAoB,MAAA,CAAQ,QAAQ,CAACC,CAAD,CAAWC,CAAX,CAAuB,CAC1H,IAAAd,SAAAe,SAAA,CAAuB,QAAvB,CAEA;GAAkB,SAAlB,EAAID,CAAJ,CACA,CACC,IAAIE,EAAa,IAAAb,QAAAc,KAAA,CAAkB,MAAlB,CACjBD,EAAAE,YAAA,EACA,KAAAf,QAAAgB,KAAA,CAAkBN,CAAAO,SAAlB,CACAJ,EAAAK,QAAA,EACA,KAAAlB,QAAAmB,KAAA,EACA7B,MAAA8B,eAAA,CAAqB,IAAApB,QAArB,CAEAV,MAAA+B,eAAA,CAAqBX,CAAAY,SAArB,CACAhC,MAAAiC,eAAA,CAAqBb,CAAAc,SAArB,CAG4B,YAA5B,EAAI,MAAOC,cAAX,EAECA,aAAAC,aAAA,CAA2B,QAA3B,CAdF,CAJ0H,CAAvC,CAqBjF,IArBiF,CAApF,CAHD,CAfD,CAD0B,CAHb,CAAZ,CAAA,CAiDEC,MAjDF;",
+"sources":["uncompressed/EntryTypeSwitcher.js"],
+"names":["$","Craft","EntryTypeSwitcher","Garnish","Base","extend","init","$typeSelect","$spinner","insertAfter","parent","$fields","addListener","onTypeChange","ev","removeClass","postActionRequest","cp","$container","serialize","proxy","response","textStatus","addClass","fieldsPane","data","deselectTab","html","paneHtml","destroy","pane","initUiElements","appendHeadHtml","headHtml","appendFootHtml","footHtml","slugGenerator","setNewSource","jQuery"]
+}

@@ -10,3 +10,4 @@ example.init();
 // to use ES2015 syntax if you like - it will be
 // transpiled to backwards-compatible ES5:
 let b = [1,2,3].map(x => x * 2);
+console.log(b, 'Babel is working');

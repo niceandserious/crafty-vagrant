@@ -1,0 +1,8 @@
+{% extends "_layouts/elementindex" %}
+{% set title = "Entries"|t %}
+{% set elementType = 'Entry' %}
+
+
+{% if sectionHandle is defined %}
+	{% includejs 'window.defaultSectionHandle = "'~sectionHandle~'";' %}
+{% endif %}
