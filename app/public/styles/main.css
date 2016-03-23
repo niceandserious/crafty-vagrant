@@ -408,13 +408,13 @@ p {
   margin: 0 0 0.7875em; }
 
 a {
-  color: blue;
+  color: green;
   transition: color 0.1s linear; }
   a:hover {
-    color: #4d4dff;
+    color: #00cd00;
     text-decoration: none; }
   a:active, a:focus {
-    color: #4d4dff; }
+    color: #00cd00; }
 
 hr {
   border: none;
@@ -488,8 +488,8 @@ select[multiple=multiple] {
   textarea:focus,
   input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="email"]:focus, input[type="month"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="week"]:focus, input:not([type]):focus, textarea:focus,
   select[multiple=multiple]:focus {
-    border-color: blue;
-    box-shadow: 0 0 5px rgba(0, 0, 230, 0.7); }
+    border-color: green;
+    box-shadow: 0 0 5px rgba(0, 103, 0, 0.7); }
 
 textarea {
   resize: vertical; }
@@ -632,12 +632,12 @@ input[type="submit"],
   button.btn-primary,
   input[type="submit"].btn-primary,
   .btn.btn-primary {
-    background-color: blue;
+    background-color: green;
     color: white; }
     button.btn-primary:hover,
     input[type="submit"].btn-primary:hover,
     .btn.btn-primary:hover {
-      background-color: #4d4dff; }
+      background-color: #00cd00; }
 
 .pagination {
   clear: both;

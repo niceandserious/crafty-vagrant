@@ -38,8 +38,7 @@ gulp.task('default', [
   'scripts',
   'images',
   'modernizr',
-  'serve',
-  'watch'
+  'browserSync'
 ]);
 
 /**
@@ -230,19 +229,17 @@ gulp.task('rsync:tostage', function(){
 });
 
 
-gulp.task('serve', ['styles'], function() {
-  // Serve contents of destination directory via BrowserSync:
+gulp.task('browserSync', ['watch'], function() {
+  // Connect to craft.dev via BrowserSync:
   plugins.browserSync({
     notify: false,
-    server: {
-      baseDir: path.dest
-    }
+    proxy: 'craft.dev'
   });
 
-  // When anything changes in the public directory, reload:
+  // When source or template files are modified, reload:
   gulp.watch([
-    path.dest + '/**/*.*',
-    path.src + '/**/*.*'
+    path.src + '/**/*.*',
+    './app/craft/templates/**/*.twig'
   ])
   .on('change', plugins.browserSync.reload);
 });
