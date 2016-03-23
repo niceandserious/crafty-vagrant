@@ -29,7 +29,7 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 ## Usage
 
-* `gulp browsersync` when you're ready to start developing: this will open a browser tab that will update live (via the magic of [Browsersync](https://www.browsersync.io/)) as you make changes to styles, templates, scripts, etc. If you don't want live updating, `gulp watch` will perform the same tasks (compiling Sass, etc) without the autorefresh.
+* `gulp serve` when you're ready to start developing. The page will autorefresh via the magic of [Browsersync](https://www.browsersync.io/)) ss you make changes to styles, templates, scripts, etc. If you don't want live updating, `gulp watch` will perform the same tasks (compiling Sass, etc) without the autorefresh.
 
 * If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install)
 
@@ -45,7 +45,7 @@ If you want to work on Crafty Vagrant itself (ie. on the default config / starti
 
 2. Add the line `define('CRAFT_TEMPLATES_PATH', "../src/craft/templates");` to the top of Craft's `app/public/index.php` file. This lets you work directly on the source templates alongside a working installation of Craft.
 
-3. gitignore everything inside the `app` directory apart from `app/src` to prevent it being checked into Crafty Vagrant itself. ie. add the following lines to `.gitignore`: 
+3. gitignore everything inside the `app` directory apart from `app/src` to prevent it being checked into Crafty Vagrant itself. ie. add the following lines to `.gitignore`:
 
         app/*
         !app/src*
