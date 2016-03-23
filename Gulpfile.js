@@ -11,9 +11,13 @@ var plugins = require('gulp-load-plugins')({
     'browserify',
     'babelify',
     'vinyl-source-stream',
-    'vinyl-buffer'
+    'vinyl-buffer',
+    'browser-sync'
   ]
 });
+
+// Server name (for Browsersync):
+var serverName = 'craft.dev';
 
 // Source and destination paths for tasks:
 var path = {
@@ -61,6 +65,28 @@ gulp.task('watch', function(){
   gulp.watch(path.src + '/styles/**/*.scss', [
     'styles'
   ]);
+});
+
+/**
+ * $ gulp browsersync
+ *
+ * - same as 'gulp watch', only with live updating
+ */
+gulp.task('browsersync', ['watch'], function() {
+  // Connect to craft.dev via BrowserSync:
+  plugins.browserSync.init({
+    proxy: serverName
+  });
+
+  // For scripts + templates, do a full page reload:
+  // (styles get refreshed on page because the 'style' task
+  // streams to Browsersync)
+  gulp.watch([
+    path.src + '/**/*.*',
+    '!' + path.src + '/styles/**/*.scss',
+    './app/craft/templates/**/*.twig'
+  ])
+  .on('change', plugins.browserSync.reload);
 });
 
 /**
@@ -114,6 +140,7 @@ gulp.task('styles', function(){
     }))
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
+    .pipe(plugins.browserSync.stream())
     // Report file size:
     .pipe(plugins.size({ showFiles: true }))
     // Minify main.css and rename it to 'main.min.css':

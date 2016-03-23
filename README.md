@@ -27,9 +27,9 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 ...and hopefully (after a short wait while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one will automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/install](http://craft.dev/admin/install)
 
-## Notes
+## Usage
 
-* `gulp watch` when you're ready to start developing: this will watch for changes to Sass, Javascript, or images, and perform appropriate tasks (compiling Sass, bundling javascript, etc)
+* `gulp browsersync` when you're ready to start developing: this will open a browser tab that will update live (via the magic of [Browsersync](https://www.browsersync.io/)) as you make changes to styles, templates, scripts, etc. If you don't want live updating, `gulp watch` will perform the same tasks (compiling Sass, etc) without the autorefresh.
 
 * If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install)
 
