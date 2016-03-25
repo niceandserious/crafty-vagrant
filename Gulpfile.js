@@ -75,7 +75,11 @@ gulp.task('watch', function(){
 gulp.task('browsersync', ['watch'], function() {
   // Connect to craft.dev via BrowserSync:
   plugins.browserSync.init({
-    proxy: serverName
+    open: false,
+    proxy: serverName,
+    socket: {
+      domain: 'localhost:3000',
+    }
   });
 
   // For scripts + templates, do a full page reload:

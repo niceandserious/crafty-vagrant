@@ -99,9 +99,6 @@ fi
 
 echo_color "
 ## Finished!
- when you're ready to start developing: this will open a browser tab that will update live (via the magic of Browsersync) as you make changes to styles, templates, scripts, etc. If you don't want live updating, gulp watch will perform the same tasks (compiling Sass, etc) without the autorefresh.
-
-
 ##
 ## 'vagrant up' to start the server.
 ## 'gulp browsersync' for live reloading in Sass/JS/Twig for changes.

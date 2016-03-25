@@ -79,5 +79,13 @@
   {% if not craft.request.isLivePreview %}
   {# Analytics script goes here... #}
   {% endif %}
+
+  {% if craft.config.devMode %}
+  <script id="__bs_script__">
+    //<![CDATA[
+      document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.2.11.2.js'><\/script>");
+    //]]>
+  </script>
+  {% endif %}
 </body>
 </html>
