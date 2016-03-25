@@ -44,12 +44,12 @@ gulp.task('default', [
 ]);
 
 /**
- * $ gulp watch
+ * $ gulp watch:tasks
  *
  * - watch for updates to scripts, styles, and Gulpfile
  * - process files appropriately on change
  */
-gulp.task('watch', function(){
+gulp.task('watch:tasks', function(){
   // Gulpfile.js:
   gulp.watch('Gulpfile.js', [
     'jshint'
@@ -68,11 +68,11 @@ gulp.task('watch', function(){
 });
 
 /**
- * $ gulp browsersync
+ * $ gulp watch
  *
- * - same as 'gulp watch', only with live updating
+ * - calls 'gulp watch:tasks' using Browsersync for live updating
  */
-gulp.task('browsersync', ['watch'], function() {
+gulp.task('watch', ['watch:tasks'], function() {
   // Connect to craft.dev via BrowserSync:
   plugins.browserSync.init({
     open: false,

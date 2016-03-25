@@ -101,8 +101,6 @@ echo_color "
 ## Finished!
 ##
 ## 'vagrant up' to start the server.
-## 'gulp browsersync' for live reloading in Sass/JS/Twig for changes.
-##    or
-## 'gulp watch' compiles assets but without livereloading
+## 'gulp watch' to watch Sass + JS for changes.
 ##
 ## If this is a new install, you'll need to install Craft at http://craft.dev/admin/install";
