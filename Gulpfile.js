@@ -49,7 +49,7 @@ gulp.task('default', [
  * - watch for updates to scripts, styles, and Gulpfile
  * - process files appropriately on change
  */
-gulp.task('watch:tasks', function(){
+gulp.task('watch:tasks', ['default'], function(){
   // Gulpfile.js:
   gulp.watch('Gulpfile.js', [
     'jshint'
