@@ -21,9 +21,9 @@ var serverName = 'craft.dev';
 
 // Source and destination paths for tasks:
 var path = {
-  src:   './app/src',
-  dest:  './app/public',
-  npm:   './node_modules',
+  src:   'app/src',
+  dest:  'app/public',
+  npm:   'node_modules',
   // Path to /app/public on the staging environment (for rsync):
   stage: 'user@servername:/path/to/site/app/public'
 };
@@ -64,6 +64,11 @@ gulp.task('watch:tasks', function(){
   // Styles:
   gulp.watch(path.src + '/styles/**/*.scss', [
     'styles'
+  ]);
+
+  // Images:
+  gulp.watch(path.src + '/images/{,*/}*.{gif,jpg,png,svg}', [
+    'images'
   ]);
 });
 
