@@ -13,14 +13,22 @@ define('URI_SCHEME', (isset($_SERVER['HTTPS'] ) ) ? "https://" : "http://");
 define('SITE_URL',    URI_SCHEME.$_SERVER['SERVER_NAME'].'/');
 
 return array(
+
+  // Defaults for all environments:
   '*' => array(
     'devMode' => false,
     'omitScriptNameInUrls' => true,
     'environmentVariables' => array(
+      // siteUrl is set automatically based on server name:
       'siteUrl'  => SITE_URL
     ),
   ),
+
+  // Dev site configuration:
   '.dev' => array(
     'devMode' => true,
+    // In dev mode we always want to see the latest changes to a template:
+    'enableTemplateCaching' => false,
   ),
+
 );
