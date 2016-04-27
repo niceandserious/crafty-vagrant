@@ -210,7 +210,11 @@ gulp.task('modernizr', function(){
   ];
 
   gulp.src(src)
-    .pipe(plugins.modernizr())
+    .pipe(plugins.modernizr({
+      options: [
+        'setClasses'
+      ]
+    }))
     .pipe(plugins.uglify())
     .pipe(gulp.dest(path.dest + '/scripts'))
     .pipe(plugins.size({ showFiles: true }))
