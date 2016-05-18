@@ -10,7 +10,7 @@
 // Define some constants that let us set up some environment variables:
 // (eg. siteUrl)
 define('URI_SCHEME', (isset($_SERVER['HTTPS'] ) ) ? "https://" : "http://");
-define('SITE_URL',    URI_SCHEME.$_SERVER['SERVER_NAME'].'/');
+define('SITE_URL',    URI_SCHEME.$_SERVER['SERVER_NAME']);
 
 return array(
 
@@ -19,7 +19,8 @@ return array(
     'devMode' => false,
     'omitScriptNameInUrls' => true,
     'environmentVariables' => array(
-      // siteUrl is set automatically based on server name:
+      // siteUrl is set automatically based on server name (see above):
+      // Use it to, eg. set assets location: {siteUrl}/assets
       'siteUrl'  => SITE_URL
     ),
   ),
