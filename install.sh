@@ -97,6 +97,9 @@ if [ ! -f $DIR/.gitignore ]; then
   touch "$DIR/logs/craft.log";
 fi
 
+# Create an assets directory:
+if [ ! -d app/public/assets ]; then mkdir app/public/assets; fi;
+
 echo_color "
 ## Finished!
 ##
