@@ -98,7 +98,7 @@ if [ ! -f $DIR/.gitignore ]; then
 fi
 
 # Create an assets directory:
-if [ ! -d app/public/assets ]; then mkdir app/public/assets; fi;
+if [ ! -d app/public/assets ]; then mkdir -p app/public/assets; fi;
 
 echo_color "
 ## Finished!
