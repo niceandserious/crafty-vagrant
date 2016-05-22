@@ -59,7 +59,7 @@ CRAFT_SRC="app/src/craft";
 if [ -d $CRAFT_SRC ] && prompt "Replace Craft's default templates + config? [yn] "; then
   echo "Replacing Craft files... (copying from ${CRAFT_SRC})";
 
-  ## Remove existing remplates, if present:
+  ## Remove existing templates, if present:
   [ -d "app/craft/templates" ] && rm -r app/craft/templates;
 
   ## Copy everything from app/src/craft to the app/craft directory,
