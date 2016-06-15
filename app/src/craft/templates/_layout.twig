@@ -69,9 +69,10 @@
   </footer>
 
   {% block footerScripts %}
-    {# IE8 and below need jQuery 1 - other browsers use jQuery 2: -#}
-    <!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><![endif]-->
-    <!--[if gte IE 9]><!--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!-- <![endif]-->
+    {# IE8 and below need jQuery 1 - other browsers use jQuery 3: -#}
+    {# (of course, if you don't need jQuery, just delete the next two lines...) -#}
+    <!--[if lt IE 9]><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><![endif]-->
+    <!--[if gte IE 9]><!--><script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script><!-- <![endif]-->
     <script src="/scripts/bundle.js"></script>
   {% endblock %}
 
