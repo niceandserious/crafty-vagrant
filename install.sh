@@ -32,6 +32,11 @@ if ! prompt "Do you wish to install Crafty Vagrant? [yn] "; then
   exit;
 fi
 
+## Create a .env file, if it's not present:
+if [ ! -f ".env" ]; then
+  cp .env.example .env
+fi
+
 ## If Craft isn't present:
 if [ ! -d "app/craft" ]; then
   ## Install it!

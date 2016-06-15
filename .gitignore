@@ -6,4 +6,5 @@ node_modules/*
 app/craft/storage/runtime/*
 bower_components/*
 .docs
+.env
 app/public/assets/*

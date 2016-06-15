@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 var gulp    = require('gulp');
 var gutil   = require('gulp-util');
 
@@ -15,9 +17,6 @@ var plugins = require('gulp-load-plugins')({
     'browser-sync'
   ]
 });
-
-// Server name (for Browsersync):
-var serverName = 'craft.dev';
 
 // Source and destination paths for tasks:
 var path = {
@@ -81,7 +80,7 @@ gulp.task('watch', ['watch:tasks'], function() {
   // Connect to craft.dev via BrowserSync:
   plugins.browserSync.init({
     open: false,
-    proxy: serverName,
+    proxy: process.env.CRAFTY_SERVER_NAME,
     socket: {
       domain: 'localhost:3000',
     }
