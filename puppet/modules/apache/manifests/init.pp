@@ -47,4 +47,18 @@ class apache {
       File["/etc/apache2/sites-available/vagrant_webroot.conf"]
     ],
   }
+
+  # enable php7 module:
+  exec { "a2enmod php7.0" :
+    unless => "/bin/readlink -e /etc/apache2/mods-enabled/php7.0.load",
+    notify => Service["apache2"],
+    require => Package["apache2"]
+  }
+
+  # use apache2 prefork module:
+  exec { "a2dismod mpm_event && a2enmod mpm_prefork" :
+    unless => "/bin/readlink -e /etc/apache2/mods-enabled/mpm_prefork.load",
+    notify => Service["apache2"],
+    require => Package["apache2"]
+  }
 }

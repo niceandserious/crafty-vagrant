@@ -59,9 +59,9 @@ If you want to work on Crafty Vagrant itself (ie. on the default config / starti
 
 ## Environment
 
-* Ubuntu 14.04 (Trusty Tahr)
+* Ubuntu 16.04 (Xenial Xerus)
 * Apache 2.4
-* PHP 5 (with xdebug and all Craft's [required PHP extensions](http://buildwithcraft.com/docs/requirements#required-php-extensions))
+* PHP 7 (with all Craft's [required PHP extensions](http://buildwithcraft.com/docs/requirements#required-php-extensions))
 * [Bourbon](http://bourbon.io/)
 * [Neat](http://neat.bourbon.io/)
 * [jQuery](http://jquery.com/)

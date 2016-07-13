@@ -32,6 +32,11 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--cpus", cpus]
   end
 
+  # Install Puppet:
+  config.vm.provision :shell do |shell|
+    shell.path = "puppet/bootstrap-puppet.sh"
+  end
+
   # Enable the Puppet provisioner, which will look in puppet/manifests:
   config.vm.provision :puppet do |puppet|
     puppet.facter = {
@@ -52,8 +57,8 @@ Vagrant.configure("2") do |config|
   end
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty32"
-  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty32"
+  config.vm.box = "geerlingguy/ubuntu1604"
+  config.vm.box_url = "https://atlas.hashicorp.com/geerlingguy/boxes/ubuntu1604"
 
   # Set hostname
   config.vm.hostname = env['CRAFTY_SERVER_NAME']
@@ -61,5 +66,5 @@ Vagrant.configure("2") do |config|
   # Forward guest port 80 to host port 8888 and name mapping
   config.vm.network :forwarded_port, guest: 80, host: 8888
   config.vm.network "private_network", ip: "192.168.56.101"
-  config.vm.synced_folder "app/", "/vagrant/app/", :owner => "www-data", group: "www-data"
+  config.vm.synced_folder "app/", "/vagrant/app/", :owner => "www-data", group: "www-data", :mount_options => ["dmode=777", "fmode=666"]
 end
