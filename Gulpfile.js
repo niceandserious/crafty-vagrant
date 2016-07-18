@@ -219,6 +219,21 @@ gulp.task('modernizr', function(){
 });
 
 /**
+ * $ gulp db:restore
+ *
+ * - restore db from latest backup
+ * - this is just a more user-friendly wrapper for
+ *   `vagrant provision --provision-with shell`
+ */
+gulp.task('db:restore', function(){
+  require('child_process')
+    .exec('vagrant provision --provision-with shell', function(err, stdout, stderr){
+      stdout && gutil.log(gutil.colors.green(stdout));
+      stderr && gutil.log(gutil.colors.red(stderr));
+    });
+})
+
+/**
  * $ gulp rsync:fromstage
  * $ gulp rsync:tostage
  *

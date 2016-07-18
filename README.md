@@ -35,7 +35,7 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 * `gulp watch` also generates a custom [Modernizr](https://modernizr.com/) build (at `public/scripts/modernizr.js`) which only tests for features you're actually using in your styles and scripts (and which should therefore be a lot smaller and more performant than loading the whole Modernizr library). Note that this is not updated on every change of CSS or Javascript because that would slow things down too much, so if you add a new feature you'd like to detect you'll either need to stop and restart `gulp watch` or, alternatively, run `gulp modernizr` to update the build.
 
-* Crafty has a database-provisioning shell script. If you run `vagrant provision --provision-with shell`, the most recent backup in `app\craft\storage\backups` will be restored. (Of course, you'll lose any current state of the database, so only do this when you're happy for that to happen)
+* Crafty has a database-provisioning shell script. If you run `gulp db:restore`, the most recent backup in `app\craft\storage\backups` will be restored. (Of course, you'll lose any current state of the database, so only do this when you're happy for that to happen)
 
 * Crafty uses [Browserify](http://browserify.org/) to keep Javascript modular. If you haven't used Browserify before, there's an example module in the /scripts directory.
 
