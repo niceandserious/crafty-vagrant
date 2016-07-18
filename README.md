@@ -33,9 +33,9 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 * While `gulp watch` is running, any browser tabs with your dev site open in will update live (via the magic of [Browsersync](https://www.browsersync.io/)) as you edit styles, templates, etc. If you don't want live updating, `gulp watch:tasks` will perform the same tasks (compiling Sass, etc) without the autorefresh.
 
-* Crafty has a database-provisioning shell script. If you run `vagrant provision --provision-with shell`, the most recent backup in `app\craft\storage\backups` will be restored. (Of course, you'll lose any current state of the database, so only do this when you're happy for that to happen)
+* `gulp watch` also generates a custom [Modernizr](https://modernizr.com/) build (at `public/scripts/modernizr.js`) which only tests for features you're actually using in your styles and scripts (and which should therefore be a lot smaller and more performant than loading the whole Modernizr library). Note that this is not updated on every change of CSS or Javascript because that would slow things down too much, so if you add a new feature you'd like to detect you'll either need to stop and restart `gulp watch` or, alternatively, run `gulp modernizr` to update the build.
 
-* `gulp modernizr` will generate a custom [Modernizr](https://modernizr.com/) build which only tests for features you're actually using in your styles and scripts (and which should therefore be a lot smaller than loading the whole Modernizr library). Whether you use it is optional—it's not run as part of the `watch` because it would make it too slow—but if you do use Modernizr then just run `gulp modernizr` whenever you've added a new feature you'd like to detect and `public/scripts/modernizr.js` will be updated.
+* Crafty has a database-provisioning shell script. If you run `vagrant provision --provision-with shell`, the most recent backup in `app\craft\storage\backups` will be restored. (Of course, you'll lose any current state of the database, so only do this when you're happy for that to happen)
 
 * Crafty uses [Browserify](http://browserify.org/) to keep Javascript modular. If you haven't used Browserify before, there's an example module in the /scripts directory.
 
