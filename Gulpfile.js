@@ -86,13 +86,10 @@ gulp.task('watch', ['watch:tasks'], function() {
     }
   });
 
-  // For scripts + templates, do a full page reload:
-  // (styles get refreshed on page because the 'style' task
-  // streams to Browsersync)
+  // Do a full page reload when any templates are updated:
   gulp.watch([
-    path.src + '/**/*.*',
-    '!' + path.src + '/styles/**/*.scss',
-    './app/craft/templates/**/*.twig'
+    './app/craft/templates/**/*',
+    './app/src/craft/templates/**/*'
   ])
   .on('change', plugins.browserSync.reload);
 });
@@ -148,7 +145,6 @@ gulp.task('styles', function(){
     }))
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
-    .pipe(plugins.browserSync.stream())
     // Report file size:
     .pipe(plugins.size({ showFiles: true }))
     // Minify main.css and rename it to 'main.min.css':
@@ -156,6 +152,7 @@ gulp.task('styles', function(){
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(plugins.size({ showFiles: true }))
     .pipe(gulp.dest(path.dest + '/styles'))
+    .pipe(plugins.browserSync.stream())
     .on('error', gutil.log);
 });
 
@@ -177,6 +174,7 @@ gulp.task('scripts', function(){
     .pipe(plugins.vinylSourceStream('bundle.js'))
     .pipe(plugins.vinylBuffer())
     .pipe(gulp.dest(path.dest + '/scripts'))
+    .pipe(plugins.browserSync.stream())
     .pipe(plugins.size({ showFiles: true }));
 });
 
