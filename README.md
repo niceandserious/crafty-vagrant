@@ -15,7 +15,7 @@ A neat starting point / development environment for [Craft](http://buildwithcraf
 
 Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
-1. Run the command `bash install.sh` (you might need to `sudo` this). This will install and set up everything necessary (including Craft) in your project directory. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
+1. Run the command `bash install.sh` - this will install and set up everything necessary (including Craft) in your project directory. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
 
 2. If this is the first time you've used Crafty Vagrant, open your `hosts` file and add
 
