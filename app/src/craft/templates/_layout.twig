@@ -81,7 +81,8 @@
   {# Analytics script goes here... #}
   {% endif %}
 
-  {% if craft.config.devMode %}
+  {# If we're on a .dev domain, load Browsersync: #}
+  {% if craft.request.serverName|slice(-4) == '.dev' %}
   <script id="__bs_script__">
     //<![CDATA[
       document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.js'><\/script>");
