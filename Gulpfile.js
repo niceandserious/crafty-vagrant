@@ -145,6 +145,7 @@ gulp.task('styles', function(){
     }))
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
+    .pipe(plugins.browserSync.stream())
     // Report file size:
     .pipe(plugins.size({ showFiles: true }))
     // Minify main.css and rename it to 'main.min.css':
