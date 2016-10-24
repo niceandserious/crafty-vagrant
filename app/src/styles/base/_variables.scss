@@ -1,27 +1,27 @@
 // Font Families
 ///////////////////////////////////////////////////////////////////////////////
 
-$base-font-family:	 sans-serif;
+$base-font-family:   sans-serif;
 $header-font-family: $base-font-family;
 
 // Default Sizes
 $base-font-size-px:  18;
-$base-font-size:	 em($base-font-size-px);
-$base-line-height:	 $base-font-size * 1.4;
+$base-font-size:     em($base-font-size-px);
+$base-line-height:   $base-font-size * 1.4;
 $base-border-radius: em(3);
 
 //// Colors
 
 // Text
-$body-color: 		 #333333;
-$heading-color:		 $body-color;
-$main-bg-color:		 #ffffff;
+$body-color:    #333333;
+$heading-color: $body-color;
+$main-bg-color: #ffffff;
 
 // Links
-$link-color:		 #3a3ccc;
-$link-hover-color:	 lighten($link-color, 15);
+$link-color: #3a3ccc;
+$link-hover-color: lighten($link-color, 15);
 
 // Borders
-$border-color:		 lighten($body-color, 50);
+$border-color: lighten($body-color, 50);
 $border-color-hover: $body-color;
 $border-color-focus: $link-color;

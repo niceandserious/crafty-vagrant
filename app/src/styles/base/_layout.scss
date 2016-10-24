@@ -1,16 +1,16 @@
 html, body {
-	height: 100%;
+  height: 100%;
 }
 
 main {
-	background-color: $main-bg-color;
-	padding-bottom: $gutter;
+  background-color: $main-bg-color;
+  padding-bottom: $gutter;
 }
 
 .container {
-	@include outer-container;
-	padding-left: $gutter;
-	padding-right: $gutter;
-	box-sizing: border-box;
-	position: relative;
+  @include outer-container;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  box-sizing: border-box;
+  position: relative;
 }
