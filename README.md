@@ -15,7 +15,7 @@ A neat starting point / development environment for [Craft](http://buildwithcraf
 
 Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
-1. Run the command `bash install.sh` (you might need to `sudo` this). This will install and set up everything necessary (including Craft) in your project directory. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
+1. Run the command `bash install.sh` - this will install and set up everything necessary (including Craft) in your project directory. If this is a fresh Craft install, answer 'y' to the prompt about replacing Craft's templates + config, otherwise - if this is an existing project - answer 'n'.
 
 2. If this is the first time you've used Crafty Vagrant, open your `hosts` file and add
 
@@ -42,6 +42,10 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 ## Troubleshooting
 
 * If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install)
+
+* Crafty Vagrant will not install properly if the `unzip` command is not available from the command line. On Linux / OSX this is not usually a problem, but for Windows you might need to get an unzip executable file [here](http://stahlworks.com/dev/index.php?tool=zipunzip) and put it somewhere accessible from your PATH.
+
+* Vagrant 1.8.7 (the current version at the time of writing) seems to have issues installing boxes on some machines. If `vagrant up` fails, try installing [Vagrant 1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) instead.
 
 ## Development
 
