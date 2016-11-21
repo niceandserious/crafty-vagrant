@@ -45,6 +45,8 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 * Crafty Vagrant will not install properly if the `unzip` command is not available from the command line. On Linux / OSX this is not usually a problem, but for Windows you might need to get an unzip executable file [here](http://stahlworks.com/dev/index.php?tool=zipunzip) and put it somewhere accessible from your PATH.
 
+* Vagrant 1.8.7 (the current version at the time of writing) seems to have issues installing boxes on some machines. If `vagrant up` fails, try installing [Vagrant 1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) instead.
+
 ## Development
 
 If you want to work on Crafty Vagrant itself (ie. on the default config / starting templates), three steps are required:
