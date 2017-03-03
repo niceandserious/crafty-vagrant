@@ -1,27 +1,15 @@
-// Font Families
-///////////////////////////////////////////////////////////////////////////////
+// Typography
+$ff-primary: sans-serif;
 
-$base-font-family:   sans-serif;
-$header-font-family: $base-font-family;
+$fw-light   : 300;
+$fw-regular : 400;
+$fw-bold    : 700;
 
-// Default Sizes
-$base-font-size-px:  18;
-$base-font-size:     em($base-font-size-px);
-$base-line-height:   $base-font-size * 1.4;
-$base-border-radius: em(3);
+// Colours
+$white: #fff;
+$black: #000;
+$blue: #3a3ccc;
 
-//// Colors
-
-// Text
-$body-color:    #333333;
-$heading-color: $body-color;
-$main-bg-color: #ffffff;
-
-// Links
-$link-color: #3a3ccc;
+$body-color: $black;
+$link-color: $blue;
 $link-hover-color: lighten($link-color, 15);
-
-// Borders
-$border-color: lighten($body-color, 50);
-$border-color-hover: $body-color;
-$border-color-focus: $link-color;

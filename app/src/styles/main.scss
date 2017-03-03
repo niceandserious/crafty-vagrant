@@ -1,25 +1,25 @@
-// RESETS
+// Resets
 @import "normalize";
 
-// LIBRARIES & HELPERS
+// Libraries & helpers
 @import "bourbon";
 @import "neat";
 @import "neat-helpers";
 
-// BASE STYLES
+// Base
 @import "base/variables";
+@import "base/mixins";
 @import "base/grid-settings";
-@import "base/typography";
-@import "base/forms";
-@import "base/lists";
-@import "base/tables";
 @import "base/layout";
 
-// PATTERNS
-@import "patterns/buttons";
-@import "patterns/pagination";
-@import "patterns/site-footer";
-@import "patterns/topnav";
+// Typography
+@import "typography/typography";
 
-// SECTIONS
-// @import "sections/about";
+// Atoms
+@import "atoms/buttons";
+
+// Molecules
+@import "molecules/nav";
+
+// Organisms
+@import "organisms/header";
