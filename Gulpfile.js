@@ -125,6 +125,9 @@ gulp.task('images', function(){
  */
 gulp.task('styles', function(){
   gulp.src(path.src + '/styles/main.scss')
+    //Load sourcemaps
+    .pipe(plugins.sourcemaps.init())
+
     // Compile Sass:
     .pipe(plugins.sass.sync({
         includePaths: [
@@ -143,6 +146,9 @@ gulp.task('styles', function(){
         'ie 9'
       ]
     }))
+    //Complete sourcemaps
+    .pipe(plugins.sourcemaps.write())
+    
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
     .pipe(plugins.browserSync.stream())
