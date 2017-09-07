@@ -11,16 +11,25 @@
 // (eg. siteUrl)
 define('URI_SCHEME', (isset($_SERVER['HTTPS'] ) ) ? "https://" : "http://");
 define('SITE_URL',    URI_SCHEME.$_SERVER['SERVER_NAME']);
+define('BASEPATH',     realpath(dirname(__FILE__) . '/../'));
 
 return array(
 
-  // Defaults for all environments:
+  // ------------------------------------------------------------
+  // Environment: All
+  // ------------------------------------------------------------
   '*' => array(
     'devMode' => false,
     'omitScriptNameInUrls' => true,
+    'siteUrl'  => SITE_URL,
+
+    // Environmental variables
+    // We can use these variables in the URL and Path settings
+    // within the Craft Control Panel. For example:
+    //    siteUrl   can be references as {siteUrl}
+    //    basePath  can be references as {basePath}
     'environmentVariables' => array(
-      // siteUrl is set automatically based on server name (see above):
-      // Use it to, eg. set assets location: {siteUrl}/assets
+      'basePath' => BASEPATH,
       'siteUrl'  => SITE_URL
     ),
   ),
@@ -31,5 +40,4 @@ return array(
     // In dev mode we always want to see the latest changes to a template:
     'enableTemplateCaching' => false,
   ),
-
 );
