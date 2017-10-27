@@ -1,0 +1,25 @@
+/**
+ * Retour plugin for Craft CMS
+ *
+ * Retour CSS
+ *
+ * @author    Andrew Welch
+ * @copyright Copyright (c) 2016 nystudio107
+ * @link      http://nystudio107.com
+ * @package   Retour
+ * @since     1.0.0
+ */
+
+div.retour-htaccess-container {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}

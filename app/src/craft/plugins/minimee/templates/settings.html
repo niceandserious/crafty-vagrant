@@ -1,0 +1,189 @@
+{% import "_includes/forms" as forms %}
+
+{% if filesystemConfigExists %}
+	<div class="error" style="padding: 1em; border: 1px solid rgb(218,90,71); background-color: rgba(218,90,71,0.1)">
+		<p>{{ "Heads up: these settings may be overridden by the contents of <code>`craft/app/config/minimee.php`</code>." | t | raw }}</p>
+	</div>
+{% endif %}
+
+{{
+	forms.lightswitchField({
+		onLabel:	"On",
+		offLabel:	"Off",
+		label: "<strong>Minimee Status</strong>" | t,
+		name:		"enabled",
+		on:			settings.enabled,
+		first:		true
+	})
+}}
+
+<hr>
+
+<div class="field">
+	<label><strong>{{ "Minify Assets" | t}}</strong></label>
+
+	<div class="instructions">
+		<p>{{ "Specify which types of assets to minify." | t }}</p>
+	</div>
+
+	{{
+		forms.checkbox({
+			label: "CSS"|t,
+			name: "minifyCssEnabled",
+			value : 'on',
+			checked: settings.minifyCssEnabled
+		})
+	}}
+	&nbsp;&nbsp;&nbsp;
+	{{
+		forms.checkbox({
+			label: "JS"|t,
+			name: "minifyJsEnabled",
+			value : 'on',
+			checked: settings.minifyJsEnabled
+		})
+	}}
+
+</div>
+
+<div class="field">
+
+	<label><strong>{{ "Combine Assets" | t }}</strong></label>
+
+	<div class="instructions">
+		<p>{{ "Specify which types of assets to combine." | t }}</p>
+	</div>
+
+	{{
+		forms.checkbox({
+			label: "CSS"|t,
+			name: "combineCssEnabled",
+			value : 'on',
+			checked: settings.combineCssEnabled
+		})
+	}}
+	&nbsp;&nbsp;&nbsp;
+	{{
+		forms.checkbox({
+			label: "JS"|t,
+			name: "combineJsEnabled",
+			value : 'on',
+			checked: settings.combineJsEnabled
+		})
+	}}
+
+</div>
+
+<hr>
+
+{{
+	forms.textField({
+		label: "<strong>Filesystem Path</strong> to your site's <code>index.php</code>:" | t,
+		id: 'filesystemPath',
+		name: 'filesystemPath',
+		placeholder : 'e.g. /var/www/public/',
+		instructions : "If left blank, `$_SERVER['DOCUMENT_ROOT']` will be used." | t,
+		value: (settings.filesystemPath is defined ? settings.filesystemPath : null)
+	})
+}}
+
+{{
+	forms.textField({
+		label: "<strong>Base URL</strong> to your site's <code>index.php</code>:" | t,
+		id: 'baseUrl',
+		name: 'baseUrl',
+		placeholder : 'e.g. http://domain.com/',
+		instructions : "If left blank, the URL of your site, as defined in Settings > General, will be used." | t,
+		value: (settings.baseUrl is defined ? settings.baseUrl : null)
+	})
+}}
+
+{{
+	forms.textField({
+		label: "<strong>Cache Path</strong>*:" | t,
+		id: 'cachePath',
+		name: 'cachePath',
+		placeholder : 'e.g. /var/www/public/cache/',
+		instructions : "If left blank, Craft's storage folder will be used." | t,
+		value: (settings.cachePath is defined ? settings.cachePath : null)
+	})
+}}
+
+{{
+	forms.textField({
+		label: "<strong>Cache URL</strong>*:" | t,
+		id: 'cacheUrl',
+		name: 'cacheUrl',
+		placeholder : 'e.g. http://domain.com/cache/',
+		instructions : "If left blank, Craft's storage folder will be used." | t,
+		value: (settings.cacheUrl is defined ? settings.cacheUrl : null)
+	})
+}}
+
+<p>* <strong>Cache Path</strong> <em>and</em> <strong>Cache URL</strong> <em>must both be either empty or non-empty.</em></p>
+
+<hr>
+
+{{
+	forms.textField({
+		label: "Return template for <strong>CSS</strong>:"|t,
+		id: 'cssReturnTemplate',
+		name: 'cssReturnTemplate',
+		placeholder : 'e.g. <link rel="stylesheet" href="%s">',
+		instructions : 'Default is <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;%s&quot;&gt;</code>. Uses PHP\'s <a href="http://php.net/manual/en/function.sprintf.php" target="_blank"><code>sprintf()</code></a>.' | t,
+		value: settings.cssReturnTemplate
+	})
+}}
+
+{{
+	forms.textField({
+		label: "Return template for <strong>JS</strong>:"|t,
+		id: 'jsReturnTemplate',
+		name: 'jsReturnTemplate',
+		placeholder : 'e.g. <script src="%s"></script>',
+		instructions : 'Default is <code>&lt;script src=&quot;%s&quot;&gt;&lt;/script&gt;</code>. Uses PHP\'s <a href="http://php.net/manual/en/function.sprintf.php" target="_blank"><code>sprintf()</code></a>.' | t,
+		value: settings.jsReturnTemplate
+	})
+}}
+
+{{
+	forms.selectField({
+		label: "What type of response to pass through the return template:"|t,
+		id: 'returnType',
+		name: 'returnType',
+		options : [{
+			'value' : 'url',
+			'label' : 'URL'
+		},
+		{
+			'value' : 'contents',
+			'label' : 'Contents'
+		}],
+		instructions : "Select whether to return the URL to cache or the contents of cache."|t,
+		value: settings.returnType
+	})
+}}
+
+<hr>
+
+{{
+	forms.lightswitchField({
+		onLabel:	"On",
+		offLabel:	"Off",
+		label: "Prepend URLs in CSS?" | t,
+		instructions : "Enable or disable prepending URLs to <em>relative</em> @import and image paths in CSS." | t,
+		name:		"cssPrependUrlEnabled",
+		on:			settings.cssPrependUrlEnabled
+	})
+}}
+
+{{
+	forms.textField({
+		label: 'Prepend URL override:' | t,
+		id: 'cssPrependUrl',
+		name: 'cssPrependUrl',
+		placeholder : 'e.g. http://cdn.domain.com/assets/css',
+		instructions : 'Default is the URL &amp; path to the asset being minified. Root-relative URIs are recommended.' | t,
+		value: settings.cssPrependUrl
+	})
+}}

@@ -1,0 +1,108 @@
+{% extends "_layouts/cp" %}
+{% import '_includes/forms' as forms %}
+
+{% includeCssResource "retour/css/Retour.css" %}
+{% includeCssResource "retour/css/RetourTables.css" %}
+{% includeJsResource "retour/js/Retour.js" %}
+{% includeJsResource "retour/js/datatables.min.js" %}
+
+{% set title = craft.retour.getPluginName() %}
+
+{% set docsUrl = "https://github.com/nystudio107/retour/blob/master/README.md" %}
+
+{% set retourSections = {
+    redirects:      { label: "Redirects"|t, url: url('retour/redirects') },
+    statistics:     { label: "Statistics"|t, url: url('retour/statistics') },
+    settings:       { label: "Settings"|t, url: url('retour/settings') },
+} %}
+
+{% set crumbs = [
+    { label: craft.retour.getPluginName(), url: url('retour') },
+    { label: "Statistics"|t, url: url('retour/statistics') },
+] %}
+
+{% if craft.app.version < 2.5 %}
+    {% set tabs = retourSections %}
+    {% set selectedTab = 'statistics' %}
+{% else %}
+    {% set subnav = retourSections %}
+    {% set selectedSubnavItem = 'statistics' %}
+{% endif %}
+
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ url('retour/clearStats') }}" class="btn delete icon">{{ "Clear Stats"|t }}</a>
+    </div>
+{% endset %}
+
+{% set content %}
+
+<!-- Staistics -->
+
+        <h2>{{ "Retour Statistics" |t }}</h2>
+
+        {% set stats = craft.retour.getStatistics() %}
+        {% if stats|length %}
+            <div class="tableview">
+                <table id="statistics" class="data fullwidth" style="table-layout: fixed; width: 100%; overflow: hidden;">
+                    <thead>
+                        <th style="width: 34%" data-sort="string-ins" scope="col"><span class="sort-label">{{ "404 File Not Found URL"|t }}</span></th>
+                        <th style="width: 34%" data-sort="string-ins" scope="col"><span class="sort-label">{{ "Last Referrer URL"|t }}</span></th>
+                        <th style="width: 5%" data-sort="int" scope="col"><span class="sort-label">{{ "Hits"|t }}</span></th>
+                        <th style="width: 20%" data-sort="date" scope="col"><span class="sort-label">{{ "Last Hit"|t }}</span></th>
+                        <th style="width: 5%" data-sort="string-ins" scope="col"><span class="sort-label">{{ "Handled"|t }}</span></th>
+                        <th class="thin" style="width: 5%">&nbsp;</th>
+                    </thead>
+                    <tbody>
+
+                        {% for stat in stats %}
+                            <tr data-id="{{ stat.id }}" data-name="{{ stat.redirectSrcUrl }}">
+                                <td style="width: 34%" ><a class="go" href="{{ url(stat.redirectSrcUrl) }}" title="{{ url(stat.redirectSrcUrl) }}">{{ stat.redirectSrcUrl }}</a></td>
+                                <td style="width: 34%" >{% if stat.referrerUrl %}<a class="go" href="{{ url(stat.referrerUrl) }}">{{ stat.referrerUrl }}</a>{% endif %}</td>
+                                <td style="width: 5%">{{ stat.hitCount }}</td>
+                                <td style="width: 20%">{{ stat.hitLastTime |datetime }}</td>
+                                <td style="width: 6%">{% if stat.handledByRetour %}<span style="color: green;">&#x2714;</span>{% else %}<span style="color: red;">&#x2716;</span>{% endif %}</td>
+                                <td style="width: 5%">{% if not stat.handledByRetour %}<a href="{{ url('retour/new', {'defaultRedirectSrcUrl': stat.redirectSrcUrl}) }}" class="add icon" title="{{ 'Add'|t }}"></a>{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p id="no-statistics" class="instructions">You have no 404s yet.</p>
+        {% endif %}
+
+{% endset %}
+
+{% set js %}
+/* -- Initialize the datatable */
+
+$('#statistics').dataTable({
+  "sDom": '<"top"ilpf<"clear">>rt<"bottom"ilp<"clear">>',
+  "sPaginationType": "full_numbers",
+  "aaSorting": [[ 2, "desc" ]],
+  "aoColumns": [ null, null, { "sType": "num" }, { "sType": "date" }, null, null],
+  "bLengthChange": false,
+  "iDisplayLength": 50,
+  "bInfo": true,
+  "oLanguage": {
+    "sSearch": "Statistics Filter ",
+    "oPaginate": {
+      "sFirst": "«",
+      "sLast": "»",
+      "sNext": "›",
+      "sPrevious": "‹"
+      }
+    },
+  "bAutoWidth": false });
+
+/* -- Add our cancel button to the table */
+
+{% set cancelButton = resourceUrl('retour/cancel.png') %}
+var sOnClick = "onclick=\"$(document).ready(function() {var oTable = $('#statistics').dataTable();oTable.fnFilter('');});\"";
+var sMyElem = "<div class='filter-cancel-button'><img src='{{ cancelButton }}' height='16' width='16' " + sOnClick + " ></div>";
+
+$( sMyElem ).insertBefore( "#statistics_filter" );
+{% endset %}
+{% includeJs js %}

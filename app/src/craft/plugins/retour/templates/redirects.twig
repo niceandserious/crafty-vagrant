@@ -1,0 +1,200 @@
+{% extends "_layouts/cp" %}
+{% import '_includes/forms' as forms %}
+
+{% includeCssResource "retour/css/Retour.css" %}
+{% includeCssResource "retour/css/RetourTables.css" %}
+{% includeJsResource "retour/js/Retour.js" %}
+{% includeJsResource "retour/js/datatables.min.js" %}
+
+{% set title = craft.retour.getPluginName() %}
+
+{% set docsUrl = "https://github.com/nystudio107/retour/blob/master/README.md" %}
+
+{% set retourSections = {
+    redirects:      { label: "Redirects"|t, url: url('retour/redirects') },
+    statistics:     { label: "Statistics"|t, url: url('retour/statistics') },
+    settings:       { label: "Settings"|t, url: url('retour/settings') },
+} %}
+
+{% set crumbs = [
+    { label: craft.retour.getPluginName(), url: url('retour') },
+    { label: "Redirects"|t, url: url('retour/redirects') },
+] %}
+
+{% if craft.app.version < 2.5 %}
+    {% set tabs = retourSections %}
+    {% set selectedTab = 'redirects' %}
+{% else %}
+    {% set subnav = retourSections %}
+    {% set selectedSubnavItem = 'redirects' %}
+{% endif %}
+
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <div class="retour-htaccess-container">
+            <form id="htaccess-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                {{ getCsrfInput() }}
+                <input type="hidden" name="action" value="retour/importHtaccess">
+                <input type="file" name="file" id="file" class="inputfile" accept=".htaccess|text/*" onchange="this.form.submit();" />
+                <label class="btn" for="file">Import .htaccess File</label>
+            </form>
+        </div>
+        <a href="{{ url('retour/new') }}" class="btn submit add icon">{{ "New Static Redirect"|t }}</a>
+    </div>
+{% endset %}
+
+{% set content %}
+
+        {% set matchesList = craft.retour.getMatchesList() %}
+
+<!-- Static Redirects -->
+
+        <h2>{{ "Static Redirects" |t }}</h2>
+
+        {% set redirects = craft.retour.getStaticRedirects(craft.config.get('staticRedirectDisplayLimit', 'retour')) %}
+        {% if redirects|length %}
+            <div class="tableview">
+                <table id="static-redirects" class="data fullwidth" style="table-layout: fixed; width: 100%; overflow: hidden;">
+                    <thead>
+                        <th style="width: 25%" scope="col"><span class="sort-label">{{ "Legacy URL Pattern"|t }}</span></th>
+                        <th style="width: 25%" scope="col"><span class="sort-label">{{ "Redirect To"|t }}</span></th>
+                        <th style="width: 15%" scope="col"><span class="sort-label">{{ "Pattern Match Type"|t }}</span></th>
+                        <th style="width: 10%" scope="col"><span class="sort-label">{{ "Redirect Type"|t }}</span></th>
+                        <th style="width: 5%" scope="col"><span class="sort-label">{{ "Hits"|t }}</span></th>
+                        <th style="width: 16%" scope="col"><span class="sort-label">{{ "Last Hit"|t }}</span></th>
+                        <th style="width: 4%" class="thin">&nbsp;</th>
+                    </thead>
+                    <tbody>
+
+                        {% for redir in redirects %}
+                            <tr data-id="{{ redir.id }}" data-name="{{ redir.redirectSrcUrl }}">
+                                <td><a class="go" href="{{ url("retour/edit/" ~ redir.id) }}">{{ redir.redirectSrcUrl }}</a></td>
+                                <td>{{ redir.redirectDestUrl }}</td>
+                                <td>{{ matchesList[redir.redirectMatchType] }}</td>
+                                <td>{{ redir.redirectHttpCode }}</td>
+                                <td>{{ redir.hitCount }}</td>
+                                <td>{{ redir.hitLastTime |datetime }}</td>
+                                <td class="rightalign"><a class="delete icon" title="{{ 'Delete'|t }}"></a></td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p id = "no-static-redirects" class="instructions">You have no Static Redirects.  You can create clicking on the <strong>+ New Static Redirect</strong> button.</p>
+        {% endif %}
+
+        <p class="textline"></p>
+
+<!-- Entry Redirects -->
+
+        <h2>{{ "Dynamic Entry Redirects" |t }}</h2>
+
+        {% set redirects = craft.retour.getEntryRedirects(craft.config.get('dynamicRedirectDisplayLimit', 'retour')) %}
+        {% if redirects|length %}
+            <div class="tableview">
+                <table id="entry-redirects" class="data fullwidth" style="table-layout: fixed; width: 100%; overflow: hidden;">
+                    <thead>
+                        <th style="width: 25%" scope="col"><span class="sort-label">{{ "Legacy URL Pattern"|t }}</span></th>
+                        <th style="width: 25%" scope="col"><span class="sort-label">{{ "Redirect To"|t }}</span></th>
+                        <th style="width: 15%" scope="col"><span class="sort-label">{{ "Pattern Match Type"|t }}</span></th>
+                        <th style="width: 10%" scope="col"><span class="sort-label">{{ "Redirect Type"|t }}</span></th>
+                        <th style="width: 5%" scope="col"><span class="sort-label">{{ "Hits"|t }}</span></th>
+                        <th style="width: 20%" scope="col"><span class="sort-label">{{ "Last Hit"|t }}</span></th>
+                    </thead>
+                    <tbody>
+
+                        {% for redir in redirects %}
+                            {% set associatedEntry = craft.entries.id(redir.associatedElementId).locale(redir.locale).first %}
+                            {% if associatedEntry %}
+                            <tr data-id="{{ redir.id }}" data-name="{{ redir.redirectSrcUrl }}">
+                                <td><a class="go" href="{{ associatedEntry.cpEditUrl }}">{{ redir.redirectSrcUrl }}</a></td>
+                                <td>{{ redir.redirectDestUrl }}</td>
+                                <td>{{ matchesList[redir.redirectMatchType] }}</td>
+                                <td>{{ redir.redirectHttpCode }}</td>
+                                <td>{{ redir.hitCount }}</td>
+                                <td>{{ redir.hitLastTime |datetime }}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="instructions">You have no Dynamic Entry Redirects.  You can create them by adding a Retour Redirect FieldType to your Section Entry Types.</p>
+        {% endif %}
+
+{% endset %}
+
+{% set js %}
+
+/* -- Make it a Craft Admin table */
+
+    new Craft.AdminTable({
+        tableSelector: '#static-redirects',
+        noObjectsSelector: '#no-static-redirects',
+        deleteAction: 'retour/deleteRedirect'
+    });
+
+/* -- Initialize the datatable */
+
+$('#static-redirects').dataTable({
+  "sDom": '<"top"ilpf<"clear">>rt<"bottom"ilp<"clear">>',
+  "sPaginationType": "full_numbers",
+  "aaSorting": [[ 4, "desc" ]],
+  "aoColumns": [ null, null, null, { "sType": "num" }, { "sType": "num" }, { "sType": "date" }, null],
+  "bLengthChange": false,
+  "iDisplayLength": 20,
+  "bInfo": true,
+  "oLanguage": {
+    "sSearch": "Redirects Filter ",
+    "oPaginate": {
+      "sFirst": "«",
+      "sLast": "»",
+      "sNext": "›",
+      "sPrevious": "‹"
+      }
+    },
+  "bAutoWidth": false });
+
+/* -- Add our cancel button to the table */
+
+{% set cancelButton = resourceUrl('retour/cancel.png') %}
+var sOnClick = "onclick=\"$(document).ready(function() {var oTable = $('#static-redirects').dataTable();oTable.fnFilter('');});\"";
+var sMyElem = "<div class='filter-cancel-button'><img src='{{ cancelButton }}' height='16' width='16' " + sOnClick + " ></div>";
+
+$( sMyElem ).insertBefore( "#static-redirects_filter" );
+
+/* -- Initialize the datatable */
+
+$('#entry-redirects').dataTable({
+  "sDom": '<"top"ilpf<"clear">>rt<"bottom"ilp<"clear">>',
+  "sPaginationType": "full_numbers",
+  "aaSorting": [[ 4, "desc" ]],
+  "aoColumns": [ null, null, null, { "sType": "num" }, { "sType": "num" }, { "sType": "date" }],
+  "bLengthChange": false,
+  "iDisplayLength": 20,
+  "bInfo": true,
+  "oLanguage": {
+    "sSearch": "Redirects Filter ",
+    "oPaginate": {
+      "sFirst": "«",
+      "sLast": "»",
+      "sNext": "›",
+      "sPrevious": "‹"
+      }
+    },
+  "bAutoWidth": false });
+
+/* -- Add our cancel button to the table */
+
+{% set cancelButton = resourceUrl('retour/cancel.png') %}
+var sOnClick = "onclick=\"$(document).ready(function() {var oTable = $('#entry-redirects').dataTable();oTable.fnFilter('');});\"";
+var sMyElem = "<div class='filter-cancel-button'><img src='{{ cancelButton }}' height='16' width='16' " + sOnClick + " ></div>";
+
+$( sMyElem ).insertBefore( "#entry-redirects_filter" );
+
+{% endset %}
+{% includeJs js %}

@@ -1,0 +1,262 @@
+[
+    {
+        "version": "1.0.22",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2017-10-02T12:00:00-05:00",
+        "notes": [
+            "[Fixed] Fixed an issue in the `Retour_StatsModel`",
+            "[Fixed] Exact matches are now checked before RegEx matches for static redirects",
+            "[Improved] Fixed the documentation that was incorrect about being able to add multiple FieldTypes to a single entry",
+            "[Fixed] Replace 4-byte UTF-8 characters in `Retour_Statistics` before saving them, to avoid db errors"
+        ]
+    },
+    {
+        "version": "1.0.21",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2017-08-31T12:00:00-05:00",
+        "notes": [
+            "[Fixed] Fixed a hardcoded table name in the `referrerUrl` migration"
+        ]
+    },
+    {
+        "version": "1.0.20",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2017-08-30T12:00:00-05:00",
+        "notes": [
+            "[Added] Retour will automatically trim the `retour_stats` table to the last 10,000 redirects, sorted by date (configurable via `statsStoredLimit` in `config.php`)",
+            "[Added] Add the URL to the stats title attribute, for cases where the display is truncated",
+            "[Added] Respect `addTrailingSlashesToUrls` in the URLs returned from `getLocalizedUrls()`",
+            "[Added] Respect `addTrailingSlashesToUrls` in the redirects",
+            "[Added] Added a `alwaysStripQueryString` setting to `config.php` (defaults to `false`)",
+            "[Added] Added a `stripQueryStringFromStats` setting to `config.php` (defaults to `true`)",
+            "[Improved] Updated README.md to note that importing `.htaccess` ignores `RewriteRule`",
+            "[Improved] Refactored and cleaned up the code",
+            "[Fixed] Fixed some deprecated meta information in `RetourPlugin.php`",
+            "[Improved] The `referrerUrl` has a maximum length of 2000 now",
+            "[Fixed] Fixed some typos in `README.md`"
+        ]
+    },
+    {
+        "version": "1.0.19",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2017-02-10T12:00:00-05:00",
+        "notes": [
+            "[Added] Added a referrer column in the Stats table",
+            "[Added] Added additional logging in `devMode`",
+            "[Improved] No more default value for `redirectSrcUrl` column (could cause SQL exceptions in newer versions of MySQL)",
+            "[Improved] Updated CHANGELOG.md"
+        ]
+    },
+    {
+        "version": "1.0.18",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2017-01-20T12:00:00-05:00",
+        "notes": [
+            "[Fixed] The `addTrailingSlashesToUrls` is now respected for dynamic entry redirects",
+            "[Improved] Merged pull request 'Fix retourMatch hook'",
+            "[Added] Added a `statsDisplayLimit` setting to `config.php` to control how many stats should be displayed in the AdminCP",
+            "[Improved] Merged pull request 'Limit returned results to template'",
+            "[Improved] Merged pull request 'Allow handling of 404s from { exit } tags encountered while rendering templates'",
+            "[Added] Added a config.php setting `createUriChangeRedirects` so that the URI-change redirects can be disabled on a per-environment basis",
+            "[Improved] Don't redirect to the welcome page if we're being installed via Console command",
+            "[Improved] Moved the changelog to CHANGELOG.md"
+        ]
+    },
+    {
+        "version": "1.0.17",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-08-31T12:00:00-05:00",
+        "notes": [
+            "[Improved] Query strings are now stripped from the incoming URI before redirect detection is done",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.16",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-08-30T12:00:00-05:00",
+        "notes": [
+            "[Fixed] FieldTypes in multi-locale setups that are not translatable are now handled properly",
+            "[Fixed] Fixed missing locale prefix for localized entries in the FieldType",
+            "[Fixed] Fixed an issue where FieldType redirects had an errant / prepended to them",
+            "[Improved] Better importing of `.htaccess` files",
+            "[Improved] Better error handling when importing malformed `.htaccess` files",
+            "[Fixed] Trailing /'s are no longer stripped from URLs added via the `+` icon from the Statistics page",
+            "[Fixed] Fixed an issue that would prevent RegEx's from matching as they should in FieldTypes",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.15",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-07-12T12:00:00-05:00",
+        "notes": [
+            "[Added] Added the ability to import the redirects from a `.htaccess` file into Retour",
+            "[Fixed] Fixed a statics db error with empty referrers",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.14",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-07-10T12:00:00-05:00",
+        "notes": [
+            "[Added] The Statistics and Redirects tables are now dynamically searchable and sortable",
+            "[Fixed] Fixed an issue that caused redirects created via the `+` from Statistics page to not save",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.13",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-07-06T12:00:00-05:00",
+        "notes": [
+            "[Added] Adds support for locales in the automatic redirect that is created when a slug is changed for an entry",
+            "[Improved] Retour will no longer let you save a static redirect with an empty destinationURL",
+            "[Fixed] Fixed a typo in the Retour_StatsModel",
+            "[Improved] Added a rant about `.htaccess` to the docs",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.12",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-07-04T12:00:00-05:00",
+        "notes": [
+            "[Added] If you hover over a 404 File Not Found URL on the Statistics page, you'll now see the last referrer for the 404 URL",
+            "[Added] Added a + button on the Statistics page that lets you quickly add a 404'd URL as a redirect",
+            "[Improved] We now store the destination for redirects in the FieldType as a URI rather than a URL, so that it's more portable across environments",
+            "[Added] Structure entries that have Retour FieldTypes in them now have the destinationURL updated when the structure elements are moved",
+            "[Improved] The widget now handles very long URLs more gracefully",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.11",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-06-21T12:00:00-05:00",
+        "notes": [
+            "[Fixed] Fixed an issue with URLs that have umlauts in them",
+            "[Fixed] Fixed an issue with URLs that are longer than 255 characters for the redirect statistics",
+            "[Improved] Statistics are now limited to the top 1,000 hits",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.10",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-06-15T12:00:00-05:00",
+        "notes": [
+            "[Added] Retour will attempt to prevent redirect loops when saving a new redirect by deleting any existing redirects that have the destUrl as their srcUrl",
+            "[Added] Added a 410 - Gone redirect http code for permanently removed resources",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.9",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-06-04T12:00:00-05:00",
+        "notes": [
+            "[Added] Retour will now automatically create a static redirect for you if you rename an entry's slug",
+            "[Improved] Retour checks to ensure that no two redirects have the same redirectSrcUrl",
+            "[Improved] The Statistics page handles really long URLs better now",
+            "[Improved] If you save a redirect, either static or dynamic, with an empty Legacy URL Pattern, retour now deletes it",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.8",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-05-30T12:00:00-05:00",
+        "notes": [
+            "[Improved] Revamped Retour to key off of the ElementID rather than the EntryID",
+            "[Fixed] Fixed an issue with Retour and MySQL running in strict mode (which is the default in 5.7+)",
+            "[Fixed] Retour will no longer try to save a record with a null id (caused a CDbCommand exception)",
+            "[Fixed] A '/' isn't prepended to empty src URLs anymore",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.7",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-05-06T12:00:00-05:00",
+        "notes": [
+            "[Improved] getRequestUri() is now explicitly used, and we immediately terminate the request upon redirect",
+            "[Improved] We now pass in 0 instead of null for the cache duration",
+            "[Improved] We now explicitly check for CHttpException",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.6",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-29T12:00:00-05:00",
+        "notes": [
+            "[Fixed] Fixed a Javascript error with the FieldType Javascript",
+            "[Fixed] Fixed a visual display glitch with the tabs on Craft 2.4.x",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.5",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-28T12:00:00-05:00",
+        "notes": [
+            "[Added] Added a 'Clear Statistics' button to the Statistics page",
+            "[Fixed] Fixed a bug when using RegEx for static redirects that would cause them to not work",
+            "[Fixed] Fixed an issue with Craft 2.4.x",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.4",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-28T11:00:00-05:00",
+        "notes": [
+            "[Added] The tables in the Statistics and Redirects pages are now sortable by any column",
+            "[Improved] Fixed up the localization support for the FieldType",
+            "[Improved] Minor changes/fixes to the plugin",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.3",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-27T20:16:52.434Z",
+        "notes": [
+            "[Added] Added a Retour Stats widget",
+            "[Added] Added information on the Statistics tab as to whether Retour handled the 404 or not",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.2",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-26T20:16:52.434Z",
+        "notes": [
+            "[Fixed] Fixed faulty indexes that could cause Retour Redirect FieldTypes to not work properly",
+            "[Improved] Spiffy new icon",
+            "[Improved] Changing the display name of the plugin is now more globally applied",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.1",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-26T18:16:52.434Z",
+        "notes": [
+            "[Added] Implemented a caching layer so that once a redirect has been determined, subsequent redirects are cached and immediately returned",
+            "[Added] Added the ability to delete static redirects",
+            "[Added] Added Composer support",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
+        "version": "1.0.0",
+        "downloadUrl": "https://github.com/nystudio107/retour/archive/master.zip",
+        "date": "2016-04-25T18:16:52.434Z",
+        "notes": [
+            "[Added] Initial release"
+        ]
+    }
+]

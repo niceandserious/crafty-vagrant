@@ -1,0 +1,12 @@
+{
+	"autoload": {
+		"psr-0": {
+			"SelvinOrtiz": "src"
+		}
+	},
+	"require": {
+		"mrclay/jsmin-php": "^2.3",
+		"mrclay/minify": "^2.3",
+		"selvinortiz/zit": "^0.5.2"
+	}
+}
