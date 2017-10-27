@@ -1,0 +1,7 @@
+# MySQL 5.7's default settings (strict mode) don't work with Craft 2
+# Craft 3 should fix this. In the mean time...
+#
+# cf. https://mattstauffer.co/blog/how-to-disable-mysql-strict-mode-on-laravel-forge-ubuntu
+#
+[mysqld]
+sql_mode=NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
