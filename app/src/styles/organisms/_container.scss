@@ -1,0 +1,11 @@
+@mixin container() {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $gtr-half;
+  padding-right: $gtr-half;
+}
+
+.container {
+  @include container;
+}

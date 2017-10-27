@@ -1,0 +1,5 @@
+@mixin flow($ratio: 1.25) {
+  > * + * {
+    margin-top: $ratio * 1em;
+  }
+}

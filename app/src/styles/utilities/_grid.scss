@@ -1,0 +1,82 @@
+$gtr       : rem(30);
+$gtr-half  : $gtr / 2;
+$cols      : 12;
+$max-width : rem(1440);
+
+@mixin flex-grid($direction: row, $align: flex-start, $justify: flex-start, $gutters: true) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+
+  @if $gutters == true {
+    margin-left: -$gtr-half;
+    margin-right: -$gtr-half;
+  }
+}
+
+@mixin flex-span($columns-span, $gutters: true) {
+  @if $gutters {
+    width: calc(#{percentage($columns-span / $cols)} - #{$gtr});
+    margin: $gtr-half;
+  } @else {
+    width: #{percentage($columns-span / $cols)};
+  }
+}
+
+@mixin flex-offset($columns) {
+  margin-left: calc(#{percentage($columns / $cols)} + #{$gtr-half});
+}
+
+.g-s-gtr {
+  @include media($small-screen-up) {
+    @include flex-grid();
+  }
+}
+
+.g-s {
+  @include media($small-screen-up) {
+    @include flex-grid($gutters: false);
+  }
+}
+
+.g-m-gtr {
+  @include media($medium-screen-up) {
+    @include flex-grid();
+  }
+}
+
+.g-m {
+  @include media($medium-screen-up) {
+    @include flex-grid($gutters: false);
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-span-#{$i} {
+    .g-s-gtr & {
+      @include media($small-screen-up) {
+        @include flex-span($i);
+      }
+    }
+
+    .g-s & {
+      @include media($small-screen-up) {
+        @include flex-span($i, $gutters: false);
+      }
+    }
+
+    .g-m-gtr & {
+      @include media($medium-screen-up) {
+        @include flex-span($i);
+      }
+    }
+
+    .g-m & {
+      @include media($medium-screen-up) {
+        @include flex-span($i, $gutters: false);
+      }
+    }
+  }
+}

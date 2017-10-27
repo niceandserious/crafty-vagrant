@@ -1,25 +1,21 @@
-// Resets
-@import "normalize";
+@import "base/normalize";
 
-// Libraries & helpers
-@import "bourbon";
-@import "neat";
-@import "neat-helpers";
+@import "utilities/functions";
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/media-queries";
+@import "utilities/grid";
 
-// Base
-@import "base/variables";
-@import "base/mixins";
-@import "base/grid-settings";
-@import "base/layout";
+@import "base/base";
 
-// Typography
+@import "typography/font-face";
 @import "typography/typography";
+@import "typography/headings";
 
-// Atoms
-@import "atoms/buttons";
+@import "atoms/btn";
 
-// Molecules
-@import "molecules/nav";
+@import "molecules/layout";
 
-// Organisms
 @import "organisms/header";
+@import "organisms/container";
+@import "organisms/footer";
