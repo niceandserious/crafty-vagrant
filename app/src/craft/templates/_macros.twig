@@ -1,0 +1,17 @@
+{% macro getScriptTag(path) %}
+  {%- if craft.config.devMode -%}
+    {%- set scriptTag = '<script src="' ~ siteUrl ~ path ~ '"><\\/script>' -%}
+  {%- else -%}
+    {%- set scriptTag = craft.minimee.js(['/' ~ path]) -%}
+  {%- endif -%}
+  {{- scriptTag|raw -}}
+{% endmacro %}
+
+{% macro getStyleTag(path) %}
+  {%- if craft.config.devMode -%}
+    {%- set styleTag = '<link rel="stylesheet" href="' ~ siteUrl ~ path ~ '">' -%}
+  {%- else -%}
+    {%- set styleTag = craft.minimee.css(['/' ~ path]) -%}
+  {%- endif -%}
+  {{- styleTag|raw -}}
+{% endmacro %}

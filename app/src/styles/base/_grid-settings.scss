@@ -1,18 +1,18 @@
-// Neat Overrides
-///////////////////////////////////////////////////////////////////////////////
-$column:	em(67, 18);
-$gutter:	30px;
-$grid-columns: 12;
-$max-width:	em(1170, 18);
+$max-width : 80rem; // 1280
+$gtr       : 1.875rem; // 30
+$gtr-half  : 0.9375rem; // 15
+$cols      : 12;
 
-// Neat Breakpoints
-///////////////////////////////////////////////////////////////////////////////
-$medium-screen: em(640);
-$large-screen: 	em(980);
+$s  : 30em; // 480
+$m  : 40em; // 640
+$l  : 61.25em; // 980
+$xl : 80em; // 1280
 
-$medium-screen-up:	 new-breakpoint(min-width $medium-screen 8);
-$large-screen-up:	 new-breakpoint(min-width $large-screen 12);
+//------------------------------------------------------------------------
+//  $Media Queries
+//------------------------------------------------------------------------
 
-$small-screen-only:  new-breakpoint(max-width ($medium-screen - em(1)) 4);
-$medium-screen-only: new-breakpoint(min-width  $medium-screen max-width ($large-screen - em(1)) 8);
-$large-screen-only:  new-breakpoint(min-width  $large-screen 12);
+$small-screen-up  : new-breakpoint(min-width $s);
+$medium-screen-up  : new-breakpoint(min-width $m);
+$large-screen-up  : new-breakpoint(min-width $l);
+$extra-large-screen-up : new-breakpoint(min-width $xl);

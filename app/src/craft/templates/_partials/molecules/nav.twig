@@ -1,0 +1,15 @@
+<nav class="nav">
+  <a href="{{ siteUrl }}"><h1>{{ siteName }}</h1></a>
+
+  {%- set navItems = {
+    'about-us':  'About Us'
+  } -%}
+
+  <ul>
+    {% for sectionUrl, sectionName in navItems -%}
+      <li {% if craft.request.firstSegment == sectionUrl %} class="active"{% endif %}>
+        <a href="{{ url(sectionUrl) }}">{{ sectionName }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
