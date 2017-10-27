@@ -58,8 +58,8 @@ Vagrant.configure("2") do |config|
   end
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "boxcutter/ubuntu1604"
-  config.vm.box_url = "https://vagrantcloud.com/boxcutter/boxes/ubuntu1604"
+  config.vm.box = "geerlingguy/ubuntu1604"
+  config.vm.box_url = "https://app.vagrantup.com/geerlingguy/boxes/ubuntu1604"
 
   # Set hostname
   config.vm.hostname = env['CRAFTY_SERVER_NAME']
