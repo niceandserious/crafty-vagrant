@@ -21,4 +21,14 @@
 
 {% block content %}
   <h1>{{ entry.title }}</h1>
+
+  <div>{{ entry.body }}</div>
+
+  <h2>News</h2>
+
+  {% for entry in craft.entries.section('news') %}
+    <article>
+      <a href="{{ entry.url }}"><h3>{{ entry.title }}</h3></a>
+    </article>
+  {% endfor %}
 {% endblock %}

@@ -13,4 +13,10 @@
  # http://buildwithcraft.com/docs/routing
  #}
 
-{% extends "_channel/_entry" %}
+{% extends "_layout" %}
+
+{% block content %}
+  <h2>{{ entry.title }}</h2>
+
+  <div>{{ entry.body }}</div>
+{% endblock %}

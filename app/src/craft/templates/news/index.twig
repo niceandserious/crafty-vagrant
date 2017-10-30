@@ -3,8 +3,14 @@
  # -------------------
  #}
 
-{% extends "_channel/index" %}
+{% extends "_layout" %}
 
-{# Section: #}
-{% set sectionHandle = craft.request.firstSegment %}
-{% set section = craft.sections.getSectionByHandle(sectionHandle) %}
+{% block content %}
+  <ul>
+    {% for entry in craft.entries.section('news') %}
+      <li>
+        <a href="{{ entry.url }}"><h2>{{ entry.title }}</h2></a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
