@@ -19,6 +19,6 @@ then
 else
   echo
   echo "No Craft database backups found.";
-  echo "Please finish installing Craft by visiting craft.dev/admin/install in your browser.";
+  echo "Please finish installing Craft by visiting craft.local/admin/install in your browser.";
   echo
 fi

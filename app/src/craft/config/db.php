@@ -19,7 +19,7 @@ return array(
     'database'  => 'craft',
   ),
 
-  '.dev' => array(
+  '.local' => array(
     // Dev DB credentials:
     'user'      => 'craft',
     'password'  => '123',

@@ -94,7 +94,7 @@ echo_color "
 gulp;
 
 ## Create the storage/runtime directory for Craft
-## (to prevent a PHP error on first visit to craft.dev)
+## (to prevent a PHP error on first visit to craft.local)
 DIR="app/craft/storage/runtime";
 if [ ! -f $DIR/.gitignore ]; then
   mkdir -p $DIR/{cache,compiled_templates,logs};
@@ -111,4 +111,4 @@ echo_color "
 ## 'vagrant up' to start the server.
 ## 'gulp watch' to watch Sass + JS for changes.
 ##
-## If this is a new install, you'll need to install Craft at http://craft.dev/admin/install";
+## If this is a new install, you'll need to install Craft at http://craft.local/admin/install";

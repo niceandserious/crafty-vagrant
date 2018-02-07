@@ -19,13 +19,13 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 2. If this is the first time you've used Crafty Vagrant, open your `hosts` file and add
 
-      192.168.56.101    craft.dev
+      192.168.56.101    craft.local
 
   (the hosts file is usually found at `/etc/hosts` on OSX/Linux; `%SystemRoot%\System32\drivers\etc\hosts` on Windows)
 
 3. Launch vagrant: `vagrant up`
 
-...and hopefully (after a short wait while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.dev/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one will automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.dev/admin/install](http://craft.dev/admin/install)
+...and hopefully (after a short wait while your Vagrant machine is set up) you should be ready to go! The webserver should now be accessible from `http://craft.local/`. If Craft backups are present in `/app/craft/storage/backups`, the most recent one will automatically have been used to populate the database. Otherwise, you can install Craft by going to [http://craft.local/admin/install](http://craft.local/admin/install)
 
 ## Usage
 
@@ -41,7 +41,7 @@ Be sure to follow these steps carefully if you want Crafty Vagrant to behave!
 
 ## Troubleshooting
 
-* If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.dev/admin/install](http://craft.dev/admin/install)
+* If this is a fresh install of Craft, you may see error pages until you've installed it by visiting  [http://craft.local/admin/install](http://craft.local/admin/install)
 
 * Crafty Vagrant will not install properly if the `unzip` command is not available from the command line. On Linux / OSX this is not usually a problem, but for Windows you might need to get an unzip executable file [here](http://stahlworks.com/dev/index.php?tool=zipunzip) and put it somewhere accessible from your PATH.
 

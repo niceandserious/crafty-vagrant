@@ -77,7 +77,7 @@ gulp.task('watch:tasks', ['default'], function(){
  * - calls 'gulp watch:tasks' using Browsersync for live updating
  */
 gulp.task('watch', ['watch:tasks'], function() {
-  // Connect to craft.dev via BrowserSync:
+  // Connect to craft.local via BrowserSync:
   plugins.browserSync.init({
     open: false,
     proxy: process.env.CRAFTY_SERVER_NAME,
@@ -148,7 +148,7 @@ gulp.task('styles', function(){
     }))
     //Complete sourcemaps
     .pipe(plugins.sourcemaps.write())
-    
+
     // Write main.css
     .pipe(gulp.dest(path.dest + '/styles'))
     .pipe(plugins.browserSync.stream())

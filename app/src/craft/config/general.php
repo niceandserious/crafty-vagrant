@@ -35,7 +35,7 @@ return array(
   ),
 
   // Dev site configuration:
-  '.dev' => array(
+  '.local' => array(
     'devMode' => true,
     // In dev mode we always want to see the latest changes to a template:
     'enableTemplateCaching' => false,

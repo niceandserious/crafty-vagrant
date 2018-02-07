@@ -16,35 +16,32 @@
   <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
   <link rel="home" href="{{ siteUrl }}" />
 
-  {% block meta %}
-    {% include '_partials/meta' %}
-  {% endblock %}
-
   {% import '_macros' as helpers %}
-
-  {% block headScripts %}
-    <script src="/scripts/modernizr.js"></script>
-  {% endblock %}
 
   {{ helpers.getStyleTag('styles/main.css') }}
 </head>
 
 <body>
-  {% include '_partials/molecules/nav' %}
-
   {% block content %}{% endblock %}
 
   {% block footerScripts %}
-    <script>
-      document.write('{{ helpers.getScriptTag('scripts/bundle.js') }}');
-    </script>
+    {%- if craft.request.serverName|slice(-4) == 'local' -%}
+
+      {%- set scriptTag = '\'<script src="' ~ siteUrl ~ "scripts/bundle.js" ~ '"><\\/script>\'' -%}
+      <script>document.write({{ scriptTag | raw }});</script>
+
+    {%- else -%}
+
+      {{ craft.minimee.js(['/scripts/bundle.js']) }}
+
+    {%- endif -%}
   {% endblock %}
 
   {# Don't include analytics snippet in live preview: #}
   {% if not craft.request.isLivePreview %}{% endif %}
 
-  {# If we're on a .dev domain, load Browsersync: #}
-  {% if craft.request.serverName|slice(-4) == '.dev' %}
+  {# If we're on a .local domain, load Browsersync: #}
+  {% if craft.request.serverName|slice(-4) == '.local' %}
     <script id="__bs_script__">
       //<![CDATA[
         document.write("<script async src='http://localhost:3000/browser-sync/browser-sync-client.js'><\/script>");
