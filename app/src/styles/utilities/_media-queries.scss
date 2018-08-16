@@ -11,9 +11,18 @@ $extra-large-screen : em(1200);
 
 $small-screen-down  : "max-width: #{$small-screen - em(1)}";
 $small-screen-up    : "min-width: #{$small-screen}";
+
 $medium-screen-down : "max-width: #{$medium-screen - em(1)}";
 $medium-screen-up   : "min-width: #{$medium-screen}";
+
 $large-screen-down  : "max-width: #{$large-screen - em(1)}";
 $large-screen-up    : "min-width: #{$large-screen}";
+
 $extra-large-screen-down  : "max-width: #{$extra-large-screen - em(1)}";
 $extra-large-screen-up    : "min-width: #{$extra-large-screen}";
+
+$breakpoints: (
+  s: $small-screen-up,
+  m: $medium-screen-up,
+  l: $large-screen-up
+);

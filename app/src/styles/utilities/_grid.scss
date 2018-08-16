@@ -1,8 +1,3 @@
-$gtr       : rem(30);
-$gtr-half  : $gtr / 2;
-$cols      : 12;
-$max-width : rem(1440);
-
 @mixin flex-grid($direction: row, $align: flex-start, $justify: flex-start, $gutters: true) {
   display: flex;
   flex-wrap: wrap;
@@ -25,57 +20,80 @@ $max-width : rem(1440);
   }
 }
 
-@mixin flex-offset($columns) {
-  margin-left: calc(#{percentage($columns / $cols)} + #{$gtr-half});
-}
-
-.g-s-gtr {
-  @include media($small-screen-up) {
-    @include flex-grid();
+@mixin flex-offset($columns, $right: false) {
+  @if $right {
+    margin-right: calc(#{percentage($columns / $cols)} + #{$gtr-half});
+  } @else {
+    margin-left: calc(#{percentage($columns / $cols)} + #{$gtr-half});
   }
 }
 
-.g-s {
-  @include media($small-screen-up) {
-    @include flex-grid($gutters: false);
+.grid {
+  @include flex-grid;
+}
+
+.grid-no-gtr {
+  @include flex-grid($gutters: false);
+}
+
+.grid,
+.grid-no-gtr {
+  &--a-s { align-items: flex-start; }
+  &--a-c { align-items: center; }
+  &--a-e { align-items: flex-end; }
+  &--a-st { align-items: stretch; }
+
+  &--j-s { justify-content: flex-start; }
+  &--j-c { justify-content: center; }
+  &--j-e { justify-content: flex-end; }
+  &--j-sb { justify-content: space-between; }
+}
+
+.col {
+  .grid & {
+    @include flex-span(12);
+  }
+
+  .grid-no-gtr & {
+    @include flex-span(12, $gutters: false);
   }
 }
 
-.g-m-gtr {
-  @include media($medium-screen-up) {
-    @include flex-grid();
-  }
-}
+@each $size, $mq in $breakpoints {
+  .col-#{$size} {
+    @include media($mq) {
+      @for $i from 1 through 12 {
+        &-#{$i} {
+          .grid-no-gtr & {
+            @include flex-span($i, $gutters: false);
+          }
 
-.g-m {
-  @include media($medium-screen-up) {
-    @include flex-grid($gutters: false);
+          .grid & {
+            @include flex-span($i);
+          }
+        }
+      }
+    }
   }
-}
 
-@for $i from 1 through 12 {
-  .col-span-#{$i} {
-    .g-s-gtr & {
-      @include media($small-screen-up) {
-        @include flex-span($i);
+  .grid {
+    .offset-#{$size} {
+      @include media($mq) {
+        @for $i from 1 through 12 {
+          &-#{$i} {
+            @include flex-offset($i);
+          }
+        }
       }
     }
 
-    .g-s & {
-      @include media($small-screen-up) {
-        @include flex-span($i, $gutters: false);
-      }
-    }
-
-    .g-m-gtr & {
-      @include media($medium-screen-up) {
-        @include flex-span($i);
-      }
-    }
-
-    .g-m & {
-      @include media($medium-screen-up) {
-        @include flex-span($i, $gutters: false);
+    .offset-r-#{$size} {
+      @include media($mq) {
+        @for $i from 1 through 12 {
+          &-#{$i} {
+            @include flex-offset($i, $right: true);
+          }
+        }
       }
     }
   }

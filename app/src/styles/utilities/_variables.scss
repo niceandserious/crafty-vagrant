@@ -9,3 +9,10 @@ $body-text: $black;
 // Layout
 $sp-l: rem(60);
 $sp-s: rem(30);
+
+// Grid
+$gtr       : rem(30);
+$gtr-half  : $gtr / 2;
+$gtr-dbl   : $gtr * 2;
+$cols      : 12;
+$max-width : rem(1440);
