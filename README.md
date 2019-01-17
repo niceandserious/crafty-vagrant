@@ -71,6 +71,20 @@ If you want to work on Crafty Vagrant itself (ie. on the default config / starti
 * [jQuery](http://jquery.com/)
 * [Modernizr](http://modernizr.com/)
 
+## Locales
+
+If you're deploying to an Nginx server like Forge Laravel, you'll need to add the following lines to your server's Nginx config file.
+
+See: https://github.com/nystudio107/nginx-craft/blob/master/forge-example/NginxConfiguration.conf for reference
+
+        location @enrewrites {
+          rewrite ^/en/(.*)$ /en/index.php?p=$1? last;
+        }
+
+        location /en/ {
+          try_files $uri $uri/ @enrewrites;
+        }
+
 ## Thanks!
 
 Crafty Vagrant's pattern library is adapted from [Bitters](http://bitters.bourbon.io/) © 2013–2014 [thoughtbot, inc.](http://thoughtbot.com/)
