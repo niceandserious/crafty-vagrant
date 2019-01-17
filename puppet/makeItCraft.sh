@@ -47,7 +47,7 @@ echo ''
 coloredEcho 'Downloading and installing the latest version of Craft...' green
 echo ''
 
-curl -L http://buildwithcraft.com/latest.zip?accept_license=yes -o tmp/Craft.zip
+curl -L https://download.craftcms.com/craft/2.7/2.7.4/Craft-2.7.4.zip -o tmp/Craft.zip
 unzip tmp/Craft.zip -d app
 rm -rf tmp
 
